@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ Sinh Thái Tài Nguyên Toán Học</title>
-    <!-- Phông chữ hiện đại -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-gradient-start: #e0e7ff;
             --bg-gradient-end: #f8fafc;
-            --card-bg: rgba(255, 255, 255, 0.85); /* Trong suốt nhẹ */
+            --card-bg: rgba(255, 255, 255, 0.7); /* Kính mờ trong suốt */
             --text-main: #0f172a;
             --text-muted: #475569;
             --primary: #4f46e5;
@@ -25,43 +24,63 @@
             background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
             min-height: 100vh;
             overflow-x: hidden;
-            position: relative;
         }
 
-        /* Lớp nền chứa hiệu ứng ký hiệu toán học bay */
-        #math-background {
+        /* -------------------------------------------
+           PHẦN NỀN TOÁN HỌC ĐỘNG (KHÔNG DÙNG JS)
+           ------------------------------------------- */
+        .math-bg {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 0;
-            overflow: hidden;
-            pointer-events: none;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1; 
+            overflow: hidden; 
+            pointer-events: none; /* Không cản trở việc click chuột */
         }
 
-        .math-symbol {
+        .floating-el {
             position: absolute;
-            color: var(--primary);
-            opacity: 0.15;
+            color: #4f46e5;
+            opacity: 0.15; /* Làm mờ hình nền */
+        }
+
+        .formula {
             font-family: 'Times New Roman', serif;
+            font-size: 2.5rem;
             font-style: italic;
-            user-select: none;
-            bottom: -100px;
-            animation: floatUp linear infinite;
+            font-weight: bold;
+            white-space: nowrap;
         }
 
-        @keyframes floatUp {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.15; }
-            90% { opacity: 0.15; }
-            100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+        /* Tạo 2 quỹ đạo chuyển động mượt mà */
+        @keyframes float1 {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(40px, -60px) rotate(10deg); }
+            66% { transform: translate(-20px, 30px) rotate(-5deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
         }
 
-        /* Nội dung chính */
+        @keyframes float2 {
+            0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            50% { transform: translate(-50px, 50px) rotate(-15deg) scale(1.1); }
+            100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+        }
+
+        /* Cài đặt vị trí và tốc độ cho từng hình/công thức */
+        .el-1 { top: 5%; left: 5%; animation: float1 25s infinite ease-in-out; }
+        .el-2 { top: 60%; left: 8%; animation: float2 30s infinite ease-in-out; }
+        .el-3 { top: 15%; right: 10%; animation: float2 22s infinite ease-in-out reverse; }
+        .el-4 { bottom: 10%; right: 5%; animation: float1 28s infinite ease-in-out; }
+        .el-5 { top: 40%; left: 40%; animation: float1 35s infinite ease-in-out; opacity: 0.1; }
+        .el-6 { bottom: 25%; left: 45%; animation: float2 26s infinite ease-in-out; }
+        .el-7 { top: 45%; right: 30%; animation: float1 20s infinite ease-in-out; }
+
+
+        /* -------------------------------------------
+           GIAO DIỆN CHÍNH
+           ------------------------------------------- */
         .content-wrapper {
             position: relative;
-            z-index: 1; /* Nằm đè lên trên hình nền */
+            z-index: 1; 
             padding-bottom: 60px;
         }
 
@@ -71,18 +90,11 @@
         }
 
         .header-section h1 {
-            margin: 0;
-            font-size: 2.4rem;
-            font-weight: 700;
-            color: #1e293b;
-            text-shadow: 0 2px 10px rgba(255,255,255,0.8);
+            margin: 0; font-size: 2.4rem; font-weight: 700; color: #1e293b;
         }
 
         .header-section p {
-            margin: 15px auto 0;
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            max-width: 600px;
+            margin: 15px auto 0; color: var(--text-muted); font-size: 1.1rem; max-width: 600px;
         }
 
         .container {
@@ -97,17 +109,17 @@
             gap: 25px;
         }
 
-        /* Giao diện Thẻ Kính mờ (Glassmorphism) */
+        /* Hiệu ứng kính mờ (Glassmorphism) */
         .card {
             background-color: var(--card-bg);
-            backdrop-filter: blur(12px); /* Hiệu ứng làm mờ nền phía sau */
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(15px); /* Làm mờ hình nền khi lướt qua dưới thẻ */
+            -webkit-backdrop-filter: blur(15px);
             border-radius: 20px;
             padding: 30px;
             text-decoration: none;
             display: flex;
             flex-direction: column;
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.8);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -116,7 +128,7 @@
             transform: translateY(-8px) scale(1.02);
             box-shadow: 0 20px 40px rgba(79, 70, 229, 0.15);
             border-color: rgba(79, 70, 229, 0.3);
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.9);
         }
 
         .badge {
@@ -133,30 +145,12 @@
         .badge.notebook { background-color: #e0e7ff; color: #3730a3; }
         .badge.html { background-color: #dcfce7; color: #166534; }
 
-        .card h3 {
-            margin: 0 0 12px 0;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--text-main);
-            line-height: 1.4;
-        }
-
-        .card p {
-            margin: 0 0 25px 0;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            flex-grow: 1;
-        }
+        .card h3 { margin: 0 0 12px 0; font-size: 1.3rem; font-weight: 700; line-height: 1.4; }
+        .card p { margin: 0 0 25px 0; color: var(--text-muted); font-size: 0.95rem; flex-grow: 1; }
 
         .action-link {
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            color: var(--primary); font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;
         }
-
         .card:hover .action-link { color: var(--primary-hover); }
         .action-link span { transition: transform 0.3s; }
         .card:hover .action-link span { transform: translateX(5px); }
@@ -164,10 +158,61 @@
 </head>
 <body>
 
-    <!-- Lớp nền toán học động -->
-    <div id="math-background"></div>
+    <!-- LỚP NỀN: CÁC ĐỒ THỊ VÀ CÔNG THỨC TOÁN HỌC -->
+    <div class="math-bg">
+        
+        <!-- Đồ thị Parabol -->
+        <svg class="floating-el el-1" viewBox="0 0 100 100" width="180" height="180">
+            <!-- Trục tọa độ -->
+            <line x1="10" y1="90" x2="90" y2="90" stroke="currentColor" stroke-width="2" />
+            <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" stroke-width="2" />
+            <!-- Đường Parabol -->
+            <path d="M 20 20 Q 50 130 80 20" stroke="currentColor" stroke-width="2.5" fill="none" />
+        </svg>
 
-    <!-- Nội dung trang web -->
+        <!-- Hình hộp chữ nhật / Lập phương -->
+        <svg class="floating-el el-2" viewBox="0 0 100 100" width="160" height="160">
+            <polygon points="30,40 70,40 70,80 30,80" fill="none" stroke="currentColor" stroke-width="2"/>
+            <polygon points="50,20 90,20 90,60 50,60" fill="none" stroke="currentColor" stroke-width="2"/>
+            <line x1="30" y1="40" x2="50" y2="20" stroke="currentColor" stroke-width="2"/>
+            <line x1="70" y1="40" x2="90" y2="20" stroke="currentColor" stroke-width="2"/>
+            <line x1="70" y1="80" x2="90" y2="60" stroke="currentColor" stroke-width="2"/>
+            <line x1="30" y1="80" x2="50" y2="60" stroke="currentColor" stroke-width="2"/>
+        </svg>
+
+        <!-- Công thức Tích phân -->
+        <div class="floating-el el-3 formula">
+            &int;<sub>a</sub><sup>b</sup> f(x)dx = F(b) - F(a)
+        </div>
+
+        <!-- Đồ thị Sin -->
+        <svg class="floating-el el-4" viewBox="0 0 100 100" width="200" height="200">
+            <line x1="0" y1="50" x2="100" y2="50" stroke="currentColor" stroke-width="2" />
+            <line x1="10" y1="10" x2="10" y2="90" stroke="currentColor" stroke-width="2" />
+            <path d="M 10 50 C 30 10, 50 90, 70 50 C 80 30, 90 30, 100 50" stroke="currentColor" stroke-width="2.5" fill="none" />
+        </svg>
+
+        <!-- Công thức Euler -->
+        <div class="floating-el el-5 formula">
+            e<sup>i&pi;</sup> + 1 = 0
+        </div>
+
+        <!-- Hình chóp tam giác -->
+        <svg class="floating-el el-6" viewBox="0 0 100 100" width="150" height="150">
+            <polygon points="50,15 20,85 85,70" fill="none" stroke="currentColor" stroke-width="2.5"/>
+            <line x1="50" y1="15" x2="45" y2="60" stroke="currentColor" stroke-width="2" stroke-dasharray="5"/>
+            <line x1="20" y1="85" x2="45" y2="60" stroke="currentColor" stroke-width="2" stroke-dasharray="5"/>
+            <line x1="85" y1="70" x2="45" y2="60" stroke="currentColor" stroke-width="2" stroke-dasharray="5"/>
+        </svg>
+
+        <!-- Ký hiệu Tổng Sigma -->
+        <div class="floating-el el-7 formula" style="text-align: center; line-height: 0.8;">
+            <span style="font-size: 0.5em;">n</span><br>&sum;<br><span style="font-size: 0.5em;">i=1</span>
+        </div>
+
+    </div>
+
+    <!-- GIAO DIỆN CHÍNH -->
     <div class="content-wrapper">
         <header class="header-section">
             <h1>Hệ Sinh Thái Tài Nguyên Toán Học</h1>
@@ -177,7 +222,6 @@
         <div class="container">
             <div class="grid-container">
                 
-                <!-- THẺ 1 -->
                 <a href="https://notebook.google.com/notebook/f3ce7e2c-75b4-45ba-a09d-a54a87f5fb57" target="_blank" class="card">
                     <span class="badge notebook">AI Notebook</span>
                     <h3>Phương pháp toạ độ trong không gian</h3>
@@ -185,7 +229,6 @@
                     <div class="action-link">Truy cập ngay <span>➔</span></div>
                 </a>
 
-                <!-- THẺ 2 -->
                 <a href="https://notebook.google.com/notebook/4b2ca9a5-d72b-457b-b226-0deabe36697f" target="_blank" class="card">
                     <span class="badge notebook">AI Notebook</span>
                     <h3>Ứng dụng đạo hàm khảo sát hàm số</h3>
@@ -193,7 +236,6 @@
                     <div class="action-link">Truy cập ngay <span>➔</span></div>
                 </a>
 
-                <!-- THẺ 3 -->
                 <a href="https://notebook.google.com/notebook/b19acb1d-5297-4d55-a7cd-d4e6f649b0e5" target="_blank" class="card">
                     <span class="badge notebook">AI Notebook</span>
                     <h3>Vectơ và hệ trục toạ độ không gian</h3>
@@ -201,7 +243,6 @@
                     <div class="action-link">Truy cập ngay <span>➔</span></div>
                 </a>
 
-                <!-- THẺ 4 -->
                 <a href="https://notebook.google.com/notebook/36815c9b-0a39-439e-86fa-9e46205ff457" target="_blank" class="card">
                     <span class="badge notebook">AI Notebook</span>
                     <h3>Nguyên hàm và tích phân</h3>
@@ -209,7 +250,6 @@
                     <div class="action-link">Truy cập ngay <span>➔</span></div>
                 </a>
 
-                <!-- THẺ 5 -->
                 <a href="Prompt-bien-soan-dang-toan-THPT.html" target="_blank" class="card">
                     <span class="badge html">Web Tool</span>
                     <h3>Biên soạn dạng toán THPT</h3>
@@ -217,7 +257,6 @@
                     <div class="action-link">Mở ứng dụng <span>➔</span></div>
                 </a>
 
-                <!-- THẺ 6 -->
                 <a href="Prompt-sang-tac-cau-hoi-Toan-12.html" target="_blank" class="card">
                     <span class="badge html">Web Tool</span>
                     <h3>Sáng tác câu hỏi Toán 12</h3>
@@ -225,7 +264,6 @@
                     <div class="action-link">Mở ứng dụng <span>➔</span></div>
                 </a>
 
-                <!-- THẺ 7 -->
                 <a href="Prompt-tao-de-on-tap-LaTeX.html" target="_blank" class="card">
                     <span class="badge html">Web Tool</span>
                     <h3>Tạo đề ôn tập LaTeX</h3>
@@ -236,17 +274,5 @@
             </div>
         </div>
     </div>
-
-    <!-- Script tạo hiệu ứng ký hiệu toán học bay -->
-    <script>
-        const symbols = ['∫', '∑', 'π', '∞', 'Δ', '√', 'Ω', 'θ', 'α', 'β', '∂', 'lim'];
-        const bg = document.getElementById('math-background');
-        const particleCount = 40; // Số lượng ký hiệu bay trên màn hình
-
-        for(let i = 0; i < particleCount; i++) {
-            let span = document.createElement('div');
-            span.className = 'math-symbol';
-            span.innerText = symbols[Math.floor(Math.random() * symbols.length)];
-            
-            // Đặt vị trí, kích thước và tốc độ ngẫu nhiên
-            span.style.left = Math.random()
+</body>
+</html>
