@@ -3,118 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kho Tài Nguyên Của Tôi</title>
+    <title>Hệ Sinh Thái Tài Nguyên Toán Học</title>
+    <!-- Tích hợp phông chữ Inter từ Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Cài đặt màu sắc và phông chữ */
         :root {
-            --primary-color: #2563eb; /* Màu xanh dương đậm */
-            --bg-color: #f3f4f6; /* Màu nền xám nhạt */
-            --card-bg: #ffffff; /* Nền thẻ màu trắng */
-            --text-main: #1f2937; /* Màu chữ đen */
+            --bg-body: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --badge-notebook-bg: #e0e7ff;
+            --badge-notebook-text: #3730a3;
+            --badge-html-bg: #dcfce7;
+            --badge-html-text: #166534;
         }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
             color: var(--text-main);
             margin: 0;
-            padding: 40px 20px;
+            padding: 0;
             line-height: 1.6;
         }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        h1 {
+
+        /* Phần Tiêu đề trang */
+        .header-section {
             text-align: center;
-            color: var(--primary-color);
-            font-size: 2.5em;
+            padding: 60px 20px 40px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-bottom: 1px solid #e2e8f0;
             margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
-        /* Cài đặt dạng lưới (Grid) cho các nút bấm */
+
+        .header-section h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1e293b;
+            letter-spacing: -0.5px;
+        }
+
+        .header-section p {
+            margin: 15px 0 0;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        /* Bố cục dạng lưới hiện đại */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
         }
-        /* Cài đặt giao diện cho từng Thẻ (Card) */
+
+        /* Định dạng Thẻ (Card) */
         .card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 25px;
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px;
             text-decoration: none;
-            color: var(--text-main);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            border-left: 6px solid var(--primary-color);
             display: flex;
             flex-direction: column;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        /* Hiệu ứng khi di chuột vào (Hover) */
+
         .card:hover {
-            transform: translateY(-7px);
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
-            border-left-color: #1d4ed8;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: #cbd5e1;
         }
+
+        /* Nhãn phân loại */
+        .badge {
+            align-self: flex-start;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+
+        .badge.notebook {
+            background-color: var(--badge-notebook-bg);
+            color: var(--badge-notebook-text);
+        }
+
+        .badge.html {
+            background-color: var(--badge-html-bg);
+            color: var(--badge-html-text);
+        }
+
+        /* Tiêu đề & Mô tả trong thẻ */
         .card h3 {
-            margin: 0 0 10px 0;
-            font-size: 1.3em;
-            color: var(--primary-color);
+            margin: 0 0 12px 0;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.4;
         }
+
         .card p {
             margin: 0;
-            font-size: 0.95em;
-            color: #6b7280;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            flex-grow: 1; /* Đẩy nút bấm xuống dưới cùng */
+            margin-bottom: 25px;
+        }
+
+        /* Nút truy cập ảo */
+        .action-link {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s;
+        }
+
+        .card:hover .action-link {
+            color: var(--primary-hover);
+        }
+
+        .action-link span {
+            transition: transform 0.2s;
+        }
+
+        .card:hover .action-link span {
+            transform: translateX(4px);
         }
     </style>
 </head>
 <body>
+
+    <header class="header-section">
+        <h1>Hệ Sinh Thái Tài Nguyên Toán Học</h1>
+        <p>Trung tâm tổng hợp các công cụ AI và ứng dụng hỗ trợ biên soạn, sáng tác đề thi môn Toán THPT.</p>
+    </header>
+
     <div class="container">
-        <h1>Danh Sách Ứng Dụng & Tài Nguyên</h1>
-        
         <div class="grid-container">
-            <!-- Thẻ 1 -->
+            
+            <!-- THẺ 1 -->
             <a href="https://notebook.google.com/notebook/f3ce7e2c-75b4-45ba-a09d-a54a87f5fb57" target="_blank" class="card">
+                <span class="badge notebook">AI Notebook</span>
                 <h3>Phương pháp toạ độ trong không gian</h3>
-                <p>Mở ứng dụng Notebook</p>
+                <p>Khai thác AI để sinh đề thi, bài tập và hệ thống lý thuyết chuyên sâu cho chuyên đề Hình học không gian Oxyz.</p>
+                <div class="action-link">Truy cập ngay <span>➔</span></div>
             </a>
 
-            <!-- Thẻ 2 -->
+            <!-- THẺ 2 -->
             <a href="https://notebook.google.com/notebook/4b2ca9a5-d72b-457b-b226-0deabe36697f" target="_blank" class="card">
-                <h3>Ứng dụng đạo hàm để khảo sát hàm số</h3>
-                <p>Mở ứng dụng Notebook</p>
+                <span class="badge notebook">AI Notebook</span>
+                <h3>Ứng dụng đạo hàm khảo sát hàm số</h3>
+                <p>Tự động hóa quá trình tạo bài tập khảo sát, vẽ đồ thị hàm số và giải quyết các bài toán tối ưu thực tế.</p>
+                <div class="action-link">Truy cập ngay <span>➔</span></div>
             </a>
 
-            <!-- Thẻ 3 -->
+            <!-- THẺ 3 -->
             <a href="https://notebook.google.com/notebook/b19acb1d-5297-4d55-a7cd-d4e6f649b0e5" target="_blank" class="card">
-                <h3>Vectơ và hệ trục toạ độ trong không gian</h3>
-                <p>Mở ứng dụng Notebook</p>
+                <span class="badge notebook">AI Notebook</span>
+                <h3>Vectơ và hệ trục toạ độ không gian</h3>
+                <p>Xây dựng hệ thống bài tập trắc nghiệm và tự luận về vectơ, tích vô hướng và các ứng dụng trong không gian.</p>
+                <div class="action-link">Truy cập ngay <span>➔</span></div>
             </a>
 
-            <!-- Thẻ 4 -->
+            <!-- THẺ 4 -->
             <a href="https://notebook.google.com/notebook/36815c9b-0a39-439e-86fa-9e46205ff457" target="_blank" class="card">
+                <span class="badge notebook">AI Notebook</span>
                 <h3>Nguyên hàm và tích phân</h3>
-                <p>Mở ứng dụng Notebook</p>
+                <p>Hỗ trợ biên soạn nhanh các dạng toán từ cơ bản đến vận dụng cao chuyên đề Nguyên hàm - Tích phân lớp 12.</p>
+                <div class="action-link">Truy cập ngay <span>➔</span></div>
             </a>
-            <!-- Thẻ 5 -->
+
+            <!-- THẺ 5 -->
             <a href="Prompt-bien-soan-dang-toan-THPT.html" target="_blank" class="card">
+                <span class="badge html">Web Tool</span>
                 <h3>Biên soạn dạng toán THPT</h3>
-                <p>Mở trang Web HTML</p>
+                <p>Công cụ giao diện Web hỗ trợ giáo viên phân loại, lên khung chương trình giảng dạy các chuyên đề Toán THPT.</p>
+                <div class="action-link">Mở ứng dụng <span>➔</span></div>
             </a>
 
-            <!-- Thẻ 6 -->
-            <a href="Prompt-sang-tac-cau-hoi-Toan-12.html" target="_blank" class="card">
-                <h3>Sáng tác câu hỏi Toán 12</h3>
-                <p>Mở trang Web HTML</p>
-            </a>
-
-            <!-- Thẻ 7 -->
-            <a href="Prompt-tao-de-on-tap-LaTeX.html" target="_blank" class="card">
-                <h3>Tạo đề ôn tập LaTeX</h3>
-                <p>Mở trang Web HTML</p>
-            </a>
-        </div>
-    </div>
-</body>
-</html>
+            <!-- THẺ
