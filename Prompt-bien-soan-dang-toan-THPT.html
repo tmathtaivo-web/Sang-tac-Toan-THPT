@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trình tạo prompt biên soạn dạng toán THPT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f8fc;--panel:#fff;--ink:#14213d;--muted:#56627a;--line:#d5dcea;--grid:#e3e9f5;--accent:#1f4fd8;--on-accent:#fff;--mark:#ffe66d;--ok:#1b7a43;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1626;--panel:#172036;--ink:#e8edf8;--muted:#9aa7c2;--line:#2c3856;--grid:#1c2742;--accent:#8fb0ff;--on-accent:#0f1626;--mark:#5b4d00;--ok:#6fd49a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1626;--panel:#172036;--ink:#e8edf8;--muted:#9aa7c2;--line:#2c3856;--grid:#1c2742;--accent:#8fb0ff;--on-accent:#0f1626;--mark:#5b4d00;--ok:#6fd49a;color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{padding:32px clamp(16px,4vw,48px) 24px;background-color:var(--bg);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px;border-bottom:1px solid var(--line)}
+h1{margin:0 0 8px;font-size:clamp(1.5rem,3.2vw,2.2rem);line-height:1.25;max-width:26ch}
+header p{margin:0;color:var(--muted);max-width:62ch}
+main{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:24px;padding:24px clamp(16px,4vw,48px) 48px;max-width:1280px;margin:0 auto}
+@media (max-width:860px){main{grid-template-columns:1fr}}
+section{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px}
+fieldset{border:0;margin:0 0 18px;padding:0}
+legend,label.t{font-weight:700;font-size:.92rem;margin-bottom:6px;display:block;padding:0}
+select,input[type=text],input[type=number]{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit}
+select:focus-visible,input:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
+.seg{display:flex;gap:6px}
+.seg button{flex:1;padding:9px 0;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:6px;font:700 1rem "Be Vietnam Pro",sans-serif;cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chk{display:flex;gap:8px;align-items:flex-start;margin:4px 0;font-size:.95rem}
+.chk input{margin-top:5px;accent-color:var(--accent)}
+.hint{color:var(--muted);font-size:.85rem;margin:6px 0 0}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.tabs button{padding:8px 14px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:6px;font:500 .95rem "Be Vietnam Pro",sans-serif;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--mark);border-color:var(--ink);font-weight:700}
+textarea{width:100%;min-height:440px;resize:vertical;padding:12px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:400 .9rem/1.6 "Be Vietnam Pro",system-ui,sans-serif}
+.bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.copy{padding:10px 20px;border:0;border-radius:6px;background:var(--accent);color:var(--on-accent);font:700 1rem "Be Vietnam Pro",sans-serif;cursor:pointer}
+.count{color:var(--muted);font-size:.9rem}
+.count b{color:var(--ok)}
+.how{margin:14px 0 0;padding-left:1.2em;color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+<header>
+<h1>Tạo prompt biên soạn dạng toán THPT</h1>
+<p>Chọn lớp, chủ đề và mức độ theo Chương trình GDPT 2018. Trang sẽ ghép sẵn prompt chi tiết và prompt rút gọn để bạn sao chép.</p>
+</header>
+<main>
+<section aria-label="Lựa chọn">
+<fieldset><legend>Lớp</legend>
+<div class="seg" id="grade"><button type="button" data-g="10" aria-pressed="true">10</button><button type="button" data-g="11" aria-pressed="false">11</button><button type="button" data-g="12" aria-pressed="false">12</button></div></fieldset>
+<fieldset><label class="t" for="topic">Chủ đề / bài học</label><select id="topic"></select>
+<label class="t" for="custom" style="margin-top:10px">Hoặc nhập chủ đề khác</label><input type="text" id="custom" placeholder="Ví dụ: Bài toán thực tế về cực trị (nhiều chủ đề: ngăn cách bằng dấu ;)"></fieldset>
+<fieldset><legend>Đề xuất bổ sung cho chủ đề</legend>
+<label class="chk"><input type="checkbox" name="ext" value="thêm các dạng toán thực tế (bối cảnh đời sống, kỹ thuật, kinh tế)">Thêm dạng toán thực tế</label>
+<label class="chk"><input type="checkbox" name="ext" value="thêm các câu hỏi mức nâng cao (vận dụng cao)">Thêm câu hỏi mức nâng cao</label>
+<label class="chk"><input type="checkbox" name="ext" value="thêm các bài toán chứa tham số">Thêm bài toán chứa tham số</label>
+<label class="chk"><input type="checkbox" name="ext" value="thêm câu hỏi đọc đồ thị, bảng biến thiên, bảng số liệu">Thêm câu hỏi đọc đồ thị / bảng</label>
+<label class="chk"><input type="checkbox" name="ext" value="thêm lỗi sai thường gặp và cách tránh">Thêm lỗi sai thường gặp</label>
+<label class="t" for="ext2" style="margin-top:10px">Đề xuất khác (tự nhập)</label><textarea id="ext2" rows="3" style="min-height:80px;height:80px" placeholder="Ví dụ: thêm bài toán tối ưu chi phí; thêm câu liên môn với Vật lí"></textarea></fieldset>
+<fieldset><label class="t" for="level">Mức độ</label><select id="level"><option>Cơ bản trên lớp</option><option>Nâng cao</option><option>Luyện thi tốt nghiệp THPT mức 8+</option><option>Phân loại học sinh giỏi</option></select></fieldset>
+<fieldset class="row"><div><label class="t" for="nex">Ví dụ mỗi dạng</label><select id="nex"><option>1</option><option selected>2</option></select></div>
+<div><label class="t" for="nex2">Bài tự luyện mỗi dạng</label><select id="nex2"><option>5</option><option selected>8</option><option>10</option><option>15</option></select></div></fieldset>
+<fieldset><legend>Dạng câu hỏi</legend>
+<label class="chk"><input type="checkbox" name="fmt" value="trắc nghiệm 4 lựa chọn" checked>Trắc nghiệm 4 lựa chọn</label>
+<label class="chk"><input type="checkbox" name="fmt" value="đúng - sai" checked>Đúng - sai</label>
+<label class="chk"><input type="checkbox" name="fmt" value="trả lời ngắn" checked>Trả lời ngắn</label>
+<label class="chk"><input type="checkbox" name="fmt" value="tự luận">Tự luận</label></fieldset>
+<fieldset id="dbox" style="display:none"><legend>Số câu từng phần của đề</legend><div class="row"><div><label class="t" for="d1">Trắc nghiệm (Phần I)</label><input type="number" id="d1" min="0" max="60" value="12"></div><div><label class="t" for="d2">Đúng - sai (Phần II)</label><input type="number" id="d2" min="0" max="30" value="4"></div><div><label class="t" for="d3">Trả lời ngắn (Phần III)</label><input type="number" id="d3" min="0" max="30" value="6"></div><div><label class="t" for="d4">Tự luận (Phần IV)</label><input type="number" id="d4" min="0" max="20" value="0"></div></div><p class="hint">Nhập số câu tùy ý cho từng phần; nhập 0 nếu không có phần đó.</p></fieldset>
+<fieldset><legend>Xuất kết quả</legend>
+<label class="t" for="kind">Loại sản phẩm</label><select id="kind" style="margin-bottom:10px"><option value="dang">Phân dạng bài tập (mỗi dạng: phương pháp, ví dụ, bài tập)</option><option value="tonghop">Tổng hợp các dạng toán (bảng ôn nhanh)</option><option value="phieu">Phiếu bài tập ôn tập</option><option value="loc">Lọc câu hỏi từ file nguồn (PDF/ảnh) theo chủ đề</option><option value="de">Đề ôn tập chủ đề (nhập số câu từng phần)</option></select><label class="t" for="outmode">Cách xuất</label><select id="outmode" aria-label="Cách xuất kết quả"><option value="two">2 file riêng: Đề (bài giảng, bài tập) và Đáp án</option><option value="one">1 file gộp: Đề kèm lời giải ngắn gọn cho từng câu</option></select>
+<label class="chk" style="margin-top:10px"><input type="checkbox" id="theory">Thêm phần tóm tắt lý thuyết của chủ đề</label>
+<div id="tbox" style="display:none;margin-top:6px"><label class="t" for="tlen">Độ dài phần lý thuyết</label><select id="tlen"><option>ngắn gọn (khoảng 1 trang, chỉ ý chính)</option><option>đầy đủ (định nghĩa, định lí, công thức, lưu ý thường gặp)</option></select></div></fieldset>
+<fieldset><legend>Nguồn bài tập</legend>
+<label class="chk"><input type="checkbox" id="web" checked>Cho phép tìm bài tập chuẩn trên web</label>
+<label class="chk"><input type="checkbox" id="att">Tôi sẽ đính kèm tài liệu hoặc hình ảnh</label>
+<p class="hint">Danh sách chủ đề bám theo Chương trình GDPT 2018. Tên bài có thể khác đôi chút giữa các bộ sách, bạn nên đối chiếu với sách đang dạy.</p></fieldset>
+</section>
+<section aria-label="Prompt">
+<div class="tabs" role="tablist"><button type="button" role="tab" id="t-full" aria-selected="true">Prompt chi tiết</button><button type="button" role="tab" id="t-short" aria-selected="false">Prompt rút gọn</button></div>
+<textarea id="out" aria-label="Nội dung prompt" spellcheck="false"></textarea>
+<div class="bar"><button type="button" class="copy" id="copy">Sao chép prompt</button><span class="count" id="count"></span></div>
+<ol class="how"><li>Dán prompt vào Claude (chế độ lọc câu hỏi: đính kèm file PDF/ảnh nguồn cùng lúc). Claude sẽ liệt kê các dạng toán hoặc thống kê câu tìm được trước, chưa viết nội dung.</li><li>Bạn xem danh sách, trả lời “Đồng ý” hoặc nêu chỗ cần sửa.</li><li>Sau khi bạn đồng ý, Claude mới biên soạn và xuất file .docx theo cách bạn đã chọn (2 file riêng hoặc 1 file gộp).</li></ol>
+</section>
+</main>
+<script>
+var T={
+"10":["Mệnh đề và tập hợp","Bất phương trình và hệ bất phương trình bậc nhất hai ẩn","Hàm số bậc hai và đồ thị","Dấu của tam thức bậc hai, phương trình quy về phương trình bậc hai","Hệ thức lượng trong tam giác","Vectơ","Phương pháp tọa độ trong mặt phẳng","Các số đặc trưng của mẫu số liệu không ghép nhóm","Quy tắc đếm, hoán vị, chỉnh hợp, tổ hợp, nhị thức Newton","Xác suất của biến cố"],
+"11":["Hàm số lượng giác và phương trình lượng giác","Dãy số, cấp số cộng, cấp số nhân","Mẫu số liệu ghép nhóm (trung tâm và phân tán)","Quan hệ song song trong không gian","Giới hạn và hàm số liên tục","Lũy thừa, logarit, hàm số mũ và hàm số logarit","Phương trình và bất phương trình mũ, logarit","Quan hệ vuông góc trong không gian","Quy tắc tính xác suất","Đạo hàm"],
+"12":["Ứng dụng đạo hàm để khảo sát và vẽ đồ thị hàm số","Vectơ và hệ trục tọa độ trong không gian","Các số đặc trưng đo mức độ phân tán của mẫu số liệu ghép nhóm","Nguyên hàm","Tích phân","Ứng dụng hình học của tích phân","Phương trình mặt phẳng, đường thẳng, mặt cầu trong không gian","Xác suất có điều kiện"]};
+var $=function(s){return document.querySelector(s)};
+var grade="10",tab="full";
+function fillTopics(){$("#topic").innerHTML=T[grade].map(function(t){return "<option>"+t+"</option>"}).join("");build()}
+function fmts(){return Array.prototype.map.call(document.querySelectorAll("input[name=fmt]:checked"),function(e){return e.value}).join(", ")||"trắc nghiệm, tự luận"}
+function ext(){var a=Array.prototype.map.call(document.querySelectorAll("input[name=ext]:checked"),function(e){return e.value});var t=$("#ext2").value.trim();if(t)a.push(t);return a.join("; ")}
+var K={dang:{n:"Phân dạng bài tập (mỗi dạng: phương pháp, ví dụ, bài tập tự luyện)",task:"biên soạn và phân chia các dạng bài tập chi tiết cho chủ đề dưới đây.",s:"phân dạng và biên soạn bài tập"},tonghop:{n:"Tổng hợp các dạng toán (bảng tổng hợp để ôn nhanh)",task:"tổng hợp hệ thống các dạng toán của chủ đề dưới đây.",s:"tổng hợp các dạng toán"},phieu:{n:"Phiếu bài tập ôn tập",task:"biên soạn phiếu bài tập ôn tập bao quát các dạng toán của chủ đề dưới đây.",s:"biên soạn phiếu bài tập ôn tập"},loc:{n:"Lọc câu hỏi từ file nguồn (PDF/ảnh) theo chủ đề",task:"đọc các file nguồn (PDF hoặc ảnh) tôi đính kèm và lọc ra các câu hỏi thuộc chủ đề dưới đây.",s:"đọc các file nguồn (PDF/ảnh) tôi đính kèm và lọc các câu hỏi"},de:{n:"Đề ôn tập chủ đề (số câu tự nhập cho từng phần)",task:"biên soạn đề ôn tập cho chủ đề dưới đây, đúng số câu từng phần tôi yêu cầu.",s:"biên soạn đề ôn tập"}};
+var G1D="Giai đoạn 1 - Đề xuất ma trận đề. CHƯA soạn câu hỏi nào. Trình bày bảng gồm: phần (I, II, III, IV), số câu, dạng toán và kiến thức trọng tâm của từng câu hoặc nhóm câu, mức độ nhận thức (nhận biết, thông hiểu, vận dụng, vận dụng cao), câu nào cần hình vẽ, đồ thị hay bảng biến thiên; tổng số câu phải khớp đúng số câu từng phần tôi yêu cầu. Sau đó DỪNG LẠI và chờ tôi trả lời “Đồng ý” hoặc yêu cầu chỉnh sửa; nếu tôi chỉnh sửa, trình bày lại ma trận và chờ lần nữa.";
+function deF(){var v=["d1","d2","d3","d4"].map(function(i){return Math.max(0,parseInt($("#"+i).value)||0)});var L=["Phần I: "+v[0]+" câu trắc nghiệm nhiều phương án lựa chọn (4 phương án, 1 đáp án đúng)","Phần II: "+v[1]+" câu đúng - sai (mỗi câu 4 ý a, b, c, d)","Phần III: "+v[2]+" câu trả lời ngắn (đáp án là một số)","Phần IV: "+v[3]+" câu tự luận"];var r=L.filter(function(x,i){return v[i]>0});return (r.join("; ")||"chưa nhập số câu")+" (tổng "+(v[0]+v[1]+v[2]+v[3])+" câu)"}
+var LOC="Đọc nguồn và lọc câu hỏi: đọc toàn bộ từng trang của mọi file PDF/ảnh tôi đính kèm, không bỏ sót; file scan hoặc ảnh mờ thì báo ngay và nêu chỗ nghi ngờ; không mở được file thì nói rõ, không giả vờ đã đọc. Công thức, ký hiệu, số liệu đọc không rõ thì KHÔNG đoán: ghi “[không đọc rõ]” và hỏi tôi. Chỉ lấy câu hỏi CÓ trong nguồn và thuộc chủ đề tôi yêu cầu; giữ nguyên nguyên văn đề bài (không viết lại, không tóm tắt, không sửa số liệu hay chính tả); không tự thêm câu mới. Mỗi câu ghi nguồn gốc (tên file, trang, số câu gốc) và được đánh số lại theo thứ tự mới. Lời giải: nếu nguồn có lời giải thì GIỮ LẠI nguyên văn (chỉ chuyển công thức sang LaTeX) và tự giải độc lập để đối chiếu; nếu đáp án hoặc lời giải gốc sai thì báo tôi (câu nào, vì sao, đáp án đúng), không tự ý sửa; nếu nguồn không có lời giải thì tự giải ngắn gọn, chính xác và ghi chú “lời giải bổ sung”. Câu trùng nhau chỉ giữ một. Câu có hình mà không đọc chính xác được dữ kiện thì chèn “[có hình ảnh ở đây]” kèm mô tả và báo tôi.";
+var LOCS="Chỉ lấy câu có trong file nguồn và thuộc chủ đề, giữ nguyên nguyên văn đề, ghi nguồn (file, trang, số câu gốc); nguồn có lời giải thì giữ lại, không có thì giải ngắn gọn; đọc không rõ thì hỏi, không đoán; nguồn sai thì báo, không tự sửa.";
+var G1="Giai đoạn 1 - Đọc nguồn và lập bảng thống kê. CHƯA xuất câu hỏi nào. Báo cáo ngắn gọn: số file, số trang đọc được, các chỗ không đọc rõ hoặc file scan mờ. Sau đó trình bày bảng gồm: chủ đề/dạng toán, số câu tìm được, nguồn (tên file, trang), mức độ nhận thức, có lời giải gốc hay không, câu cần hình vẽ; nêu rõ chủ đề tôi yêu cầu mà nguồn không có câu nào. Sau đó DỪNG LẠI và chờ tôi trả lời “Đồng ý” hoặc yêu cầu chỉnh sửa.";
+function comp(c){return c.k==="de"?"đề bao quát các dạng toán của chủ đề, câu xếp từ dễ đến khó, phân bổ mức độ theo mục Mức độ đã chọn; "+c.f:c.k==="loc"?"tối đa "+c.b+" câu mỗi dạng lọc từ nguồn (nguồn ít hơn thì lấy hết, nhiều hơn thì chọn câu tiêu biểu, đa dạng, không trùng), mỗi câu kèm lời giải (giữ lời giải gốc nếu có, không thì giải ngắn gọn)":c.k==="tonghop"?"phương pháp, công thức then chốt, lỗi thường gặp và "+c.a+" ví dụ mẫu ngắn (không có bài tập tự luyện)":c.k==="phieu"?c.b+" câu bài tập (không có ví dụ minh họa)":c.a+" ví dụ minh họa (giải chi tiết) và "+c.b+" bài tập tự luyện"}
+function struct(c){return c.k==="de"?"Cấu trúc đề: tiêu đề (chủ đề, lớp, thời gian gợi ý); "+c.f+". Số câu từng phần phải khớp đúng yêu cầu. Câu xếp từ dễ đến khó trong từng phần, ghi rõ mức độ nhận thức. Phần I: mỗi câu 4 phương án A, B, C, D, chỉ một đáp án đúng, phương án nhiễu hợp lí. Phần II: mỗi câu có dữ kiện chung và 4 ý a), b), c), d) đánh giá Đúng/Sai, số ý đúng thay đổi giữa các câu. Phần III: đáp án là một số duy nhất, nêu rõ yêu cầu làm tròn. Phần IV (nếu có): tự luận, có gợi ý phân chia điểm. Không có phần phương pháp hay ví dụ minh họa; mỗi câu có đáp án.":c.k==="loc"?"Cấu trúc đầu ra: nhóm các câu đã lọc theo chủ đề rồi theo dạng, xếp từ dễ đến khó; mỗi câu ghi rõ nguồn (tên file, trang, số câu gốc) và mức độ; mỗi câu có mục “Lời giải”: giữ nguyên lời giải gốc nếu nguồn có, nếu không thì giải ngắn gọn (các bước chính và đáp án) và ghi chú “lời giải bổ sung”.":c.k==="tonghop"?"Cấu trúc tổng hợp: bảng tổng hợp theo dạng gồm tên dạng, dấu hiệu nhận biết, phương pháp giải, công thức then chốt, lỗi thường gặp, mức độ; mỗi dạng kèm "+c.a+" ví dụ mẫu ngắn có lời giải; cuối cùng là lưu ý chung và mẹo xử lý nhanh. Không soạn bài tập tự luyện.":c.k==="phieu"?"Cấu trúc phiếu: tiêu đề (chủ đề, lớp, thời gian gợi ý); các câu hỏi gom theo dạng, xếp từ dễ đến khó, bám đúng các dạng câu hỏi đã chọn, mỗi dạng "+c.b+" câu, ghi rõ mức độ nhận thức; không có phần phương pháp hay ví dụ minh họa.":"Cấu trúc mỗi dạng toán: (a) phương pháp giải ngắn gọn; (b) ví dụ minh họa có lời giải chi tiết; (c) hệ thống bài tập tự luyện xếp từ dễ đến khó, bám đúng các dạng câu hỏi đã chọn."}
+function fl(c){var th=c.th?"tóm tắt lý thuyết chủ đề, ":"";if(c.k==="tonghop")return "một file:\n   - [TenChuDe]_TongHop.docx: "+th+"bảng tổng hợp các dạng toán, phương pháp, công thức then chốt, lỗi thường gặp, ví dụ mẫu ngắn, lưu ý chung.";var nm=c.k==="phieu"?"PhieuBaiTap":c.k==="loc"?"CauHoiLoc":c.k==="de"?"DeOnTap":"BaiGiang",body=c.k==="phieu"?"phiếu bài tập ôn tập":c.k==="loc"?"các câu hỏi đã lọc theo chủ đề (mỗi câu ghi nguồn: tên file, trang, số câu gốc)":c.k==="de"?"đề ôn tập chủ đề (đúng số câu từng phần)":"phân dạng, phương pháp, mã TikZ, ví dụ và bài tập tự luyện";if(c.one)return "một file gộp:\n   - [TenChuDe]_"+nm+"_LoiGiai.docx: "+th+body+(c.k==="loc"?", mỗi câu kèm lời giải ngay bên dưới (giữ lời giải gốc nếu nguồn có, không thì giải ngắn gọn). Không tạo file đáp án riêng.":", mỗi câu bài tập kèm lời giải ngắn gọn ngay bên dưới. Không tạo file đáp án riêng.");return "hai file:\n   - [TenChuDe]_"+nm+".docx: "+th+body+" (bài tập chỉ có đề, không kèm lời giải).\n   - [TenChuDe]_DapAn.docx: "+(c.k==="loc"?"đáp án và lời giải (giữ lời giải gốc nếu nguồn có, không thì giải ngắn gọn)":c.k==="de"?"bảng đáp án (Phần I, II, III) và đáp án ngắn gọn Phần IV (nếu có)":"đáp án ngắn gọn cho các câu bài tập")+"."}
+function so(c){var nm=c.k==="phieu"?"PhieuBaiTap":c.k==="loc"?"CauHoiLoc":c.k==="de"?"DeOnTap":"BaiGiang";return c.k==="tonghop"?"một file bằng python-docx: [TenChuDe]_TongHop.docx":c.one?"một file gộp bằng python-docx: [TenChuDe]_"+nm+"_LoiGiai.docx, mỗi câu bài tập kèm lời giải ngắn gọn ngay bên dưới":"hai file bằng python-docx: [TenChuDe]_"+nm+".docx và [TenChuDe]_DapAn.docx"}
+function ctx(){return{g:grade,t:$("#custom").value.trim()||$("#topic").value,l:$("#level").value,a:$("#nex").value,b:$("#nex2").value,f:$("#kind").value==="de"?deF():fmts(),x:$("#kind").value==="loc"?"":ext(),web:$("#web").checked,att:$("#att").checked,k:$("#kind").value,one:$("#outmode").value==="one",th:$("#theory").checked,tl:$("#tlen").value}}
+function full(c){
+var src=c.k==="loc"?"Nguồn duy nhất là các file PDF/ảnh tôi đính kèm; không tìm web, không tự soạn thêm câu ngoài nguồn.":(c.att?"Tôi sẽ đính kèm tài liệu hoặc hình ảnh tham khảo; hãy ưu tiên dùng dữ liệu này.":"Không có tài liệu đính kèm; với dạng nào thiếu dữ liệu chuẩn, hãy hỏi tôi trước khi viết.")+" "+(c.web?"Bạn được phép tìm bài tập chuẩn trên web (nếu có công cụ tìm kiếm), phải nêu nguồn và kiểm tra lại số liệu.":"Không tìm trên web, tự biên soạn bài tập có kiểm chứng.");
+return ["VAI TRÒ","Bạn là giáo viên Toán THPT kỳ cựu, nhiều năm giảng dạy và luyện thi, am hiểu Chương trình GDPT 2018 môn Toán (yêu cầu cần đạt, năng lực toán học) và cấu trúc đề thi tốt nghiệp THPT hiện hành. Nhiệm vụ: "+K[c.k].task+"","",
+"THÔNG TIN CHỦ ĐỀ","- Lớp: "+c.g,"- Chủ đề / bài học: "+c.t,"- Mức độ: "+c.l+(c.x?"\n- Đề xuất bổ sung cho chủ đề: "+c.x:""),"- Dạng câu hỏi: "+c.f,"- Loại sản phẩm: "+K[c.k].n,"- "+(c.k==="de"?"Cấu trúc đề":"Mỗi dạng toán gồm")+": "+comp(c)+".","- Nguồn: "+src,"- Cách xuất: "+(c.k==="tonghop"?"1 file tổng hợp":c.one?"1 file gộp, mỗi câu bài tập có lời giải ngắn gọn ngay bên dưới":"2 file riêng: đề (bài giảng, bài tập) và đáp án"),"- Tóm tắt lý thuyết: "+(c.th?"có, "+c.tl:"không"),"",
+"QUY TRÌNH BẮT BUỘC (3 giai đoạn, không được bỏ bước)",
+c.k==="loc"?G1:c.k==="de"?G1D:"Giai đoạn 1 - Đề xuất danh sách dạng toán. CHƯA viết lý thuyết, ví dụ hay bài tập. Trình bày bảng gồm: số thứ tự, tên dạng toán, kiến thức và kỹ năng trọng tâm, mức độ nhận thức (nhận biết, thông hiểu, vận dụng, vận dụng cao), dạng có cần hình vẽ, đồ thị hay bảng biến thiên không, dạng nào cần tôi cung cấp tài liệu."+(c.th?" Nêu thêm dàn ý các mục lý thuyết sẽ tóm tắt (định nghĩa, định lí, công thức) để tôi duyệt.":"")+" Có thể đề xuất thêm hoặc bớt dạng và nêu lý do. Sau đó DỪNG LẠI và chờ tôi trả lời “Đồng ý” hoặc yêu cầu chỉnh sửa. Nếu tôi chỉnh sửa, trình bày lại danh sách và chờ lần nữa.",
+"Giai đoạn 2 - "+(c.k==="loc"?"Lọc và chuyển các câu hỏi sang LaTeX đúng theo bảng thống kê đã được tôi đồng ý.":c.k==="de"?"Soạn đề đúng theo ma trận đã được tôi đồng ý, đủ số câu từng phần.":"Biên soạn đúng theo danh sách đã được tôi đồng ý."),
+"Giai đoạn 3 - Xuất file (mục 6). Không xuất file khi tôi chưa đồng ý danh sách.","",
+"YÊU CẦU NGHIÊM NGẶT",
+"1. Tự rà soát (Self-Check): trước khi xuất kết quả, phải suy nghĩ ngầm để tự giải lại từng ví dụ và từng bài tập, kiểm tra lý thuyết, phương pháp, điều kiện xác định, nghiệm ngoại lai và đáp án (thế lại hoặc giải bằng cách thứ hai). Tuyệt đối không để sai sót toán học. Không in quá trình nháp.",
+"2. "+(c.k==="loc"?LOC:"Tính trung thực: không bịa số liệu làm bài toán sai bản chất hoặc vô nghiệm không hợp lý; không bịa nguồn. Nếu dạng toán quá phức tạp hoặc thiếu dữ liệu chuẩn (bài toán thực tế, tích phân khó, cấp số nhân...), PHẢI chủ động hỏi tôi tài liệu hoặc hình ảnh tham khảo trước khi biên soạn dạng đó."),
+"3. "+struct(c)+(c.one&&c.k!=="tonghop"&&c.k!=="loc"?" Ngay dưới mỗi câu bài tập có mục “Lời giải ngắn gọn” (các bước chính và đáp án), phải chính xác tuyệt đối.":"")+(c.th?" Ngoài ra, mở đầu file bằng phần tóm tắt lý thuyết của chủ đề ("+c.tl+"): định nghĩa, định lí, tính chất, công thức cần nhớ theo đúng Chương trình GDPT 2018, trình bày gạch đầu dòng, công thức bằng LaTeX, không chứng minh dài dòng; chỉ nêu kiến thức có thật, không chắc nội dung nào thì hỏi tôi thay vì đoán.":"")+(c.x?" Bổ sung theo đề xuất của tôi: "+c.x+". Phải đưa vào nội dung đúng như đề xuất và đúng Chương trình GDPT 2018; nếu đề xuất nào không phù hợp hoặc thiếu dữ liệu chuẩn thì nói rõ và hỏi tôi, không tự suy diễn.":""),
+"4. Định dạng toán học: mọi ký hiệu, biểu thức, con số toán học đều viết bằng LaTeX và đặt trong cú pháp ${mã LaTeX}$, ví dụ ${x^2-3x+2=0}$. Không dùng ký hiệu Unicode thay LaTeX, kiểm tra ngoặc đóng mở.",
+"5. Hình vẽ, đồ thị, bảng biến thiên: nếu đơn giản (bảng biến thiên, trục xét dấu, đồ thị cơ bản) thì viết mã TikZ trực tiếp trong nội dung. Nếu phức tạp (đồ thị 3D, hình không gian nhiều chi tiết) thì mô tả thật chi tiết bằng văn bản (tọa độ các điểm, chiều lõm, tiệm cận, điểm đi qua, tỉ lệ) để tôi tự vẽ lại.",
+"6. Xuất file bằng Python (python-docx), cung cấp link tải "+fl(c),
+"   TenChuDe viết không dấu, nối bằng gạch dưới. Vì python-docx không tự dựng công thức, hãy giữ nguyên mã LaTeX dạng văn bản trong ${...}$ (hoặc dùng pandoc nếu môi trường có) và cho tôi biết bạn đã làm cách nào. Nếu không tạo được file, xuất toàn bộ nội dung dạng Markdown.","",
+"Bắt đầu bằng Giai đoạn 1."].join("\n")}
+function shortP(c){
+return ["Bạn là giáo viên Toán THPT kỳ cựu, am hiểu GDPT 2018. Hãy "+K[c.k].s+" cho: Toán lớp "+c.g+", chủ đề “"+c.t+"”, mức độ “"+c.l+"”. Dạng câu hỏi: "+c.f+". "+(c.k==="de"?"Cấu trúc đề:":"Mỗi dạng:")+" "+comp(c)+"."+(c.x?" Bổ sung theo đề xuất của tôi: "+c.x+".":"")+(c.th?" Mở đầu bằng phần tóm tắt lý thuyết của chủ đề ("+c.tl+").":"")+(c.k==="loc"?" "+LOCS:c.one&&c.k!=="tonghop"?" Mỗi câu bài tập kèm lời giải ngắn gọn ngay bên dưới.":""),"",
+"Quy trình: (1) Trước hết "+(c.k==="loc"?"đọc nguồn và lập bảng thống kê số câu tìm được theo chủ đề (nguồn, mức độ, có lời giải gốc hay không)":c.k==="de"?"đề xuất ma trận đề (bảng: phần, số câu, dạng toán, mức độ, có cần hình không)":"chỉ liệt kê các dạng toán (bảng: tên dạng, kiến thức trọng tâm, mức độ, có cần hình không)")+" rồi DỪNG chờ tôi trả lời “Đồng ý”. (2) Sau khi tôi đồng ý mới biên soạn. (3) Cuối cùng xuất "+so(c)+".","",
+"Yêu cầu: tự giải và kiểm tra lại mọi ví dụ, đáp án, không sai toán học; không bịa số liệu; "+(c.k==="loc"?"chỉ dùng file nguồn đính kèm, không tìm web":c.web?"được tìm bài tập chuẩn trên web và nêu nguồn":"không tìm web")+"; "+(c.att?"ưu tiên tài liệu tôi đính kèm":"nếu thiếu dữ liệu chuẩn cho dạng nào thì hỏi tôi")+". Mọi biểu thức toán viết bằng LaTeX trong ${...}$. Hình đơn giản (bảng biến thiên, xét dấu, đồ thị cơ bản) viết bằng mã TikZ; hình phức tạp mô tả chi tiết bằng văn bản."].join("\n")}
+function build(){$("#tbox").style.display=$("#theory").checked?"":"none";var kk=$("#kind").value;$("#outmode").disabled=kk==="tonghop";$("#nex").disabled=kk==="loc"||kk==="phieu"||kk==="de";$("#nex2").disabled=kk==="de";$("#dbox").style.display=kk==="de"?"":"none";document.querySelectorAll("input[name=ext]").forEach(function(e){e.disabled=kk==="loc"});$("#ext2").disabled=kk==="loc";document.querySelectorAll("input[name=fmt]").forEach(function(e){e.disabled=kk==="de"});$("label[for=nex]").textContent=kk==="tonghop"?"Ví dụ mẫu mỗi dạng":"Ví dụ mỗi dạng";$("label[for=nex2]").textContent=kk==="phieu"?"Số câu mỗi dạng":kk==="loc"?"Số câu tối đa mỗi dạng":"Bài tự luyện mỗi dạng";var c=ctx(),s=tab==="full"?full(c):shortP(c);$("#out").value=s;
+$("#count").innerHTML=s.length.toLocaleString("vi-VN")+" ký tự"+(s.length<=10000?" <b>(trong giới hạn 10.000)</b>":" (vượt 10.000)")}
+document.querySelectorAll("#grade button").forEach(function(b){b.onclick=function(){grade=b.dataset.g;document.querySelectorAll("#grade button").forEach(function(x){x.setAttribute("aria-pressed",x===b)});fillTopics()}});
+function setTab(t){tab=t;$("#t-full").setAttribute("aria-selected",t==="full");$("#t-short").setAttribute("aria-selected",t==="short");build()}
+$("#t-full").onclick=function(){setTab("full")};$("#t-short").onclick=function(){setTab("short")};
+document.querySelectorAll("select,input").forEach(function(e){e.addEventListener("input",build);e.addEventListener("change",build)});
+$("#ext2").addEventListener("input",build);
+$("#copy").onclick=function(){var o=$("#out"),btn=this;function done(){btn.textContent="Đã sao chép";setTimeout(function(){btn.textContent="Sao chép prompt"},1600)}
+function fb(){o.select();try{document.execCommand("copy");done()}catch(e){btn.textContent="Hãy nhấn Ctrl+C"}}
+try{navigator.clipboard.writeText(o.value).then(done,fb)}catch(e){fb()}};
+fillTopics();
+</script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trình tạo prompt đề ôn tập Toán (.tex)</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--fg:#1c2330;--muted:#5d6676;--line:#d9dde4;--ac:#2557d6;--acfg:#fff;--warn:#b42318;--ok:#067647;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12161d;--card:#1b212b;--fg:#e6e9ef;--muted:#9aa3b2;--line:#2c3441;--ac:#6b93ff;--acfg:#0d1117;--warn:#ff8a80;--ok:#5fd39a}}
+:root[data-theme="dark"]{--bg:#12161d;--card:#1b212b;--fg:#e6e9ef;--muted:#9aa3b2;--line:#2c3441;--ac:#6b93ff;--acfg:#0d1117;--warn:#ff8a80;--ok:#5fd39a}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;padding:16px}
+h1{font-size:20px;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 16px;font-size:13px}
+.wrap{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:16px;max-width:1300px;margin:0 auto}
+@media (max-width:900px){.wrap{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+.card h2{font-size:14px;margin:0 0 10px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+label{display:block;font-size:13px;font-weight:600;margin:10px 0 4px}
+input,select,textarea{width:100%;font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 9px}
+textarea{resize:vertical}
+.row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.row3{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.row label{font-weight:500;font-size:12px;margin-top:6px}
+button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--fg);padding:7px 12px}
+button.p{background:var(--ac);color:var(--acfg);border-color:var(--ac);font-weight:600}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+#out{width:100%;height:68vh;min-height:360px;font:12.5px/1.45 ui-monospace,Menlo,Consolas,monospace}
+.note{font-size:12px;color:var(--muted)}
+.bai{max-height:260px;overflow:auto;border:1px solid var(--line);border-radius:8px;padding:6px 10px;background:var(--bg)}
+.bai h4{margin:8px 0 2px;font-size:12px;color:var(--muted)}
+.bai label{display:flex;gap:6px;align-items:flex-start;font-weight:400;margin:3px 0;font-size:13px}
+.bai input{width:auto;margin-top:3px}
+#sum.bad{color:var(--warn)}#sum.good{color:var(--ok)}
+</style>
+</head>
+<body>
+<h1>Trình tạo prompt đề ôn tập Toán (xuất file .tex)</h1>
+<p class="sub">Điền các mục chính bên trái, prompt hoàn chỉnh tự cập nhật bên phải. Bấm "Sao chép", dán vào AI và đính kèm file Sample.tex.</p>
+
+<div class="wrap">
+<div class="card">
+  <h2>Thông tin chính</h2>
+  <div class="bar">
+    <button type="button" id="pre1">Mẫu: đề TN THPT (12/4/6/0)</button>
+    <button type="button" id="pre2">Mẫu: như Sample (12/4/4/2)</button>
+  </div>
+  <div class="row3">
+    <div><label for="lop">Lớp</label><select id="lop"><option>10</option><option selected>11</option><option>12</option></select></div>
+    <div><label for="sach">Bộ sách</label><select id="sach"><option>Kết nối tri thức</option><option>Chân trời sáng tạo</option><option>Cánh diều</option><option>Không yêu cầu</option></select></div>
+  </div>
+  <label>Bài / Chủ đề / Chương <span class="note" id="baiCount"></span></label>
+  <div id="baiBox" class="bai"></div>
+  <p class="note" id="baiNote" style="display:none;margin:4px 0 0">Danh sách bài hiện có cho sách Kết nối tri thức. Với bộ sách khác, hãy nhập bài vào ô bên dưới.</p>
+  <label for="chude">Bài / chủ đề khác (tự nhập, ngăn cách bằng dấu ;)</label>
+  <input id="chude" value="" placeholder="VD: Ôn tập chương VII">
+  <label for="pham">Phạm vi, dạng toán cần có hoặc cần tránh</label>
+  <textarea id="pham" rows="3" placeholder="VD: góc giữa hai đường thẳng, chứng minh vuông góc bằng tích vô hướng; tránh khoảng cách"></textarea>
+  <div class="row3">
+    <div><label for="sode">Số lượng đề</label><input id="sode" type="number" min="1" value="3"></div>
+    <div><label for="tg">Thời gian (phút)</label><input id="tg" type="number" min="5" value="45"></div>
+  </div>
+  <label>Số câu mỗi đề (Phần IV = 0 thì bỏ)</label>
+  <div class="row">
+    <div><label for="p1">Phần I</label><input id="p1" type="number" min="0" value="12"></div>
+    <div><label for="p2">Phần II</label><input id="p2" type="number" min="0" value="4"></div>
+    <div><label for="p3">Phần III</label><input id="p3" type="number" min="0" value="4"></div>
+    <div><label for="p4">Phần IV</label><input id="p4" type="number" min="0" value="2"></div>
+  </div>
+  <label>Phân bổ mức độ (%) <span id="sum" class="note"></span></label>
+  <div class="row">
+    <div><label for="nb">Nhận biết</label><input id="nb" type="number" min="0" value="30"></div>
+    <div><label for="th">Thông hiểu</label><input id="th" type="number" min="0" value="30"></div>
+    <div><label for="vd">Vận dụng</label><input id="vd" type="number" min="0" value="25"></div>
+    <div><label for="vdc">VD cao</label><input id="vdc" type="number" min="0" value="15"></div>
+  </div>
+  <label for="tieude">Tiêu đề đề</label>
+  <input id="tieude" value="ĐỀ ÔN TẬP">
+  <div class="row3">
+    <div><label for="tt">Câu có bối cảnh thực tế</label><select id="tt"><option>không có câu thực tế</option><option>rất ít (1–2 câu mỗi đề)</option><option selected>khoảng 1/4 số câu</option><option>khoảng 1/3 số câu</option><option>nhiều (khoảng một nửa số câu)</option><option value="__k">Khác (tự nhập)…</option></select><input id="tt2" style="display:none;margin-top:6px" placeholder="Nhập yêu cầu của bạn"></div>
+    <div><label for="hinh">Câu có hình/bảng</label><select id="hinh"><option>không có hình/bảng</option><option selected>chỉ khi thật cần</option><option>khoảng 1/4 số câu có hình/bảng</option><option>nhiều hình/bảng (khoảng một nửa số câu)</option><option value="__k">Khác (tự nhập)…</option></select><input id="hinh2" style="display:none;margin-top:6px" placeholder="VD: ưu tiên đồ thị và bảng biến thiên"></div>
+  </div>
+  <div class="row3">
+    <div><label for="khac">Khác biệt giữa các đề</label><select id="khac"><option>khác hoàn toàn dạng bài và số liệu</option><option>cùng dạng bài nhưng đổi dữ kiện</option></select></div>
+    <div><label for="dau">Dấu thập phân trong \shortans</label><select id="dau"><option>dấu phẩy</option><option>dấu chấm</option></select></div>
+  </div>
+  <label for="cmt">Ghi chú mức độ bằng comment LaTeX</label>
+  <select id="cmt"><option>Có</option><option>Không</option></select>
+  <label for="yk">Yêu cầu khác</label>
+  <textarea id="yk" rows="2" placeholder="VD: ưu tiên bối cảnh xây dựng, kiến trúc"></textarea>
+  <div class="bar" style="margin-top:12px"><button type="button" id="reset">Đặt lại mặc định</button><span class="note">Dữ liệu tự lưu trong trình duyệt này.</span></div>
+</div>
+
+<div class="card">
+  <h2>Prompt hoàn chỉnh</h2>
+  <div class="bar">
+    <select id="mode" style="width:auto"><option value="full">Prompt đầy đủ</option><option value="short">Prompt rút gọn</option></select>
+    <button type="button" class="p" id="copy">Sao chép prompt</button>
+    <span class="note" id="stat"></span>
+  </div>
+  <textarea id="out" spellcheck="false"></textarea>
+  <p class="note">Có thể sửa trực tiếp trước khi sao chép (nội dung sẽ được tạo lại khi bạn đổi biểu mẫu).</p>
+</div>
+</div>
+
+<script type="text/plain" id="tpl"># VAI TRÒ
+Bạn là chuyên gia khảo thí và giáo viên Toán THPT kỳ cựu, am hiểu Chương trình GDPT 2018 và cấu trúc đề thi tốt nghiệp THPT môn Toán từ 2025, thành thạo soạn đề bằng LaTeX.
+
+# NHIỆM VỤ
+Soạn đề ôn tập Toán theo bài/chủ đề và số lượng tôi yêu cầu, có lời giải ngắn gọn. Xuất ra FILE .tex đúng định dạng file mẫu Sample.tex đính kèm. Chỗ cần hình vẽ, đồ thị, bảng biến thiên, bảng số liệu, biểu đồ thì ưu tiên vẽ bằng code TikZ; chỉ khi hình quá khó vẽ chính xác thì mới mô tả thật chi tiết để giáo viên tự vẽ.
+
+# THÔNG TIN ĐỀ
+{{INFO}}
+Nếu thiếu thông tin quan trọng hoặc thông tin mâu thuẫn (VD: tỉ lệ mức độ không khớp số câu), hãy hỏi tôi một lần, chưa soạn đề.
+
+# QUY TẮC
+
+## 1. File mẫu
+- Đọc Sample.tex để học cấu trúc và macro, KHÔNG chép nội dung câu hỏi. Không đọc được file thì nói rõ và dùng khung ở mục 3, không giả vờ đã đọc.
+- Chỉ xuất phần thân như file mẫu, không có \documentclass, \usepackage, \begin{document}.
+- Chỉ dùng macro có trong mẫu: ex, \choice, \True, \choiceTFt, \loigiai, itemchoice, \itemch, \shortans và LaTeX chuẩn (center, \textbf, \textit, \hrule, \vspace, \noindent, \fbox, \parbox, tikzpicture). Không tự tạo lệnh mới; lệnh và thư viện TikZ chỉ dùng loại đã có trong Sample.tex.
+
+## 2. Nội dung
+- Chỉ dùng kiến thức thật trong CT GDPT 2018, đúng lớp, bài, bộ sách. Không bịa định lí, dạng toán, số liệu, nguồn; không ghi "trích từ đề thi ...". Bối cảnh thực tế dùng số liệu giả định hợp lí.
+- Hình và dữ kiện phải tồn tại (VD: cạnh thỏa bất đẳng thức tam giác), đáp án duy nhất, không mâu thuẫn. Trong mỗi phần xếp câu từ dễ đến khó; không trùng dạng, không để câu này lộ đáp án câu kia.
+- Mức độ: Nhận biết (nhớ, áp dụng trực tiếp); Thông hiểu (1–2 bước); Vận dụng (nhiều bước hoặc thực tế quen thuộc); Vận dụng cao (tổng hợp, phân loại giỏi).
+
+## 3. Khung định dạng (theo file mẫu)
+Tiêu đề (dòng 3 đổi thành "CHỦ ĐỀ ..." nếu ôn nhiều bài):
+\begin{center}
+    \textbf{\LARGE [tiêu đề đề ở mục Thông tin]}\\
+    \textbf{\Large MÔN: TOÁN [lớp] -- BỘ SÁCH [bộ sách]}\\
+    \textbf{\large BÀI [số]: [TÊN BÀI IN HOA] -- ĐỀ SỐ [01]}\\
+    \textit{Thời gian làm bài: [..] phút, không kể thời gian phát đề}
+\end{center}
+\hrule
+\vspace{0.5cm}
+Dòng mở đầu từng phần giống hệt file mẫu, thay đúng số câu thực tế (bỏ Phần IV nếu 0 câu). Mỗi câu nằm trong \begin{ex}...\end{ex}; nếu bật ghi chú mức độ, dòng đầu trong ex là comment: % Mức độ: ... | Nội dung: ...
+- Phần I: \choice với 4 nhóm {} (mỗi nhóm một dòng); đáp án đúng có \True ở đầu nhóm, đúng MỘT \True mỗi câu, vị trí đáp án đúng phân bổ ngẫu nhiên đều A–D. Ba phương án nhiễu hợp lí (từ lỗi thường gặp), không trùng, không chồng lấn; không dùng "cả A và B đúng", "tất cả đều đúng". Câu phủ định: in đậm \textbf{đúng}/\textbf{sai}.
+- Phần II: dữ kiện chung đặt trước \choiceTFt có 4 nhóm {}; ý đúng có \True. Bốn ý tăng dần độ khó (mặc định a NB, b TH, c–d VD), số ý đúng thay đổi giữa các câu, các ý không mâu thuẫn và không phụ thuộc suy luận của nhau. Lời giải dùng itemchoice, mỗi \itemch bắt đầu bằng "Đúng." hoặc "Sai." khớp \True; ý sai nêu chỗ sai và kết quả đúng.
+- Phần III: \shortans{đáp án}; đáp án là một số duy nhất, tối đa 4 ký tự (tính cả dấu "-" và dấu thập phân); đề ghi rõ đơn vị và yêu cầu làm tròn kết quả cuối.
+- Phần IV: chỉ gồm đề và \loigiai; nhiều ý thì viết \textbf{a)}, \textbf{b)} trên dòng riêng.
+
+## 4. Quy tắc LaTeX
+- Trong dòng: $...$; riêng dòng: \[ ... \]. Không dùng $$ hay ${...}$. Mọi ký hiệu (điểm $A$, hàm $f(x)$, số trong biểu thức) đều trong chế độ toán. Không dùng Unicode toán học (², √, ≤, ≥, π, ∞, °...); viết $x^2$, $\sqrt{x}$, $\leq$, $\geq$, $\pi$, $\infty$, $^\circ$.
+- Ngoặc: ( ) và [ ] gõ trực tiếp; ngoặc nhọn hiển thị là \{ \}; biểu thức cao dùng \left ... \right; mũ/chỉ số nhiều ký tự đặt trong { }.
+- Khoảng/đoạn/tọa độ dùng dấu chấm phẩy: $(a;b)$, $[a;b)$, $A(1;2;3)$, $\vec{u}=(1;2;3)$.
+- Hình học: $\vec{u}$, $\overrightarrow{AB}$, $\widehat{ABC}$, $(a,b)$, \bot, \parallel, \triangle. Giải tích: \dfrac, \sqrt[3]{x}, \log_a b, \ln x, \sin x (luôn có dấu \), $f'(x)$, \displaystyle\int_a^b f(x)\,dx, \lim_{x\to +\infty}, \begin{cases}...\end{cases}; nhân dùng \cdot hoặc \times.
+- Thập phân trong toán: $0{,}25$. Chữ và đơn vị trong toán: \text{...}, ví dụ $10\text{ m}$, $5\%$.
+- Ngoài chế độ toán phải thoát ký tự đặc biệt: \% \& \# \_ \$. Tiếng Việt UTF-8. Không dùng Markdown trong file .tex.
+
+## 5. Hình, đồ thị, bảng
+- Chỉ chèn hình khi thật cần; đề phải hiểu được khi chưa có hình (dữ kiện chính nêu cả trong lời văn nếu có thể).
+- Ưu tiên vẽ bằng TikZ: đặt \begin{center}\begin{tikzpicture}...\end{tikzpicture}\end{center} tại vị trí đặt hình (sau đoạn dẫn, trước \choice/\choiceTFt/\shortans). Dùng cho hình học phẳng và không gian cơ bản (cạnh khuất nét đứt), hệ trục và đồ thị hàm số đơn giản (đi qua các điểm đã tính chính xác), biểu đồ cột/đoạn thẳng, sơ đồ cây. Tọa độ, độ dài, nhãn phải khớp tuyệt đối với đề và lời giải; chỉ dùng lệnh và thư viện TikZ có trong Sample.tex (không chắc thì dùng TikZ cơ bản); code phải biên dịch được, cân bằng \begin/\end. Bảng biến thiên chỉ vẽ bằng TikZ khi Sample.tex đã có cách vẽ (gói tkz-tab hoặc tương đương); nếu không thì mô tả.
+- Chỉ khi hình quá khó vẽ chính xác (hình phức tạp, đồ thị cần độ chính xác cao, không chắc biên dịch được) thì KHÔNG vẽ TikZ, chèn khung mô tả sau để giáo viên tự vẽ:
+\begin{center}
+    \fbox{\parbox{0.92\linewidth}{
+        \textbf{[CÓ HÌNH VẼ Ở ĐÂY] -- Loại: ...}\\
+        \textbf{1. Khung/trục:} ...\\
+        \textbf{2. Đối tượng và vị trí:} ...\\
+        \textbf{3. Nhãn:} ...\\
+        \textbf{4. Ký hiệu, kiểu nét:} ...\\
+        \textbf{5. Số liệu ghi trên hình:} ...
+    }}
+\end{center}
+- Khi phải mô tả, viết CỤ THỂ bằng số liệu, tọa độ, nhãn chính xác (không viết "một điểm nào đó", "khoảng"), theo loại:
+  + Hình học: các đỉnh và vị trí tương đối, nét liền/nét đứt (cạnh khuất), điểm đặc biệt, ký hiệu góc vuông/góc/độ dài, vị trí đặt nhãn.
+  + Đồ thị hàm số: loại đường, trục và khoảng hiển thị, tọa độ các điểm đi qua (giao trục, cực trị), tiệm cận, chiều biến thiên từng khoảng, đầu mút, đường phụ.
+  + Bảng biến thiên/xét dấu: các hàng, giá trị x từ trái sang phải (kể cả $\pm\infty$), mô tả từng cột (x, y', y), "||" nếu không xác định, chiều mũi tên, giới hạn/tiệm cận.
+  + Bảng số liệu: số hàng/cột, tiêu đề, nội dung từng hàng dạng "Hàng 1: ... | ... | ...".
+  + Biểu đồ: loại, tên và đơn vị trục, giá trị chính xác từng cột/nhóm/thành phần, nhãn, chú giải.
+- Mô tả phải đủ để vẽ ra đúng một hình duy nhất, khớp tuyệt đối với đề và lời giải, và không tiết lộ đáp án.
+
+## 6. Lời giải
+Ngắn gọn, đủ bước chính, đặt trong \loigiai của từng câu: Phần I nêu lí do chọn đáp án (1–3 câu); Phần II mỗi ý 1–2 câu; Phần III–IV nêu các bước và kết luận (khớp \shortans).
+
+## 7. Nhiều đề
+Mỗi đề đúng số câu, cấu trúc, phân bổ mức độ như yêu cầu; không trùng câu giữa các đề; đánh số ĐỀ SỐ 01, 02, ...
+
+## 8. Tự kiểm tra (làm thầm, bắt buộc, từng câu)
+- Tự giải lại độc lập, đối chiếu đáp án và lời giải (dùng công cụ chạy code để kiểm tra phép tính nếu có).
+- Phần I đúng 1 đáp án đúng; Phần II \True khớp "Đúng./Sai."; Phần III đáp án duy nhất, tối đa 4 ký tự; kiến thức, lớp, mức độ đúng; hình và dữ kiện tồn tại, mô tả hình khớp đề.
+- Số câu từng phần khớp yêu cầu và khớp dòng mở đầu phần.
+- Code TikZ (nếu có) biên dịch được, khớp dữ kiện đề và lời giải.
+- Cú pháp: cân bằng { }, \left \right, \begin/\end, số ký hiệu $ chẵn; \choice và \choiceTFt có đúng 4 nhóm {}; itemchoice có đúng 4 \itemch; không dùng macro ngoài danh sách ở mục 1.
+- Có lỗi thì sửa hoặc thay câu rồi kiểm tra lại; chỉ xuất khi tất cả đạt.
+
+## 9. Xuất kết quả
+- Mỗi đề là MỘT file .tex riêng (UTF-8), tên không dấu dạng Toan[lớp]_[chu_de]_De[NN].tex, chỉ chứa mã LaTeX.
+- Nếu tạo được file thì đưa liên kết tải; nếu không, nói rõ một dòng rồi đưa từng đề trong một khối mã riêng. Không giả vờ đã tạo file.
+- Phản hồi trong chat tối đa 5 dòng: danh sách file; số câu mỗi phần; các câu còn phải tự vẽ hình theo mô tả (dạng "Đề 01 - Phần I - Câu 5"); chỗ không chắc chắn (nếu có). Không chào hỏi, không lặp lại nội dung đề.</script>
+
+<script>
+(function(){
+var $=function(id){return document.getElementById(id)};
+var IDS=['lop','sach','chude','pham','sode','tg','p1','p2','p3','p4','nb','th','vd','vdc','mode','tieude','tt','tt2','hinh','hinh2','khac','dau','cmt','yk'];
+var DEF={};IDS.forEach(function(k){DEF[k]=$(k).value});
+var KEY='toan-prompt-builder-v2';
+var DATA={
+10:[['Chương I. Mệnh đề và tập hợp',1,['Mệnh đề','Tập hợp và các phép toán trên tập hợp']],
+['Chương II. Bất phương trình và hệ bất phương trình bậc nhất hai ẩn',3,['Bất phương trình bậc nhất hai ẩn','Hệ bất phương trình bậc nhất hai ẩn']],
+['Chương III. Hệ thức lượng trong tam giác',5,['Giá trị lượng giác của một góc từ 0° đến 180°','Hệ thức lượng trong tam giác']],
+['Chương IV. Vectơ',7,['Các khái niệm mở đầu','Tổng và hiệu của hai vectơ','Tích của một vectơ với một số','Vectơ trong mặt phẳng toạ độ','Tích vô hướng của hai vectơ']],
+['Chương V. Các số đặc trưng của mẫu số liệu không ghép nhóm',12,['Số gần đúng và sai số','Các số đặc trưng đo xu thế trung tâm','Các số đặc trưng đo độ phân tán']],
+['Chương VI. Hàm số, đồ thị và ứng dụng',15,['Hàm số','Hàm số bậc hai','Dấu của tam thức bậc hai','Phương trình quy về phương trình bậc hai']],
+['Chương VII. Phương pháp toạ độ trong mặt phẳng',19,['Phương trình đường thẳng','Vị trí tương đối giữa hai đường thẳng. Góc và khoảng cách','Đường tròn trong mặt phẳng toạ độ','Ba đường conic']],
+['Chương VIII. Đại số tổ hợp',23,['Quy tắc đếm','Hoán vị, chỉnh hợp và tổ hợp','Nhị thức Newton']],
+['Chương IX. Tính xác suất theo định nghĩa cổ điển',26,['Biến cố và định nghĩa cổ điển của xác suất','Thực hành tính xác suất theo định nghĩa cổ điển']]],
+11:[['Chương I. Hàm số lượng giác và phương trình lượng giác',1,['Giá trị lượng giác của góc lượng giác','Công thức lượng giác','Hàm số lượng giác','Phương trình lượng giác cơ bản']],
+['Chương II. Dãy số. Cấp số cộng và cấp số nhân',5,['Dãy số','Cấp số cộng','Cấp số nhân']],
+['Chương III. Các số đặc trưng đo xu thế trung tâm của mẫu số liệu ghép nhóm',8,['Mẫu số liệu ghép nhóm','Các số đặc trưng đo xu thế trung tâm']],
+['Chương IV. Quan hệ song song trong không gian',10,['Đường thẳng và mặt phẳng trong không gian','Hai đường thẳng song song','Đường thẳng và mặt phẳng song song','Hai mặt phẳng song song','Phép chiếu song song']],
+['Chương V. Giới hạn. Hàm số liên tục',15,['Giới hạn của dãy số','Giới hạn của hàm số','Hàm số liên tục']],
+['Chương VI. Hàm số mũ và hàm số lôgarit',18,['Lũy thừa với số mũ thực','Lôgarit','Hàm số mũ và hàm số lôgarit','Phương trình, bất phương trình mũ và lôgarit']],
+['Chương VII. Quan hệ vuông góc trong không gian',22,['Hai đường thẳng vuông góc','Đường thẳng vuông góc với mặt phẳng','Phép chiếu vuông góc. Góc giữa đường thẳng và mặt phẳng','Hai mặt phẳng vuông góc','Khoảng cách','Thể tích']],
+['Chương VIII. Các quy tắc tính xác suất',28,['Biến cố hợp, biến cố giao, biến cố độc lập','Công thức cộng xác suất','Công thức nhân xác suất cho hai biến cố độc lập']],
+['Chương IX. Đạo hàm',31,['Định nghĩa và ý nghĩa của đạo hàm','Các quy tắc tính đạo hàm']]],
+12:[['Chương I. Ứng dụng đạo hàm để khảo sát và vẽ đồ thị hàm số',1,['Tính đơn điệu và cực trị của hàm số','Giá trị lớn nhất và giá trị nhỏ nhất của hàm số','Đường tiệm cận của đồ thị hàm số','Khảo sát sự biến thiên và vẽ đồ thị của hàm số','Ứng dụng đạo hàm để giải quyết một số vấn đề liên quan đến thực tiễn']],
+['Chương II. Vectơ và hệ trục toạ độ trong không gian',6,['Vectơ trong không gian','Hệ trục toạ độ trong không gian','Biểu thức toạ độ của các phép toán vectơ']],
+['Chương III. Các số đặc trưng đo mức độ phân tán của mẫu số liệu ghép nhóm',9,['Khoảng biến thiên, khoảng tứ phân vị','Phương sai, độ lệch chuẩn']],
+['Chương IV. Nguyên hàm và tích phân',11,['Nguyên hàm','Tích phân','Ứng dụng hình học của tích phân']],
+['Chương V. Phương pháp toạ độ trong không gian',14,['Phương trình mặt phẳng','Phương trình đường thẳng trong không gian','Công thức tính góc trong không gian','Phương trình mặt cầu']],
+['Chương VI. Xác suất có điều kiện',18,['Xác suất có điều kiện','Công thức xác suất toàn phần và công thức Bayes']]]};
+var sel=BAI0();
+function BAI0(){return {'Bài 22. Hai đường thẳng vuông góc':1}}
+function showList(){return ['Kết nối tri thức','Không yêu cầu'].indexOf(val('sach'))>-1}
+function drawBai(){
+  var box=$('baiBox'),h='';
+  box.style.display=showList()?'':'none';$('baiNote').style.display=showList()?'none':'';
+  DATA[val('lop')].forEach(function(c){h+='<h4>'+c[0]+'</h4>';c[2].forEach(function(t,i){var s='Bài '+(c[1]+i)+'. '+t;h+='<label><input type="checkbox" value="'+s+'"'+(sel[s]?' checked':'')+'>'+s+'</label>'})});
+  box.innerHTML=h;
+}
+function picked(){
+  if(!showList())return [];
+  return [].filter.call($('baiBox').querySelectorAll('input'),function(i){return i.checked}).map(function(i){return i.value});
+}
+var TPL=$('tpl').textContent.replace(/^\n/,'');
+
+function val(k){return $(k).value.trim()}
+function build(){
+  var p4=parseInt(val('p4'))||0,L=[];
+  L.push('- Lớp: '+val('lop'));
+  L.push('- Bộ sách: '+val('sach'));
+  var bs=picked().concat(val('chude')?[val('chude')]:[]);
+  $('baiCount').textContent='(đã chọn '+picked().length+' bài)';
+  L.push('- Bài/Chủ đề: '+(bs.join('; ')||'(chưa chọn)'));
+  if(val('pham'))L.push('- Phạm vi, dạng toán cần có hoặc cần tránh: '+val('pham'));
+  L.push('- Số lượng đề: '+val('sode'));
+  L.push('- Số câu mỗi đề: Phần I '+val('p1')+' câu; Phần II '+val('p2')+' câu; Phần III '+val('p3')+' câu; '+(p4>0?'Phần IV tự luận '+p4+' câu':'không có Phần IV'));
+  L.push('- Phân bổ mức độ: Nhận biết '+val('nb')+'%, Thông hiểu '+val('th')+'%, Vận dụng '+val('vd')+'%, Vận dụng cao '+val('vdc')+'%');
+  L.push('- Thời gian làm bài: '+val('tg')+' phút');
+  L.push('- Tiêu đề đề: '+val('tieude'));
+  var tt=val('tt')==='__k'?val('tt2'):val('tt'),hh=val('hinh')==='__k'?val('hinh2'):val('hinh');
+  if(tt)L.push('- Câu có bối cảnh thực tế: '+tt);
+  if(hh)L.push('- Câu có hình vẽ/đồ thị/bảng: '+hh);
+  L.push('- Khác biệt giữa các đề: '+val('khac'));
+  L.push('- Dấu thập phân trong \\shortans: '+val('dau'));
+  L.push('- Ghi chú mức độ bằng comment LaTeX: '+val('cmt'));
+  if(val('yk'))L.push('- Yêu cầu khác: '+val('yk'));
+  var info=L.join('\n');
+  if(val('mode')==='short'){
+    var S=['- Lớp '+val('lop')+', bộ sách: '+val('sach'),'- Bài/Chủ đề: '+(bs.join('; ')||'(chưa chọn)')];
+    if(val('pham'))S.push('- Phạm vi: '+val('pham'));
+    S.push('- Số đề: '+val('sode'));
+    S.push('- Số câu mỗi đề: Phần I '+val('p1')+'; Phần II '+val('p2')+'; Phần III '+val('p3')+'; '+(p4>0?'Phần IV tự luận '+p4:'không có Phần IV'));
+    S.push('- Mức độ: Nhận biết '+val('nb')+'%, Thông hiểu '+val('th')+'%, Vận dụng '+val('vd')+'%, Vận dụng cao '+val('vdc')+'%');
+    if(tt)S.push('- Câu có bối cảnh thực tế: '+tt);
+    if(hh)S.push('- Câu có hình/đồ thị/bảng biến thiên/bảng số liệu: '+hh);
+    if(val('yk'))S.push('- Yêu cầu khác: '+val('yk'));
+    return 'Soạn đề ôn tập Toán THPT (theo Chương trình GDPT 2018), xuất mỗi đề thành một file .tex đúng định dạng file mẫu Sample.tex đính kèm, gồm đề và lời giải ngắn gọn. Chỗ cần hình vẽ, đồ thị, bảng biến thiên thì ưu tiên vẽ bằng code TikZ; chỉ khi quá khó vẽ chính xác mới mô tả thật chi tiết để tôi tự vẽ. Tự giải lại để kiểm tra đáp án trước khi xuất.\n\n'+S.join('\n');
+  }
+  return TPL.replace('{{INFO}}',function(){return info});
+}
+function sumCheck(){
+  var s=['nb','th','vd','vdc'].reduce(function(a,k){return a+(parseFloat(val(k))||0)},0);
+  var e=$('sum');e.textContent='(tổng '+s+'%'+(s===100?', hợp lệ)':', cần bằng 100%)');
+  e.className='note '+(s===100?'good':'bad');
+}
+function save(){try{var o={};IDS.forEach(function(k){o[k]=$(k).value});o.bai=Object.keys(sel).filter(function(k){return sel[k]});localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
+function load(){try{var r=localStorage.getItem(KEY);if(!r)return;var o=JSON.parse(r);IDS.forEach(function(k){if(o[k]!==undefined)$(k).value=o[k]});if(o.bai){sel={};o.bai.forEach(function(s){sel[s]=1})}}catch(e){}}
+function render(){
+  $('tt2').style.display=val('tt')==='__k'?'':'none';
+  $('hinh2').style.display=val('hinh')==='__k'?'':'none';
+  var t=build();$('out').value=t;
+  $('stat').textContent=t.length.toLocaleString('vi-VN')+' ký tự';
+  sumCheck();save();
+}
+function setV(o){Object.keys(o).forEach(function(k){$(k).value=o[k]});render()}
+IDS.forEach(function(k){$(k).addEventListener('input',render);$(k).addEventListener('change',render)});
+$('lop').addEventListener('change',function(){sel={};drawBai();render()});
+$('sach').addEventListener('change',function(){drawBai();render()});
+$('baiBox').addEventListener('change',function(e){var t=e.target;if(t.type==='checkbox'){if(t.checked)sel[t.value]=1;else delete sel[t.value];render()}});
+$('pre1').onclick=function(){setV({p1:12,p2:4,p3:6,p4:0})};
+$('pre2').onclick=function(){setV({p1:12,p2:4,p3:4,p4:2})};
+$('reset').onclick=function(){sel=BAI0();drawBai();setV(DEF)};
+$('copy').onclick=function(){
+  var t=$('out').value,b=$('copy');
+  function done(){b.textContent='Đã sao chép';setTimeout(function(){b.textContent='Sao chép prompt'},1600)}
+  function fb(){var o=$('out');o.select();try{document.execCommand('copy');done()}catch(e){}}
+  try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,fb)}else{fb()}}catch(e){fb()}
+};
+load();drawBai();render();
+})();
+</script>
+</body>
+</html>
