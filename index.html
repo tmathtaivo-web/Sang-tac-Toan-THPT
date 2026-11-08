@@ -2,16 +2,102 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kho Tài Nguyên Của Tôi</title>
+    <style>
+        /* Cài đặt màu sắc và phông chữ */
+        :root {
+            --primary-color: #2563eb; /* Màu xanh dương đậm */
+            --bg-color: #f3f4f6; /* Màu nền xám nhạt */
+            --card-bg: #ffffff; /* Nền thẻ màu trắng */
+            --text-main: #1f2937; /* Màu chữ đen */
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        /* Cài đặt dạng lưới (Grid) cho các nút bấm */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        /* Cài đặt giao diện cho từng Thẻ (Card) */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            text-decoration: none;
+            color: var(--text-main);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-left: 6px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+        }
+        /* Hiệu ứng khi di chuột vào (Hover) */
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+            border-left-color: #1d4ed8;
+        }
+        .card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.3em;
+            color: var(--primary-color);
+        }
+        .card p {
+            margin: 0;
+            font-size: 0.95em;
+            color: #6b7280;
+        }
+    </style>
 </head>
 <body>
-    <h1>Danh Sách Ứng Dụng & Tài Nguyên</h1>
-    <ul>
-        <!-- Thay thế các link bên dưới bằng link thực tế hoặc file của bạn -->
-        <li><a href="https://notebook.google.com/notebook/f3ce7e2c-75b4-45ba-a09d-a54a87f5fb57">Phương pháp toạ độ trong không gian</a></li>
-        <li><a href="https://notebook.google.com/notebook/4b2ca9a5-d72b-457b-b226-0deabe36697f">Ứng dụng đạo hàm để khảo sát hàm số</a></li>
-        <li><a href="https://notebook.google.com/notebook/b19acb1d-5297-4d55-a7cd-d4e6f649b0e5">Vectơ và hệ trục toạ độ trong không gian</a></li>
-	<li><a href="https://notebook.google.com/notebook/36815c9b-0a39-439e-86fa-9e46205ff457">Nguyên hàm và tích phân</a></li>
-    </ul>
+    <div class="container">
+        <h1>Danh Sách Ứng Dụng & Tài Nguyên</h1>
+        
+        <div class="grid-container">
+            <!-- Thẻ 1 -->
+            <a href="https://notebook.google.com/notebook/f3ce7e2c-75b4-45ba-a09d-a54a87f5fb57" target="_blank" class="card">
+                <h3>Phương pháp toạ độ trong không gian</h3>
+                <p>Mở ứng dụng Notebook</p>
+            </a>
+
+            <!-- Thẻ 2 -->
+            <a href="https://notebook.google.com/notebook/4b2ca9a5-d72b-457b-b226-0deabe36697f" target="_blank" class="card">
+                <h3>Ứng dụng đạo hàm để khảo sát hàm số</h3>
+                <p>Mở ứng dụng Notebook</p>
+            </a>
+
+            <!-- Thẻ 3 -->
+            <a href="https://notebook.google.com/notebook/b19acb1d-5297-4d55-a7cd-d4e6f649b0e5" target="_blank" class="card">
+                <h3>Vectơ và hệ trục toạ độ trong không gian</h3>
+                <p>Mở ứng dụng Notebook</p>
+            </a>
+
+            <!-- Thẻ 4 -->
+            <a href="https://notebook.google.com/notebook/36815c9b-0a39-439e-86fa-9e46205ff457" target="_blank" class="card">
+                <h3>Nguyên hàm và tích phân</h3>
+                <p>Mở ứng dụng Notebook</p>
+            </a>
+        </div>
+    </div>
 </body>
 </html>
