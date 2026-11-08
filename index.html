@@ -3,17 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ Sinh Thái Tài Nguyên Toán Học</title>
+    <title>AI Tạo Sinh Biên Soạn Toán THPT</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-gradient-start: #e0e7ff;
-            --bg-gradient-end: #f8fafc;
-            --card-bg: rgba(255, 255, 255, 0.7); /* Kính mờ trong suốt */
+            /* Tông màu Xanh nước biển (Ocean Blue) */
+            --bg-gradient-start: #e0f2fe; /* Xanh trời nhạt */
+            --bg-gradient-end: #f1f5f9;
+            --card-bg: rgba(255, 255, 255, 0.75); /* Kính mờ */
             --text-main: #0f172a;
-            --text-muted: #475569;
-            --primary: #4f46e5;
-            --primary-hover: #4338ca;
+            --text-muted: #334155;
+            --primary: #0284c7; /* Xanh nước biển đậm */
+            --primary-hover: #0369a1;
+            
+            /* Màu nhãn (Badge) */
+            --badge-notebook-bg: #bae6fd;
+            --badge-notebook-text: #0369a1;
+            --badge-html-bg: #ccfbf1;
+            --badge-html-text: #0f766e;
         }
 
         body {
@@ -24,23 +31,25 @@
             background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
             min-height: 100vh;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         /* -------------------------------------------
-           PHẦN NỀN TOÁN HỌC ĐỘNG (KHÔNG DÙNG JS)
+           PHẦN NỀN TOÁN HỌC ĐỘNG
            ------------------------------------------- */
         .math-bg {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
             z-index: -1; 
             overflow: hidden; 
-            pointer-events: none; /* Không cản trở việc click chuột */
+            pointer-events: none;
         }
 
         .floating-el {
             position: absolute;
-            color: #4f46e5;
-            opacity: 0.15; /* Làm mờ hình nền */
+            color: var(--primary); /* Chuyển sang xanh nước biển */
+            opacity: 0.12; 
         }
 
         .formula {
@@ -51,7 +60,6 @@
             white-space: nowrap;
         }
 
-        /* Tạo 2 quỹ đạo chuyển động mượt mà */
         @keyframes float1 {
             0% { transform: translate(0, 0) rotate(0deg); }
             33% { transform: translate(40px, -60px) rotate(10deg); }
@@ -65,15 +73,13 @@
             100% { transform: translate(0, 0) rotate(0deg) scale(1); }
         }
 
-        /* Cài đặt vị trí và tốc độ cho từng hình/công thức */
         .el-1 { top: 5%; left: 5%; animation: float1 25s infinite ease-in-out; }
         .el-2 { top: 60%; left: 8%; animation: float2 30s infinite ease-in-out; }
         .el-3 { top: 15%; right: 10%; animation: float2 22s infinite ease-in-out reverse; }
         .el-4 { bottom: 10%; right: 5%; animation: float1 28s infinite ease-in-out; }
-        .el-5 { top: 40%; left: 40%; animation: float1 35s infinite ease-in-out; opacity: 0.1; }
+        .el-5 { top: 40%; left: 40%; animation: float1 35s infinite ease-in-out; opacity: 0.08; }
         .el-6 { bottom: 25%; left: 45%; animation: float2 26s infinite ease-in-out; }
         .el-7 { top: 45%; right: 30%; animation: float1 20s infinite ease-in-out; }
-
 
         /* -------------------------------------------
            GIAO DIỆN CHÍNH
@@ -81,7 +87,7 @@
         .content-wrapper {
             position: relative;
             z-index: 1; 
-            padding-bottom: 60px;
+            flex: 1;
         }
 
         .header-section {
@@ -90,17 +96,24 @@
         }
 
         .header-section h1 {
-            margin: 0; font-size: 2.4rem; font-weight: 700; color: #1e293b;
+            margin: 0; 
+            font-size: 2.6rem; 
+            font-weight: 700; 
+            color: var(--primary);
+            text-shadow: 0 2px 10px rgba(255,255,255,0.9);
         }
 
         .header-section p {
-            margin: 15px auto 0; color: var(--text-muted); font-size: 1.1rem; max-width: 600px;
+            margin: 15px auto 0; 
+            color: var(--text-muted); 
+            font-size: 1.1rem; 
+            max-width: 600px;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 20px 60px;
         }
 
         .grid-container {
@@ -109,43 +122,62 @@
             gap: 25px;
         }
 
-        /* Hiệu ứng kính mờ (Glassmorphism) */
+        /* -------------------------------------------
+           ĐỊNH DẠNG THẺ (CARD) & BIỂU TƯỢNG 3D
+           ------------------------------------------- */
         .card {
             background-color: var(--card-bg);
-            backdrop-filter: blur(15px); /* Làm mờ hình nền khi lướt qua dưới thẻ */
+            backdrop-filter: blur(15px); 
             -webkit-backdrop-filter: blur(15px);
             border-radius: 20px;
             padding: 30px;
             text-decoration: none;
             display: flex;
             flex-direction: column;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 30px rgba(2, 132, 199, 0.08); /* Đổ bóng xanh nhạt */
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .card:hover {
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.15);
-            border-color: rgba(79, 70, 229, 0.3);
-            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 20px 40px rgba(2, 132, 199, 0.18);
+            border-color: rgba(2, 132, 199, 0.3);
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        /* Biểu tượng 3D */
+        .card-icon {
+            font-size: 2.8rem;
+            line-height: 1;
+            filter: drop-shadow(0 8px 8px rgba(0,0,0,0.15));
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.15) rotate(5deg) translateY(-5px);
         }
 
         .badge {
-            align-self: flex-start;
             padding: 6px 14px;
             border-radius: 20px;
             font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 20px;
         }
 
-        .badge.notebook { background-color: #e0e7ff; color: #3730a3; }
-        .badge.html { background-color: #dcfce7; color: #166534; }
+        .badge.notebook { background-color: var(--badge-notebook-bg); color: var(--badge-notebook-text); }
+        .badge.html { background-color: var(--badge-html-bg); color: var(--badge-html-text); }
 
-        .card h3 { margin: 0 0 12px 0; font-size: 1.3rem; font-weight: 700; line-height: 1.4; }
+        .card h3 { margin: 0 0 12px 0; font-size: 1.25rem; font-weight: 700; line-height: 1.4; color: var(--text-main); }
         .card p { margin: 0 0 25px 0; color: var(--text-muted); font-size: 0.95rem; flex-grow: 1; }
 
         .action-link {
@@ -153,24 +185,55 @@
         }
         .card:hover .action-link { color: var(--primary-hover); }
         .action-link span { transition: transform 0.3s; }
-        .card:hover .action-link span { transform: translateX(5px); }
+        .card:hover .action-link span { transform: translateX(6px); }
+
+        /* -------------------------------------------
+           CHÂN TRANG (FOOTER)
+           ------------------------------------------- */
+        .site-footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(to top, rgba(255,255,255,0.8), transparent);
+            border-top: 1px solid rgba(2, 132, 199, 0.15);
+            margin-top: auto;
+        }
+
+        .site-footer .author {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .site-footer .quote {
+            font-size: 1.05rem;
+            font-style: italic;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        .site-footer .quote::before, .site-footer .quote::after {
+            content: '"';
+            font-size: 1.5rem;
+            color: var(--primary);
+            opacity: 0.5;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
     <!-- LỚP NỀN: CÁC ĐỒ THỊ VÀ CÔNG THỨC TOÁN HỌC -->
     <div class="math-bg">
-        
-        <!-- Đồ thị Parabol -->
         <svg class="floating-el el-1" viewBox="0 0 100 100" width="180" height="180">
-            <!-- Trục tọa độ -->
             <line x1="10" y1="90" x2="90" y2="90" stroke="currentColor" stroke-width="2" />
             <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" stroke-width="2" />
-            <!-- Đường Parabol -->
             <path d="M 20 20 Q 50 130 80 20" stroke="currentColor" stroke-width="2.5" fill="none" />
         </svg>
-
-        <!-- Hình hộp chữ nhật / Lập phương -->
         <svg class="floating-el el-2" viewBox="0 0 100 100" width="160" height="160">
             <polygon points="30,40 70,40 70,80 30,80" fill="none" stroke="currentColor" stroke-width="2"/>
             <polygon points="50,20 90,20 90,60 50,60" fill="none" stroke="currentColor" stroke-width="2"/>
@@ -179,43 +242,28 @@
             <line x1="70" y1="80" x2="90" y2="60" stroke="currentColor" stroke-width="2"/>
             <line x1="30" y1="80" x2="50" y2="60" stroke="currentColor" stroke-width="2"/>
         </svg>
-
-        <!-- Công thức Tích phân -->
-        <div class="floating-el el-3 formula">
-            &int;<sub>a</sub><sup>b</sup> f(x)dx = F(b) - F(a)
-        </div>
-
-        <!-- Đồ thị Sin -->
+        <div class="floating-el el-3 formula">&int;<sub>a</sub><sup>b</sup> f(x)dx = F(b) - F(a)</div>
         <svg class="floating-el el-4" viewBox="0 0 100 100" width="200" height="200">
             <line x1="0" y1="50" x2="100" y2="50" stroke="currentColor" stroke-width="2" />
             <line x1="10" y1="10" x2="10" y2="90" stroke="currentColor" stroke-width="2" />
             <path d="M 10 50 C 30 10, 50 90, 70 50 C 80 30, 90 30, 100 50" stroke="currentColor" stroke-width="2.5" fill="none" />
         </svg>
-
-        <!-- Công thức Euler -->
-        <div class="floating-el el-5 formula">
-            e<sup>i&pi;</sup> + 1 = 0
-        </div>
-
-        <!-- Hình chóp tam giác -->
+        <div class="floating-el el-5 formula">e<sup>i&pi;</sup> + 1 = 0</div>
         <svg class="floating-el el-6" viewBox="0 0 100 100" width="150" height="150">
             <polygon points="50,15 20,85 85,70" fill="none" stroke="currentColor" stroke-width="2.5"/>
             <line x1="50" y1="15" x2="45" y2="60" stroke="currentColor" stroke-width="2" stroke-dasharray="5"/>
             <line x1="20" y1="85" x2="45" y2="60" stroke="currentColor" stroke-width="2" stroke-dasharray="5"/>
             <line x1="85" y1="70" x2="45" y2="60" stroke="currentColor" stroke-width="2" stroke-dasharray="5"/>
         </svg>
-
-        <!-- Ký hiệu Tổng Sigma -->
         <div class="floating-el el-7 formula" style="text-align: center; line-height: 0.8;">
             <span style="font-size: 0.5em;">n</span><br>&sum;<br><span style="font-size: 0.5em;">i=1</span>
         </div>
-
     </div>
 
     <!-- GIAO DIỆN CHÍNH -->
     <div class="content-wrapper">
         <header class="header-section">
-            <h1>Hệ Sinh Thái Tài Nguyên Toán Học</h1>
+            <h1>AI tạo sinh Biên soạn Toán THPT</h1>
             <p>Trung tâm tổng hợp các công cụ AI và ứng dụng hỗ trợ giáo viên biên soạn, sáng tác đề thi Toán THPT chuyên nghiệp.</p>
         </header>
 
@@ -223,49 +271,70 @@
             <div class="grid-container">
                 
                 <a href="https://notebook.google.com/notebook/f3ce7e2c-75b4-45ba-a09d-a54a87f5fb57" target="_blank" class="card">
-                    <span class="badge notebook">AI Notebook</span>
+                    <div class="card-header">
+                        <div class="card-icon">🧊</div>
+                        <span class="badge notebook">AI Notebook</span>
+                    </div>
                     <h3>Phương pháp toạ độ trong không gian</h3>
                     <p>Khai thác AI để sinh đề thi, bài tập và hệ thống lý thuyết chuyên sâu cho chuyên đề Hình học không gian Oxyz.</p>
                     <div class="action-link">Truy cập ngay <span>➔</span></div>
                 </a>
 
                 <a href="https://notebook.google.com/notebook/4b2ca9a5-d72b-457b-b226-0deabe36697f" target="_blank" class="card">
-                    <span class="badge notebook">AI Notebook</span>
+                    <div class="card-header">
+                        <div class="card-icon">📈</div>
+                        <span class="badge notebook">AI Notebook</span>
+                    </div>
                     <h3>Ứng dụng đạo hàm khảo sát hàm số</h3>
                     <p>Tự động hóa quá trình tạo bài tập khảo sát, vẽ đồ thị hàm số và giải quyết các bài toán tối ưu thực tế.</p>
                     <div class="action-link">Truy cập ngay <span>➔</span></div>
                 </a>
 
                 <a href="https://notebook.google.com/notebook/b19acb1d-5297-4d55-a7cd-d4e6f649b0e5" target="_blank" class="card">
-                    <span class="badge notebook">AI Notebook</span>
+                    <div class="card-header">
+                        <div class="card-icon">🚀</div>
+                        <span class="badge notebook">AI Notebook</span>
+                    </div>
                     <h3>Vectơ và hệ trục toạ độ không gian</h3>
                     <p>Xây dựng hệ thống bài tập trắc nghiệm và tự luận về vectơ, tích vô hướng và các ứng dụng trong không gian.</p>
                     <div class="action-link">Truy cập ngay <span>➔</span></div>
                 </a>
 
                 <a href="https://notebook.google.com/notebook/36815c9b-0a39-439e-86fa-9e46205ff457" target="_blank" class="card">
-                    <span class="badge notebook">AI Notebook</span>
+                    <div class="card-header">
+                        <div class="card-icon">🧩</div>
+                        <span class="badge notebook">AI Notebook</span>
+                    </div>
                     <h3>Nguyên hàm và tích phân</h3>
                     <p>Hỗ trợ biên soạn nhanh các dạng toán từ cơ bản đến vận dụng cao chuyên đề Nguyên hàm - Tích phân lớp 12.</p>
                     <div class="action-link">Truy cập ngay <span>➔</span></div>
                 </a>
 
                 <a href="Prompt-bien-soan-dang-toan-THPT.html" target="_blank" class="card">
-                    <span class="badge html">Web Tool</span>
+                    <div class="card-header">
+                        <div class="card-icon">📚</div>
+                        <span class="badge html">Web Tool</span>
+                    </div>
                     <h3>Biên soạn dạng toán THPT</h3>
                     <p>Công cụ giao diện Web hỗ trợ giáo viên phân loại, lên khung chương trình giảng dạy các chuyên đề Toán THPT.</p>
                     <div class="action-link">Mở ứng dụng <span>➔</span></div>
                 </a>
 
                 <a href="Prompt-sang-tac-cau-hoi-Toan-12.html" target="_blank" class="card">
-                    <span class="badge html">Web Tool</span>
+                    <div class="card-header">
+                        <div class="card-icon">🎯</div>
+                        <span class="badge html">Web Tool</span>
+                    </div>
                     <h3>Sáng tác câu hỏi Toán 12</h3>
                     <p>Trình tạo câu hỏi trắc nghiệm khách quan chuẩn cấu trúc mới, bám sát ma trận đề thi tốt nghiệp THPT.</p>
                     <div class="action-link">Mở ứng dụng <span>➔</span></div>
                 </a>
 
                 <a href="Prompt-tao-de-on-tap-LaTeX.html" target="_blank" class="card">
-                    <span class="badge html">Web Tool</span>
+                    <div class="card-header">
+                        <div class="card-icon">📜</div>
+                        <span class="badge html">Web Tool</span>
+                    </div>
                     <h3>Tạo đề ôn tập LaTeX</h3>
                     <p>Tiện ích hỗ trợ xuất mã định dạng LaTeX chuẩn xác, giúp trình bày đề thi và tài liệu một cách chuyên nghiệp.</p>
                     <div class="action-link">Mở ứng dụng <span>➔</span></div>
@@ -274,5 +343,12 @@
             </div>
         </div>
     </div>
+
+    <!-- CHÂN TRANG: TÁC GIẢ & CHÂM NGÔN -->
+    <footer class="site-footer">
+        <div class="author">Ths. Võ Thành Tài</div>
+        <div class="quote">Hãy cố gắng hết sức khi bạn còn có thể, thành công chỉ đến khi bạn dám bước tiếp.</div>
+    </footer>
+
 </body>
 </html>
