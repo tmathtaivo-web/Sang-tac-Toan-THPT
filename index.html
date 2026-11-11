@@ -102,6 +102,31 @@
             pointer-events: none;
         }
 
+        /* 2. LOGO T-MATH DẠNG NỀN CHÌM KHỔNG LỒ */
+        .tmath-watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90vh;
+            height: 90vh;
+            max-width: 800px;
+            max-height: 800px;
+            background-image: url('logo-tmath.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.045; /* Làm cực kỳ mờ mờ để không cản trở việc đọc chữ */
+            filter: grayscale(15%);
+            z-index: -1;
+            pointer-events: none;
+            animation: slowRotate 80s linear infinite;
+        }
+
+        @keyframes slowRotate {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
         .math-bg {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -113,7 +138,7 @@
         .floating-el {
             position: absolute;
             color: var(--primary);
-            opacity: 0.14;
+            opacity: 0.12;
         }
 
         .formula {
@@ -134,57 +159,42 @@
         .el-3 { top: 14%; right: 7%; animation: floatSlow 22s infinite ease-in-out 2s; }
         .el-4 { bottom: 12%; right: 6%; animation: floatSlow 26s infinite ease-in-out; }
 
-        /* 2. KHỐI ĐA DIỆN HÌNH HỌC 3D XOAY TRONG KHÔNG GIAN */
-        .hero-3d-wrapper {
+        /* 3. KHỐI LOGO T-MATH 3D NỔI BẬT Ở ĐẦU TRANG */
+        .logo-3d-wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 22px;
+            margin-bottom: 24px;
             perspective: 800px;
-            height: 76px;
         }
 
-        .cube-3d {
-            width: 52px;
-            height: 52px;
+        .logo-3d-glow {
+            width: 140px;
+            height: 140px;
             position: relative;
             transform-style: preserve-3d;
-            animation: spinCube3D 14s infinite linear;
+            animation: bounceAndPulse 7s infinite ease-in-out;
+            filter: drop-shadow(0 15px 30px rgba(2, 132, 199, 0.45));
+            transition: transform 0.3s ease;
         }
 
-        .cube-face {
-            position: absolute;
-            width: 52px;
-            height: 52px;
-            border: 2px solid rgba(2, 132, 199, 0.65);
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(255, 255, 255, 0.4));
-            backdrop-filter: blur(4px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Times New Roman', serif;
-            font-weight: bold;
-            font-style: italic;
-            font-size: 1.1rem;
-            color: var(--primary-dark);
-            box-shadow: inset 0 0 12px rgba(56, 189, 248, 0.35), 0 0 15px rgba(2, 132, 199, 0.15);
-            border-radius: 6px;
+        .logo-3d-glow:hover {
+            transform: scale(1.1) rotateY(15deg) rotateX(-5deg);
         }
 
-        .cube-face.front  { transform: rotateY(  0deg) translateZ(26px); }
-        .cube-face.back   { transform: rotateY(180deg) translateZ(26px); }
-        .cube-face.right  { transform: rotateY( 90deg) translateZ(26px); }
-        .cube-face.left   { transform: rotateY(-90deg) translateZ(26px); }
-        .cube-face.top    { transform: rotateX( 90deg) translateZ(26px); }
-        .cube-face.bottom { transform: rotateX(-90deg) translateZ(26px); }
-
-        @keyframes spinCube3D {
-            0%   { transform: rotateX(20deg) rotateY(0deg) rotateZ(0deg); }
-            50%  { transform: rotateX(40deg) rotateY(180deg) rotateZ(15deg); }
-            100% { transform: rotateX(20deg) rotateY(360deg) rotateZ(0deg); }
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            pointer-events: none;
         }
 
-        /* 3. HEADER & TIÊU ĐỀ NỔI BẬT */
+        @keyframes bounceAndPulse {
+            0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
+            50% { transform: translateY(-8px) scale(1.02) rotate(2deg); }
+        }
+
+        /* 4. HEADER & TIÊU ĐỀ NỔI BẬT */
         .content-wrapper {
             position: relative;
             z-index: 1;
@@ -259,7 +269,7 @@
             padding: 0 20px 65px;
         }
 
-        /* 4. THANH CHUYỂN ĐỔI 4 NHÓM */
+        /* 5. THANH CHUYỂN ĐỔI 4 NHÓM */
         .tab-input {
             display: none;
         }
@@ -394,7 +404,7 @@
             box-shadow: 0 2px 8px rgba(2, 132, 199, 0.08);
         }
 
-        /* 5. THẺ 3D KÍNH MỜ & MICRO-INTERACTIONS */
+        /* 6. THẺ 3D KÍNH MỜ & MICRO-INTERACTIONS */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
@@ -587,7 +597,7 @@
             color: var(--primary-dark);
         }
 
-        /* 6. CHÂN TRANG */
+        /* 7. CHÂN TRANG */
         .site-footer {
             text-align: center;
             padding: 55px 20px 45px;
@@ -665,6 +675,9 @@
     </div>
     <div class="spatial-grid"></div>
 
+    <!-- LOGO T-MATH KHỔNG LỒ ẨN CHÌM DƯỚI NỀN ĐỘNG -->
+    <div class="tmath-watermark"></div>
+
     <div class="math-bg">
         <svg class="floating-el el-1" viewBox="0 0 100 100" width="170" height="170">
             <line x1="10" y1="90" x2="90" y2="90" stroke="currentColor" stroke-width="2" />
@@ -682,14 +695,10 @@
 
     <div class="content-wrapper">
         <header class="header-section">
-            <div class="hero-3d-wrapper" aria-hidden="true">
-                <div class="cube-3d">
-                    <div class="cube-face front">&int;</div>
-                    <div class="cube-face back">&pi;</div>
-                    <div class="cube-face right">&sum;</div>
-                    <div class="cube-face left">&Delta;</div>
-                    <div class="cube-face top">&infin;</div>
-                    <div class="cube-face bottom">&radic;</div>
+            <!-- NÂNG CẤP: LOGO T-MATH 3D XOAY LƠ LỬNG Ở ĐỈNH TRANG -->
+            <div class="logo-3d-wrapper" aria-hidden="true">
+                <div class="logo-3d-glow">
+                    <img src="logo-tmath.png" alt="Logo T-Math" class="logo-img">
                 </div>
             </div>
 
@@ -947,7 +956,6 @@
                     </div>
                     <div class="grid-container">
 
-                        <!-- Thẻ mới bổ sung: Tao-prompt-sang-tac-cau-hoi-Toan-THPT.html -->
                         <a href="Tao-prompt-sang-tac-cau-hoi-Toan-THPT.html" target="_blank" class="card">
                             <div class="card-header">
                                 <div class="icon-orb">✨</div>
@@ -1035,7 +1043,7 @@
 
     <footer class="site-footer">
         <div class="author-card">
-            <div class="author">Ths. Võ Thành Tài</div>
+            <div class="author">ThS. Võ Thành Tài</div>
         </div>
         <div class="school">Giáo viên Toán trường THPT Nguyễn Khuyến</div>
         <div class="quote">Hãy cố gắng hết sức khi bạn còn có thể,<br>thành công chỉ đến khi bạn dám bước tiếp.</div>
