@@ -4,25 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Tạo Sinh Biên Soạn Toán THPT</title>
-    <!-- Phông chữ Inter (chính) và Playfair Display (cho câu châm ngôn) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,500;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Tông màu Xanh nước biển chủ đạo */
-            --bg-gradient-start: #e0f2fe; 
-            --bg-gradient-end: #f1f5f9;
-            --card-bg: rgba(255, 255, 255, 0.78);
+            --primary: #0284c7;
+            --primary-light: #38bdf8;
+            --primary-dark: #0369a1;
+            --accent-cyan: #06b6d4;
+            --accent-indigo: #4f46e5;
             --text-main: #0f172a;
-            --text-muted: #334155;
-            --primary: #0284c7; 
-            --primary-hover: #0369a1;
+            --text-muted: #475569;
+            --glass-bg: rgba(255, 255, 255, 0.68);
+            --glass-border: rgba(255, 255, 255, 0.85);
             
-            --badge-notebook-bg: #bae6fd;
+            /* Nhãn phân loại */
+            --badge-notebook-bg: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
             --badge-notebook-text: #0369a1;
-            --badge-html-bg: #ccfbf1;
+            --badge-html-bg: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 100%);
             --badge-html-text: #0f766e;
-            --badge-prompt-bg: #ede9fe;
+            --badge-prompt-bg: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
             --badge-prompt-text: #6d28d9;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
@@ -30,102 +35,242 @@
             margin: 0;
             padding: 0;
             color: var(--text-main);
-            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+            background-color: #f0f9ff;
             min-height: 100vh;
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
+            perspective: 1200px;
         }
 
-        /* -------------------------------------------
-           PHẦN NỀN TOÁN HỌC ĐỘNG
-           ------------------------------------------- */
+        /* ===================================================
+           1. HỆ THỐNG CHUYỂN MÀU MỀM MẠI (AURORA MESH GRADIENT)
+           =================================================== */
+        .ambient-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -2;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 0%, #e0f2fe 0%, #f1f5f9 75%);
+        }
+
+        .aurora-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(85px);
+            opacity: 0.65;
+            animation: auroraMove 18s infinite alternate ease-in-out;
+        }
+
+        .blob-1 {
+            width: 550px; height: 550px;
+            background: radial-gradient(circle, #38bdf8 0%, #0284c7 100%);
+            top: -150px; left: -100px;
+            animation-duration: 22s;
+        }
+
+        .blob-2 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, #2dd4bf 0%, #0ea5e9 100%);
+            top: 25%; right: -120px;
+            animation-duration: 19s;
+            animation-delay: -5s;
+        }
+
+        .blob-3 {
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, #818cf8 0%, #38bdf8 100%);
+            bottom: -200px; left: 25%;
+            opacity: 0.45;
+            animation-duration: 25s;
+            animation-delay: -10s;
+        }
+
+        @keyframes auroraMove {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            50% { transform: translate(80px, 50px) scale(1.12) rotate(15deg); }
+            100% { transform: translate(-50px, 90px) scale(0.95) rotate(-10deg); }
+        }
+
+        /* Lớp lưới tọa độ không gian 3D dưới nền */
+        .spatial-grid {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: 
+                linear-gradient(to right, rgba(2, 132, 199, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(2, 132, 199, 0.05) 1px, transparent 1px);
+            background-size: 45px 45px;
+            mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 80%);
+            -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 80%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Đồ thị và công thức bay lơ lửng */
         .math-bg {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: -1; 
-            overflow: hidden; 
+            z-index: -1;
+            overflow: hidden;
             pointer-events: none;
         }
 
         .floating-el {
             position: absolute;
-            color: var(--primary); 
-            opacity: 0.12; 
+            color: var(--primary);
+            opacity: 0.14;
         }
 
         .formula {
             font-family: 'Times New Roman', serif;
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             font-style: italic;
             font-weight: bold;
             white-space: nowrap;
         }
 
-        @keyframes float1 {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(40px, -60px) rotate(10deg); }
-            66% { transform: translate(-20px, 30px) rotate(-5deg); }
-            100% { transform: translate(0, 0) rotate(0deg); }
+        @keyframes floatSlow {
+            0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+            50% { transform: translate3d(35px, -45px, 40px) rotate(8deg); }
         }
 
-        @keyframes float2 {
-            0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            50% { transform: translate(-50px, 50px) rotate(-15deg) scale(1.1); }
-            100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+        .el-1 { top: 8%; left: 6%; animation: floatSlow 20s infinite ease-in-out; }
+        .el-2 { top: 65%; left: 5%; animation: floatSlow 24s infinite ease-in-out reverse; }
+        .el-3 { top: 14%; right: 7%; animation: floatSlow 22s infinite ease-in-out 2s; }
+        .el-4 { bottom: 12%; right: 6%; animation: floatSlow 26s infinite ease-in-out; }
+
+        /* ===================================================
+           2. KHỐI ĐA DIỆN HÌNH HỌC 3D XOAY TRONG KHÔNG GIAN
+           =================================================== */
+        .hero-3d-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 22px;
+            perspective: 800px;
+            height: 76px;
         }
 
-        .el-1 { top: 5%; left: 5%; animation: float1 25s infinite ease-in-out; }
-        .el-2 { top: 60%; left: 8%; animation: float2 30s infinite ease-in-out; }
-        .el-3 { top: 15%; right: 10%; animation: float2 22s infinite ease-in-out reverse; }
-        .el-4 { bottom: 10%; right: 5%; animation: float1 28s infinite ease-in-out; }
-        .el-5 { top: 40%; left: 40%; animation: float1 35s infinite ease-in-out; opacity: 0.08; }
-        .el-6 { bottom: 25%; left: 45%; animation: float2 26s infinite ease-in-out; }
-        .el-7 { top: 45%; right: 30%; animation: float1 20s infinite ease-in-out; }
+        .cube-3d {
+            width: 52px;
+            height: 52px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: spinCube3D 14s infinite linear;
+        }
 
-        /* -------------------------------------------
-           GIAO DIỆN CHÍNH & HEADER
-           ------------------------------------------- */
+        .cube-face {
+            position: absolute;
+            width: 52px;
+            height: 52px;
+            border: 2px solid rgba(2, 132, 199, 0.65);
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(255, 255, 255, 0.4));
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            box-shadow: inset 0 0 12px rgba(56, 189, 248, 0.35), 0 0 15px rgba(2, 132, 199, 0.15);
+            border-radius: 6px;
+        }
+
+        .cube-face.front  { transform: rotateY(  0deg) translateZ(26px); }
+        .cube-face.back   { transform: rotateY(180deg) translateZ(26px); }
+        .cube-face.right  { transform: rotateY( 90deg) translateZ(26px); }
+        .cube-face.left   { transform: rotateY(-90deg) translateZ(26px); }
+        .cube-face.top    { transform: rotateX( 90deg) translateZ(26px); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(26px); }
+
+        @keyframes spinCube3D {
+            0%   { transform: rotateX(20deg) rotateY(0deg) rotateZ(0deg); }
+            50%  { transform: rotateX(40deg) rotateY(180deg) rotateZ(15deg); }
+            100% { transform: rotateX(20deg) rotateY(360deg) rotateZ(0deg); }
+        }
+
+        /* ===================================================
+           3. HEADER & TIÊU ĐỀ NỔI BẬT
+           =================================================== */
         .content-wrapper {
             position: relative;
-            z-index: 1; 
+            z-index: 1;
             flex: 1;
         }
 
         .header-section {
             text-align: center;
-            padding: 60px 20px 30px;
+            padding: 45px 20px 30px;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid rgba(2, 132, 199, 0.25);
+            color: var(--primary-dark);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.08);
+        }
+
+        .pulse-dot {
+            width: 8px; height: 8px;
+            background-color: #0ea5e9;
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.7);
+            animation: pulseDot 2s infinite;
+        }
+
+        @keyframes pulseDot {
+            0% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.7); }
+            70% { box-shadow: 0 0 0 8px rgba(14, 165, 233, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0); }
         }
 
         .header-section h1 {
-            margin: 0; 
-            font-size: 3.1rem; 
-            font-weight: 800; 
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #0284c7 0%, #0369a1 45%, #0f172a 100%);
+            margin: 0;
+            font-size: clamp(2.1rem, 4.5vw, 3.4rem);
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            background: linear-gradient(135deg, #0369a1 0%, #0284c7 35%, #06b6d4 70%, #1e3a8a 100%);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            filter: drop-shadow(0px 4px 6px rgba(2, 132, 199, 0.2));
+            filter: drop-shadow(0px 6px 16px rgba(2, 132, 199, 0.18));
+            animation: textShine 6s linear infinite;
+        }
+
+        @keyframes textShine {
+            to { background-position: 200% center; }
         }
 
         .header-section p {
-            margin: 16px auto 0; 
-            color: var(--text-muted); 
-            font-size: 1.15rem; 
+            margin: 14px auto 0;
+            color: var(--text-muted);
+            font-size: 1.12rem;
             max-width: 650px;
             line-height: 1.6;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1220px;
             margin: 0 auto;
-            padding: 0 20px 60px;
+            padding: 0 20px 65px;
         }
 
-        /* -------------------------------------------
-           HỆ THỐNG CHIA 4 NHÓM (TABS KHÔNG DÙNG JS)
-           ------------------------------------------- */
+        /* ===================================================
+           4. THANH CHUYỂN ĐỔI 4 NHÓM (SPATIAL DOCK BAR)
+           =================================================== */
         .tab-input {
             display: none;
         }
@@ -134,54 +279,73 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
             margin: 0 auto 45px;
             padding: 8px;
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             border-radius: 999px;
             width: fit-content;
-            border: 1px solid rgba(255, 255, 255, 0.9);
-            box-shadow: 0 10px 30px rgba(2, 132, 199, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.95);
+            box-shadow: 
+                0 15px 35px -5px rgba(2, 132, 199, 0.14),
+                inset 0 1px 1px rgba(255, 255, 255, 0.9);
+            transition: transform 0.3s ease;
         }
 
         .tab-btn {
             padding: 12px 26px;
             border-radius: 999px;
-            font-size: 1.02rem;
+            font-size: 1rem;
             font-weight: 700;
             color: var(--text-muted);
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 9px;
             user-select: none;
+            position: relative;
+        }
+
+        .tab-btn .tab-icon {
+            font-size: 1.25rem;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .tab-btn:hover {
             color: var(--primary);
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.65);
+            transform: translateY(-2px);
         }
 
-        .tab-btn .tab-icon {
-            font-size: 1.2rem;
+        .tab-btn:hover .tab-icon {
+            transform: scale(1.2) rotate(-8deg);
         }
 
+        /* Khi nhóm được kích hoạt */
         #tab-toan10:checked ~ .tabs-nav label[for="tab-toan10"],
         #tab-toan11:checked ~ .tabs-nav label[for="tab-toan11"],
         #tab-toan12:checked ~ .tabs-nav label[for="tab-toan12"],
         #tab-prompt:checked ~ .tabs-nav label[for="tab-prompt"] {
-            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 55%, #0369a1 100%);
             color: #ffffff;
-            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.35);
-            transform: translateY(-1px);
+            box-shadow: 
+                0 8px 22px -2px rgba(2, 132, 199, 0.45),
+                inset 0 1px 1px rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px) scale(1.03);
+        }
+
+        #tab-toan10:checked ~ .tabs-nav label[for="tab-toan10"] .tab-icon,
+        #tab-toan11:checked ~ .tabs-nav label[for="tab-toan11"] .tab-icon,
+        #tab-toan12:checked ~ .tabs-nav label[for="tab-toan12"] .tab-icon,
+        #tab-prompt:checked ~ .tabs-nav label[for="tab-prompt"] .tab-icon {
+            transform: scale(1.18);
         }
 
         .tab-panel {
             display: none;
-            animation: fadeSlideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         #tab-toan10:checked ~ .tabs-content #panel-toan10,
@@ -191,24 +355,41 @@
             display: block;
         }
 
-        @keyframes fadeSlideUp {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Hiệu ứng xuất hiện lệch nhịp (Staggered Micro-interaction) cho các thẻ */
+        @keyframes cardEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(28px) scale(0.96) rotateX(6deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotateX(0deg);
+            }
         }
+
+        .tab-panel .card {
+            animation: cardEntrance 0.55s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+        }
+        .tab-panel .card:nth-child(1) { animation-delay: 0.04s; }
+        .tab-panel .card:nth-child(2) { animation-delay: 0.10s; }
+        .tab-panel .card:nth-child(3) { animation-delay: 0.16s; }
+        .tab-panel .card:nth-child(4) { animation-delay: 0.22s; }
+        .tab-panel .card:nth-child(5) { animation-delay: 0.28s; }
+        .tab-panel .card:nth-child(6) { animation-delay: 0.34s; }
 
         .group-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 25px;
-            padding-bottom: 12px;
+            margin-bottom: 26px;
+            padding-bottom: 14px;
             border-bottom: 2px solid rgba(2, 132, 199, 0.12);
         }
 
         .group-title {
-            font-size: 1.4rem;
+            font-size: 1.45rem;
             font-weight: 800;
-            color: var(--primary-hover);
+            color: var(--primary-dark);
             margin: 0;
             display: flex;
             align-items: center;
@@ -216,468 +397,221 @@
         }
 
         .group-count {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--primary);
-            background: rgba(2, 132, 199, 0.1);
-            padding: 5px 14px;
-            border-radius: 20px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid rgba(2, 132, 199, 0.2);
+            padding: 6px 16px;
+            border-radius: 999px;
+            box-shadow: 0 2px 8px rgba(2, 132, 199, 0.08);
         }
 
-        /* -------------------------------------------
-           BỐ CỤC LƯỚI & ĐỊNH DẠNG THẺ (CARD)
-           ------------------------------------------- */
+        /* ===================================================
+           5. THẺ 3D KÍNH MỜ & MICRO-INTERACTIONS
+           =================================================== */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            gap: 28px;
+            perspective: 1200px;
         }
 
         .card {
-            background-color: var(--card-bg);
-            backdrop-filter: blur(15px); 
-            -webkit-backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 30px;
+            position: relative;
+            background: var(--glass-bg);
+            backdrop-filter: blur(18px) saturate(160%);
+            -webkit-backdrop-filter: blur(18px) saturate(160%);
+            border-radius: 24px;
+            padding: 32px;
             text-decoration: none;
             display: flex;
             flex-direction: column;
-            border: 1px solid rgba(255, 255, 255, 0.9);
-            box-shadow: 0 10px 30px rgba(2, 132, 199, 0.08); 
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--glass-border);
+            box-shadow: 
+                0 12px 32px -4px rgba(2, 132, 199, 0.08),
+                0 4px 12px -2px rgba(15, 23, 42, 0.03),
+                inset 0 1px 1px rgba(255, 255, 255, 0.9);
+            transform-style: preserve-3d;
+            transition: 
+                transform 0.45s cubic-bezier(0.23, 1, 0.32, 1),
+                box-shadow 0.45s cubic-bezier(0.23, 1, 0.32, 1),
+                border-color 0.35s ease,
+                background-color 0.35s ease;
+            overflow: hidden;
+        }
+
+        /* Ánh sáng Spotlight theo con trỏ chuột (hoặc trung tâm khi hover) */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 24px;
+            background: radial-gradient(
+                500px circle at var(--mouse-x, 50%) var(--mouse-y, 20%),
+                rgba(56, 189, 248, 0.22),
+                transparent 50%
+            );
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Tia sáng lướt ngang mặt kính (Shimmer) */
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -120%;
+            width: 65%; height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.65),
+                transparent
+            );
+            transform: skewX(-25deg);
+            transition: left 0.75s ease;
+            pointer-events: none;
+            z-index: 0;
         }
 
         .card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(2, 132, 199, 0.18);
-            border-color: rgba(2, 132, 199, 0.35);
-            background-color: rgba(255, 255, 255, 0.95);
+            transform: translateY(-10px) rotateX(4deg) rotateY(-2deg) scale(1.015);
+            box-shadow: 
+                0 28px 50px -10px rgba(2, 132, 199, 0.22),
+                0 12px 20px -6px rgba(14, 165, 233, 0.12),
+                inset 0 1px 2px rgba(255, 255, 255, 1);
+            border-color: rgba(56, 189, 248, 0.6);
+            background-color: rgba(255, 255, 255, 0.88);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card:hover::after {
+            left: 150%;
         }
 
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 1;
+            transform: translateZ(25px);
         }
 
-        .card-icon {
-            font-size: 2.8rem;
-            line-height: 1;
-            filter: drop-shadow(0 8px 8px rgba(0,0,0,0.15));
-            transition: transform 0.4s ease;
+        /* Đế kính 3D chứa Icon */
+        .icon-orb {
+            width: 64px;
+            height: 64px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%);
+            border: 1px solid rgba(255, 255, 255, 0.95);
+            box-shadow: 
+                0 10px 20px -5px rgba(2, 132, 199, 0.18),
+                inset 0 -3px 6px rgba(2, 132, 199, 0.08),
+                inset 0 2px 4px rgba(255, 255, 255, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.1rem;
+            transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .card:hover .card-icon {
-            transform: scale(1.15) rotate(5deg) translateY(-5px);
+        .card:hover .icon-orb {
+            transform: translateY(-6px) scale(1.12) rotate(6deg);
+            box-shadow: 
+                0 16px 28px -4px rgba(2, 132, 199, 0.3),
+                inset 0 2px 4px rgba(255, 255, 255, 1);
+            background: linear-gradient(135deg, #ffffff 0%, #bae6fd 100%);
         }
 
         .badge {
             padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .badge.notebook { background-color: var(--badge-notebook-bg); color: var(--badge-notebook-text); }
-        .badge.html { background-color: var(--badge-html-bg); color: var(--badge-html-text); }
-        .badge.prompt { background-color: var(--badge-prompt-bg); color: var(--badge-prompt-text); }
-
-        .card h3 { margin: 0 0 12px 0; font-size: 1.25rem; font-weight: 700; line-height: 1.4; color: var(--text-main); }
-        .card p { margin: 0 0 25px 0; color: var(--text-muted); font-size: 0.95rem; flex-grow: 1; }
-
-        .action-link {
-            color: var(--primary); font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;
-        }
-        .card:hover .action-link { color: var(--primary-hover); }
-        .action-link span { transition: transform 0.3s; }
-        .card:hover .action-link span { transform: translateX(6px); }
-
-        /* -------------------------------------------
-           CHÂN TRANG (FOOTER)
-           ------------------------------------------- */
-        .site-footer {
-            text-align: center;
-            padding: 50px 20px 40px;
-            background: linear-gradient(to top, rgba(255,255,255,0.85), transparent);
-            border-top: 1px solid rgba(2, 132, 199, 0.15);
-            margin-top: auto;
-        }
-
-        .site-footer .author {
-            font-size: 1.5rem;
+            border-radius: 999px;
+            font-size: 0.73rem;
             font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 4px;
-            letter-spacing: 0.5px;
-        }
-
-        .site-footer .school {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            margin-bottom: 25px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.6px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
         }
 
-        .site-footer .quote {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.45rem;
-            font-style: italic;
-            color: #1e293b;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.7;
+        .badge.notebook { background: var(--badge-notebook-bg); color: var(--badge-notebook-text); }
+        .badge.html { background: var(--badge-html-bg); color: var(--badge-html-text); }
+        .badge.prompt { background: var(--badge-prompt-bg); color: var(--badge-prompt-text); }
+
+        .card h3 {
+            margin: 0 0 12px 0;
+            font-size: 1.28rem;
+            font-weight: 800;
+            line-height: 1.4;
+            color: var(--text-main);
             position: relative;
-            padding: 0 20px;
+            z-index: 1;
+            transform: translateZ(18px);
+            transition: color 0.3s ease;
         }
-        
-        .site-footer .quote::before, .site-footer .quote::after {
-            content: '"';
-            font-size: 2.5rem;
+
+        .card:hover h3 {
+            color: var(--primary-dark);
+        }
+
+        .card p {
+            margin: 0 0 26px 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.65;
+            flex-grow: 1;
+            position: relative;
+            z-index: 1;
+            transform: translateZ(12px);
+        }
+
+        /* Nút bấm tương tác vi mô (Micro-interaction Button) */
+        .action-link {
+            position: relative;
+            z-index: 1;
+            transform: translateZ(20px);
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            border-radius: 12px;
+            background: rgba(2, 132, 199, 0.07);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .action-arrow {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #ffffff;
             color: var(--primary);
-            opacity: 0.3;
-            font-family: 'Inter', sans-serif;
-            line-height: 0;
-            vertical-align: -0.4em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 6px rgba(2, 132, 199, 0.15);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        @media (max-width: 640px) {
-            .header-section h1 { font-size: 2.2rem; }
-            .tabs-nav { border-radius: 20px; width: 100%; box-sizing: border-box; }
-            .tab-btn { flex: 1 1 40%; justify-content: center; padding: 10px 15px; font-size: 0.95rem; }
+        .card:hover .action-link {
+            background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+            color: #ffffff;
+            box-shadow: 0 6px 16px rgba(2, 132, 199, 0.28);
         }
-    </style>
-</head>
-<body>
 
-    <!-- LỚP NỀN TOÁN HỌC ĐỘNG -->
-    <div class="math-bg">
-        <svg class="floating-el el-1" viewBox="0 0 100 100" width="180" height="180">
-            <line x1="10" y1="90" x2="90" y2="90" stroke="currentColor" stroke-width="2" />
-            <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" stroke-width="2" />
-            <path d="M 20 20 Q 50 130 80 20" stroke="currentColor" stroke-width="2.5" fill="none" />
-        </svg>
-        <svg class="floating-el el-2" viewBox="0 0 100 100" width="160" height="160">
-            <polygon points="30,40 70,40 70,80 30,80" fill="none" stroke="currentColor" stroke-width="2"/>
-            <polygon points="50,20 90,20 90,60 50,60" fill="none" stroke="currentColor" stroke-width="2"/>
-            <line x1="30" y1="40" x2="50" y2="20" stroke="currentColor" stroke-width="2"/>
-            <line x1="70" y1="40" x2="90" y2="20" stroke="currentColor" stroke-width="2"/>
-            <line x1="70" y1="80" x2="90" y2="60" stroke="currentColor" stroke-width="2"/>
-            <line x1="30" y1="80" x2="50" y2="60" stroke="currentColor" stroke-width="2"/>
-        </svg>
-        <div class="floating-el el-3 formula">&int;<sub>a</sub><sup>b</sup> f(x)dx = F(b) - F(a)</div>
-        <svg class="floating-el el-4" viewBox="0 0 100 100" width="200" height="200">
-            <line x1="0" y1="50" x2="100" y2="50" stroke="currentColor" stroke-width="2" />
-            <line x1="10" y1="10" x2="10" y2="90" stroke="currentColor" stroke-width="2" />
-            <path d="M 10 50 C 30 10, 50 90, 70 50 C 80 30, 90 30, 100 50" stroke="currentColor" stroke-width="2.5" fill="none" />
-        </svg>
-        <div class="floating-el el-5 formula">e<sup>i&pi;</sup> + 1 = 0</div>
-        <svg class="floating-el el-6" viewBox="0 0 100 100" width="150" height="150">
-            <polygon points="50,15 20,85 85,70" fill="none" stroke="currentColor" stroke-width="2.5"/>
-            <line x1="50" y1="15" x2="45" y2="60" stroke="currentColor" stroke-width="2" stroke-dasharray="5"/>
-            <line x1="20" y1="85" x2="45" y2="60" stroke="currentColor" stroke-width="2" stroke-dasharray="5"/>
-            <line x1="85" y1="70" x2="45" y2="60" stroke="currentColor" stroke-width="2" stroke-dasharray="5"/>
-        </svg>
-        <div class="floating-el el-7 formula" style="text-align: center; line-height: 0.8;">
-            <span style="font-size: 0.5em;">n</span><br>&sum;<br><span style="font-size: 0.5em;">i=1</span>
-        </div>
-    </div>
+        .card:hover .action-arrow {
+            transform: translateX(4px) scale(1.08);
+            color: var(--primary-dark);
+        }
 
-    <!-- GIAO DIỆN CHÍNH -->
-    <div class="content-wrapper">
-        <header class="header-section">
-            <h1>AI Tạo Sinh Biên Soạn Toán THPT</h1>
-            <p>Trung tâm tổng hợp các công cụ AI và ứng dụng hỗ trợ giáo viên biên soạn, sáng tác đề thi Toán THPT chuyên nghiệp.</p>
-        </header>
-
-        <div class="container">
-            
-            <!-- 4 NÚT RADIO ẨN ĐIỀU KHIỂN TAB -->
-            <input type="radio" name="category-tab" id="tab-toan10" class="tab-input" checked>
-            <input type="radio" name="category-tab" id="tab-toan11" class="tab-input">
-            <input type="radio" name="category-tab" id="tab-toan12" class="tab-input">
-            <input type="radio" name="category-tab" id="tab-prompt" class="tab-input">
-
-            <!-- THANH MENU CHỌN 4 NHÓM -->
-            <nav class="tabs-nav">
-                <label for="tab-toan10" class="tab-btn">
-                    <span class="tab-icon">📐</span> Toán 10
-                </label>
-                <label for="tab-toan11" class="tab-btn">
-                    <span class="tab-icon">📊</span> Toán 11
-                </label>
-                <label for="tab-toan12" class="tab-btn">
-                    <span class="tab-icon">🎓</span> Toán 12
-                </label>
-                <label for="tab-prompt" class="tab-btn">
-                    <span class="tab-icon">⚡</span> Lệnh Prompt
-                </label>
-            </nav>
-
-            <!-- KHU VỰC HIỂN THỊ CÁC THẺ THEO TỪNG NHÓM -->
-            <div class="tabs-content">
-
-                <!-- ==========================================
-                     NHÓM 1: TOÁN 10 (6 Ứng dụng)
-                     ========================================== -->
-                <section id="panel-toan10" class="tab-panel">
-                    <div class="group-header">
-                        <h2 class="group-title">📐 Tài Nguyên Toán 10</h2>
-                        <span class="group-count">6 ứng dụng</span>
-                    </div>
-                    <div class="grid-container">
-                        
-                        <a href="https://notebook.google.com/notebook/4cf4a945-08b6-4b99-b9fc-3357099303c8" target="_blank" class="card">
-                            <div class="card-header">
-                                <div class="card-icon">🧭</div>
-                                <span class="badge notebook">AI Notebook</span>
-                            </div>
-                            <h3>Vectơ trong mặt phẳng</h3>
-                            <p>Biên soạn câu hỏi và bài tập vận dụng về các phép toán vectơ, tích vô hướng và bài toán hình học phẳng.</p>
-                            <div class="action-link">Truy cập ngay <span>➔</span></div>
-                        </a>
-
-                        <a href="https://notebook.google.com/notebook/62f22c48-6168-4239-bf5d-2582922812ec" target="_blank" class="card">
-                            <div class="card-header">
-                                <div class="card-icon">🔗</div>
-                                <span class="badge notebook">AI Notebook</span>
-                            </div>
-                            <h3>Mệnh đề & Tập hợp</h3>
-                            <p>Hệ thống hóa lý thuyết, tạo nhanh bài tập trắc nghiệm về mệnh đề toán học, các phép toán trên tập hợp và biểu đồ Ven.</p>
-                            <div class="action-link">Truy cập ngay <span>➔</span></div>
-                        </a>
-
-                        <a href="https://notebook.google.com/notebook/e183be35-916d-4b84-abc1-2705d47cb48a" target="_blank" class="card">
-                            <div class="card-header">
-                                <div class="card-icon">🎲</div>
-                                <span class="badge notebook">AI Notebook</span>
-                            </div>
-                            <h3>Đại số tổ hợp & Xác suất</h3>
-                            <p>Sáng tác các bài toán thực tế về quy tắc đếm, hoán vị, chỉnh hợp, tổ hợp, nhị thức Newton và xác suất cổ điển.</p>
-                            <div class="action-link">Truy cập ngay <span>➔</span></div>
-                        </a>
-
-                        <a href="https://notebook.google.com/notebook/1095f76e-c613-4b25-b97a-facc9c9d7dbb" target="_blank" class="card">
-                            <div class="card-header">
-                                <div class="card-icon">📏</div>
-                                <span class="badge notebook">AI Notebook</span>
-                            </div>
-                            <h3>Phương pháp toạ độ trong mặt phẳng</h3>
-                            <p>Hỗ trợ tạo đề chuyên sâu về phương trình đường thẳng, đường tròn và ba đường conic trong hệ trục toạ độ Oxy.</p>
-                            <div class="action-link">Truy cập ngay <span>➔</span></div>
-                        </a>
-
-                        <a href="https://notebook.google.com/notebook/a0168619-ccea-45ba-9761-4ddc12792090" target="_blank" class="card">
-                            <div class="card-header">
-                                <div class="card-icon">📐</div>
-                                <span class="badge notebook">AI Notebook</span>
-                            </div>
-                            <h3>Hệ thức lượng trong tam giác</h3>
-                            <p>Thiết kế các bài toán giải tam giác, định lý côsin, định lý sin và ứng dụng đo đạc khoảng cách thực tiễn.</p>
-                            <div class="action-link">Truy cập ngay <span>➔</span></div>
-                        </a>
-
-                        <a href="https://notebook.google.com/notebook/a5e68eef-f92a-48c9-bfa8-8de84c081fd7" target="_blank" class="card">
-                            <div class="card-header">
-                                <div class="card-icon">📋</div>
-                                <span class="badge notebook">AI Notebook</span>
-                            </div>
-                            <h3>Các số đặc trưng của MSL không ghép nhóm</h3>
-                            <p>Tạo bộ dữ liệu thống kê thực tế, tính số trung bình, trung vị, tứ phân vị và độ lệch chuẩn của mẫu số liệu.</p>
-                            <div class="action-link">Truy cập ngay <span>➔</span></div>
-                        </a>
-
-                    </div>
-                </section>
-
-                <!-- ==========================================
-                     NHÓM 2: TOÁN 11 (3 Ứng dụng)
-                     ========================================== -->
-                <section id="panel-toan11" class="tab-panel">
-                    <div class="group-header">
-                        <h2 class="group-title">📊 Tài Nguyên Toán 11</h2>
-                        <span class="group-count">3 ứng dụng</span>
-                    </div>
-                    <div class="grid-container">
-                        
-                        <a href="https://notebook.google.com/notebook/b5f01a18-8ab5-4612-a5e1-b7c1a88b55f6" target="_blank" class="card">
-                            <div class="card-header">
-                                <div class="card-icon">🔢</div>
-                                <span class="badge notebook">AI Notebook</span>
-                            </div>
-                            <h3>Dãy số - Cấp số cộng & Cấp số nhân</h3>
-                            <p>Xây dựng hệ thống câu hỏi về tính chất dãy số, tìm số hạng tổng quát và bài toán thực tế về cấp số cộng, cấp số nhân.</p>
-                            <div class="action-link">Truy cập ngay <span>➔</span></div>
-                        </a>
-
-                        <a href="https://notebook.google.com/notebook/5786d59f-1596-4ef5-8c7e-5dbed92447af" target="_blank" class="card">
-                            <div class="card-header">
-                                <div class="card-icon">🌱</div>
-                                <span class="badge notebook">AI Notebook</span>
-                            </div>
-                            <h3>Hàm số mũ & Hàm số lôgarit</h3>
-                            <p>Biên soạn bài tập biến đổi lũy thừa, lôgarit, khảo sát đồ thị và giải các bài toán lãi suất, tăng trưởng thực tế.</p>
-                            <div class="action-link">Truy cập ngay <span>➔</span></div>
-                        </a>
-
-                        <a href="https://notebook.google.com/notebook/0911e17e-ff1f-46e2-abde-638c51fc7826" target="_blank" class="card">
-                            <div class="card-header">
-                                <div class="card-icon">♾️</div>
-                                <span class="badge notebook">AI Notebook</span>
-                            </div>
-                            <h3>Giới hạn & Hàm số liên tục</h3>
-                            <p>Hỗ trợ sinh bài tập tính giới hạn của dãy số, giới hạn của hàm số và xét tính liên tục của hàm số tại một điểm.</p>
-                            <div class="action-link">Truy cập ngay <span>➔</span></div>
-                        </a>
-
-                    </div>
-                </section>
-
-                <!-- ==========================================
-                     NHÓM 3: TOÁN 12 (5 Ứng dụng)
-                     ========================================== -->
-                <section id="panel-toan12" class="tab-panel">
-                    <div class="group-header">
-                        <h2 class="group-title">🎓 Tài Nguyên Toán 12</h2>
-                        <span class="group-count">5 ứng dụng</span>
-                    </div>
-                    <div class="grid-container">
-                        
-                        <a href="https://notebook.google.com/notebook/8c3445c8-2cfb-45e8-b83a-b5f8c5bdd2f6" target="_blank" class="card">
-                            <div class="card-header">
-                                <div class="card-icon">🎯</div>
-                                <span class="badge notebook">AI Notebook</span>
-                            </div>
-                            <h3>Xác suất có điều kiện</h3>
-                            <p>Sáng tác câu hỏi thực tiễn vận dụng công thức xác suất có điều kiện, công thức xác suất toàn phần và công thức Bayes.</p>
-                            <div class="action-link">Truy cập ngay <span>➔</span></div>
-                        </a>
-
-                        <a href="https://notebook.google.com/notebook/f3ce7e2c-75b4-45ba-a09d-a54a87f5fb57" target="_blank" class="card">
-                            <div class="card-header">
-                                <div class="card-icon">🧊</div>
-                                <span class="badge notebook">AI Notebook</span>
-                            </div>
-                            <h3>Phương pháp toạ độ trong không gian</h3>
-                            <p>Khai thác AI để sinh đề thi, bài tập và hệ thống lý thuyết chuyên sâu cho chuyên đề Hình học không gian Oxyz.</p>
-                            <div class="action-link">Truy cập ngay <span>➔</span></div>
-                        </a>
-
-                        <a href="https://notebook.google.com/notebook/4b2ca9a5-d72b-457b-b226-0deabe36697f" target="_blank" class="card">
-                            <div class="card-header">
-                                <div class="card-icon">📈</div>
-                                <span class="badge notebook">AI Notebook</span>
-                            </div>
-                            <h3>Ứng dụng đạo hàm khảo sát hàm số</h3>
-                            <p>Tự động hóa quá trình tạo bài tập khảo sát, vẽ đồ thị hàm số và giải quyết các bài toán tối ưu thực tế.</p>
-                            <div class="action-link">Truy cập ngay <span>➔</span></div>
-                        </a>
-
-                        <a href="https://notebook.google.com/notebook/b19acb1d-5297-4d55-a7cd-d4e6f649b0e5" target="_blank" class="card">
-                            <div class="card-header">
-                                <div class="card-icon">🚀</div>
-                                <span class="badge notebook">AI Notebook</span>
-                            </div>
-                            <h3>Vectơ và hệ trục toạ độ không gian</h3>
-                            <p>Xây dựng hệ thống bài tập trắc nghiệm và tự luận về vectơ, tích vô hướng và các ứng dụng trong không gian.</p>
-                            <div class="action-link">Truy cập ngay <span>➔</span></div>
-                        </a>
-
-                        <a href="https://notebook.google.com/notebook/36815c9b-0a39-439e-86fa-9e46205ff457" target="_blank" class="card">
-                            <div class="card-header">
-                                <div class="card-icon">🧩</div>
-                                <span class="badge notebook">AI Notebook</span>
-                            </div>
-                            <h3>Nguyên hàm và tích phân</h3>
-                            <p>Hỗ trợ biên soạn nhanh các dạng toán từ cơ bản đến vận dụng cao chuyên đề Nguyên hàm - Tích phân lớp 12.</p>
-                            <div class="action-link">Truy cập ngay <span>➔</span></div>
-                        </a>
-
-                    </div>
-                </section>
-
-                <!-- ==========================================
-                     NHÓM 4: LỆNH PROMPT (5 Công cụ)
-                     ========================================== -->
-                <section id="panel-prompt" class="tab-panel">
-                    <div class="group-header">
-                        <h2 class="group-title">⚡ Công Cụ & Lệnh Prompt</h2>
-                        <span class="group-count">5 công cụ</span>
-                    </div>
-                    <div class="grid-container">
-
-                        <!-- 1. Tạo đề iExam -->
-                        <a href="https://notebook.google.com/notebook/4ae381f3-19e3-45e1-a09a-f50fb1ac0a34" target="_blank" class="card">
-                            <div class="card-header">
-                                <div class="card-icon">📝</div>
-                                <span class="badge prompt">AI Prompt</span>
-                            </div>
-                            <h3>Tạo đề chuẩn cấu trúc iExam</h3>
-                            <p>Trợ lý AI chuyên biệt hỗ trợ chuyển đổi và biên soạn đề thi trắc nghiệm đúng chuẩn định dạng phần mềm iExam.</p>
-                            <div class="action-link">Mở Notebook <span>➔</span></div>
-                        </a>
-
-                        <!-- 2. Vẽ hình TikZ -->
-                        <a href="https://notebook.google.com/notebook/17415305-e0bb-4e50-8220-65c4ff4d3f2a" target="_blank" class="card">
-                            <div class="card-header">
-                                <div class="card-icon">🎨</div>
-                                <span class="badge prompt">AI Prompt</span>
-                            </div>
-                            <h3>Vẽ hình học & Đồ thị bằng TikZ</h3>
-                            <p>Sinh mã lệnh TikZ chuẩn xác để vẽ bảng biến thiên, đồ thị hàm số và hình học không gian phục vụ tài liệu LaTeX.</p>
-                            <div class="action-link">Mở Notebook <span>➔</span></div>
-                        </a>
-
-                        <!-- 3. Biên soạn dạng toán THPT (Đã cập nhật sang file mới: Tạo prompt sáng tác câu hỏi Toán THPT.html) -->
-                        <a href="T%E1%BA%A1o%20prompt%20s%C3%A1ng%20t%C3%A1c%20c%C3%A2u%20h%E1%BB%8Fi%20To%C3%A1n%20THPT.html" target="_blank" class="card">
-                            <div class="card-header">
-                                <div class="card-icon">📚</div>
-                                <span class="badge html">Web Tool</span>
-                            </div>
-                            <h3>Biên soạn dạng toán THPT</h3>
-                            <p>Trình tạo prompt sáng tác câu hỏi Toán 10, 11, 12 theo 3 dạng thức mới, kèm quy tắc định dạng macro và xuất file .docx.</p>
-                            <div class="action-link">Mở ứng dụng <span>➔</span></div>
-                        </a>
-
-                        <!-- 4. Sáng tác câu hỏi Toán 12 -->
-                        <a href="Prompt-sang-tac-cau-hoi-Toan-12.html" target="_blank" class="card">
-                            <div class="card-header">
-                                <div class="card-icon">💡</div>
-                                <span class="badge html">Web Tool</span>
-                            </div>
-                            <h3>Sáng tác câu hỏi Toán 12</h3>
-                            <p>Trình tạo câu hỏi trắc nghiệm khách quan chuẩn cấu trúc mới, bám sát ma trận đề thi tốt nghiệp THPT.</p>
-                            <div class="action-link">Mở ứng dụng <span>➔</span></div>
-                        </a>
-
-                        <!-- 5. Tạo đề ôn tập LaTeX (Liên kết tới file Prompt-tao-de-on-tap-LaTex.html mới) -->
-                        <a href="Prompt-tao-de-on-tap-LaTex.html" target="_blank" class="card">
-                            <div class="card-header">
-                                <div class="card-icon">📜</div>
-                                <span class="badge html">Web Tool</span>
-                            </div>
-                            <h3>Tạo đề ôn tập LaTeX</h3>
-                            <p>Trình tạo prompt biên soạn đề ôn tập Toán 10, 11, 12 theo bộ sách và chương bài, xuất thẳng ra file .tex chuẩn cấu trúc.</p>
-                            <div class="action-link">Mở ứng dụng <span>➔</span></div>
-                        </a>
-
-                    </div>
-                </section>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- CHÂN TRANG -->
-    <footer class="site-footer">
-        <div class="author">Ths. Võ Thành Tài</div>
-        <div class="school">Giáo viên Toán trường THPT Nguyễn Khuyến</div>
-        <div class="quote">Hãy cố gắng hết sức khi bạn còn có thể,<br>thành công chỉ đến khi bạn dám bước tiếp.</div>
-    </footer>
-
-</body>
-</html>
+        /* ===================================================
+           6
