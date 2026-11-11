@@ -21,8 +21,8 @@
             --badge-notebook-text: #0369a1;
             --badge-html-bg: #ccfbf1;
             --badge-html-text: #0f766e;
-            --badge-wait-bg: #fef3c7;
-            --badge-wait-text: #b45309;
+            --badge-prompt-bg: #ede9fe;
+            --badge-prompt-text: #6d28d9;
         }
 
         body {
@@ -126,12 +126,10 @@
         /* -------------------------------------------
            HỆ THỐNG CHIA 4 NHÓM (TABS KHÔNG DÙNG JS)
            ------------------------------------------- */
-        /* Ẩn các nút radio mặc định */
         .tab-input {
             display: none;
         }
 
-        /* Thanh chứa 4 nút chọn nhóm */
         .tabs-nav {
             display: flex;
             justify-content: center;
@@ -148,7 +146,6 @@
             box-shadow: 0 10px 30px rgba(2, 132, 199, 0.1);
         }
 
-        /* Thiết kế từng nút bấm nhóm */
         .tab-btn {
             padding: 12px 26px;
             border-radius: 999px;
@@ -172,7 +169,6 @@
             font-size: 1.2rem;
         }
 
-        /* Hiệu ứng khi Nhóm được chọn (Active) */
         #tab-toan10:checked ~ .tabs-nav label[for="tab-toan10"],
         #tab-toan11:checked ~ .tabs-nav label[for="tab-toan11"],
         #tab-toan12:checked ~ .tabs-nav label[for="tab-toan12"],
@@ -183,13 +179,11 @@
             transform: translateY(-1px);
         }
 
-        /* Ẩn tất cả các khung nội dung mặc định */
         .tab-panel {
             display: none;
             animation: fadeSlideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Chỉ hiển thị khung nội dung của Nhóm đang được chọn */
         #tab-toan10:checked ~ .tabs-content #panel-toan10,
         #tab-toan11:checked ~ .tabs-content #panel-toan11,
         #tab-toan12:checked ~ .tabs-content #panel-toan12,
@@ -202,7 +196,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Tiêu đề phụ của từng nhóm */
         .group-header {
             display: flex;
             align-items: center;
@@ -261,12 +254,6 @@
             background-color: rgba(255, 255, 255, 0.95);
         }
 
-        /* Thẻ mẫu chờ cập nhật */
-        .card.placeholder-card {
-            border: 2px dashed rgba(2, 132, 199, 0.3);
-            background-color: rgba(255, 255, 255, 0.55);
-        }
-
         .card-header {
             display: flex;
             justify-content: space-between;
@@ -296,7 +283,7 @@
 
         .badge.notebook { background-color: var(--badge-notebook-bg); color: var(--badge-notebook-text); }
         .badge.html { background-color: var(--badge-html-bg); color: var(--badge-html-text); }
-        .badge.wait { background-color: var(--badge-wait-bg); color: var(--badge-wait-text); }
+        .badge.prompt { background-color: var(--badge-prompt-bg); color: var(--badge-prompt-text); }
 
         .card h3 { margin: 0 0 12px 0; font-size: 1.25rem; font-weight: 700; line-height: 1.4; color: var(--text-main); }
         .card p { margin: 0 0 25px 0; color: var(--text-muted); font-size: 0.95rem; flex-grow: 1; }
@@ -358,7 +345,6 @@
             vertical-align: -0.4em;
         }
 
-        /* Tối ưu hiển thị trên điện thoại */
         @media (max-width: 640px) {
             .header-section h1 { font-size: 2.2rem; }
             .tabs-nav { border-radius: 20px; width: 100%; box-sizing: border-box; }
@@ -410,10 +396,10 @@
 
         <div class="container">
             
-            <!-- 4 NÚT RADIO ẨN ĐIỀU KHIỂN TAB (Mặc định chọn Toán 12) -->
-            <input type="radio" name="category-tab" id="tab-toan10" class="tab-input">
+            <!-- 4 NÚT RADIO ẨN ĐIỀU KHIỂN TAB (Mặc định mở Toán 10 trước hoặc bạn có thể click chuyển đổi) -->
+            <input type="radio" name="category-tab" id="tab-toan10" class="tab-input" checked>
             <input type="radio" name="category-tab" id="tab-toan11" class="tab-input">
-            <input type="radio" name="category-tab" id="tab-toan12" class="tab-input" checked>
+            <input type="radio" name="category-tab" id="tab-toan12" class="tab-input">
             <input type="radio" name="category-tab" id="tab-prompt" class="tab-input">
 
             <!-- THANH MENU CHỌN 4 NHÓM -->
@@ -436,59 +422,152 @@
             <div class="tabs-content">
 
                 <!-- ==========================================
-                     NHÓM 1: TOÁN 10
+                     NHÓM 1: TOÁN 10 (6 Ứng dụng)
                      ========================================== -->
                 <section id="panel-toan10" class="tab-panel">
                     <div class="group-header">
                         <h2 class="group-title">📐 Tài Nguyên Toán 10</h2>
-                        <span class="group-count">Đang cập nhật</span>
+                        <span class="group-count">6 ứng dụng</span>
                     </div>
                     <div class="grid-container">
-                        <!-- Thẻ mẫu Toán 10 (Sẽ thay thế khi bạn cung cấp link) -->
-                        <a href="#" class="card placeholder-card">
+                        
+                        <!-- 1. Vectơ -->
+                        <a href="https://notebook.google.com/notebook/4cf4a945-08b6-4b99-b9fc-3357099303c8" target="_blank" class="card">
                             <div class="card-header">
-                                <div class="card-icon">📘</div>
-                                <span class="badge wait">Sắp ra mắt</span>
+                                <div class="card-icon">🧭</div>
+                                <span class="badge notebook">AI Notebook</span>
                             </div>
-                            <h3>Chuyên đề Toán 10</h3>
-                            <p>Khu vực dành riêng cho các công cụ AI Notebook và Web HTML hỗ trợ giảng dạy, biên soạn đề Toán lớp 10.</p>
-                            <div class="action-link">Đang chờ thêm liên kết <span>➔</span></div>
+                            <h3>Vectơ trong mặt phẳng</h3>
+                            <p>Biên soạn câu hỏi và bài tập vận dụng về các phép toán vectơ, tích vô hướng và bài toán hình học phẳng.</p>
+                            <div class="action-link">Truy cập ngay <span>➔</span></div>
                         </a>
+
+                        <!-- 2. Mệnh đề - Tập hợp -->
+                        <a href="https://notebook.google.com/notebook/62f22c48-6168-4239-bf5d-2582922812ec" target="_blank" class="card">
+                            <div class="card-header">
+                                <div class="card-icon">🔗</div>
+                                <span class="badge notebook">AI Notebook</span>
+                            </div>
+                            <h3>Mệnh đề & Tập hợp</h3>
+                            <p>Hệ thống hóa lý thuyết, tạo nhanh bài tập trắc nghiệm về mệnh đề toán học, các phép toán trên tập hợp và biểu đồ Ven.</p>
+                            <div class="action-link">Truy cập ngay <span>➔</span></div>
+                        </a>
+
+                        <!-- 3. Đại số tổ hợp - Xác suất -->
+                        <a href="https://notebook.google.com/notebook/e183be35-916d-4b84-abc1-2705d47cb48a" target="_blank" class="card">
+                            <div class="card-header">
+                                <div class="card-icon">🎲</div>
+                                <span class="badge notebook">AI Notebook</span>
+                            </div>
+                            <h3>Đại số tổ hợp & Xác suất</h3>
+                            <p>Sáng tác các bài toán thực tế về quy tắc đếm, hoán vị, chỉnh hợp, tổ hợp, nhị thức Newton và xác suất cổ điển.</p>
+                            <div class="action-link">Truy cập ngay <span>➔</span></div>
+                        </a>
+
+                        <!-- 4. Phương pháp toạ độ trong mặt phẳng -->
+                        <a href="https://notebook.google.com/notebook/1095f76e-c613-4b25-b97a-facc9c9d7dbb" target="_blank" class="card">
+                            <div class="card-header">
+                                <div class="card-icon">📏</div>
+                                <span class="badge notebook">AI Notebook</span>
+                            </div>
+                            <h3>Phương pháp toạ độ trong mặt phẳng</h3>
+                            <p>Hỗ trợ tạo đề chuyên sâu về phương trình đường thẳng, đường tròn và ba đường conic trong hệ trục toạ độ Oxy.</p>
+                            <div class="action-link">Truy cập ngay <span>➔</span></div>
+                        </a>
+
+                        <!-- 5. Hệ thức lượng trong tam giác -->
+                        <a href="https://notebook.google.com/notebook/a0168619-ccea-45ba-9761-4ddc12792090" target="_blank" class="card">
+                            <div class="card-header">
+                                <div class="card-icon">📐</div>
+                                <span class="badge notebook">AI Notebook</span>
+                            </div>
+                            <h3>Hệ thức lượng trong tam giác</h3>
+                            <p>Thiết kế các bài toán giải tam giác, định lý côsin, định lý sin và ứng dụng đo đạc khoảng cách thực tiễn.</p>
+                            <div class="action-link">Truy cập ngay <span>➔</span></div>
+                        </a>
+
+                        <!-- 6. Các số đặc trưng của MSL không ghép nhóm -->
+                        <a href="https://notebook.google.com/notebook/a5e68eef-f92a-48c9-bfa8-8de84c081fd7" target="_blank" class="card">
+                            <div class="card-header">
+                                <div class="card-icon">📋</div>
+                                <span class="badge notebook">AI Notebook</span>
+                            </div>
+                            <h3>Các số đặc trưng của MSL không ghép nhóm</h3>
+                            <p>Tạo bộ dữ liệu thống kê thực tế, tính số trung bình, trung vị, tứ phân vị và độ lệch chuẩn của mẫu số liệu.</p>
+                            <div class="action-link">Truy cập ngay <span>➔</span></div>
+                        </a>
+
                     </div>
                 </section>
 
                 <!-- ==========================================
-                     NHÓM 2: TOÁN 11
+                     NHÓM 2: TOÁN 11 (3 Ứng dụng)
                      ========================================== -->
                 <section id="panel-toan11" class="tab-panel">
                     <div class="group-header">
                         <h2 class="group-title">📊 Tài Nguyên Toán 11</h2>
-                        <span class="group-count">Đang cập nhật</span>
+                        <span class="group-count">3 ứng dụng</span>
                     </div>
                     <div class="grid-container">
-                        <!-- Thẻ mẫu Toán 11 (Sẽ thay thế khi bạn cung cấp link) -->
-                        <a href="#" class="card placeholder-card">
+                        
+                        <!-- 1. Dãy số - Cấp số -->
+                        <a href="https://notebook.google.com/notebook/b5f01a18-8ab5-4612-a5e1-b7c1a88b55f6" target="_blank" class="card">
                             <div class="card-header">
-                                <div class="card-icon">📙</div>
-                                <span class="badge wait">Sắp ra mắt</span>
+                                <div class="card-icon">🔢</div>
+                                <span class="badge notebook">AI Notebook</span>
                             </div>
-                            <h3>Chuyên đề Toán 11</h3>
-                            <p>Khu vực dành riêng cho các công cụ AI Notebook và Web HTML hỗ trợ giảng dạy, biên soạn đề Toán lớp 11.</p>
-                            <div class="action-link">Đang chờ thêm liên kết <span>➔</span></div>
+                            <h3>Dãy số - Cấp số cộng & Cấp số nhân</h3>
+                            <p>Xây dựng hệ thống câu hỏi về tính chất dãy số, tìm số hạng tổng quát và bài toán thực tế về cấp số cộng, cấp số nhân.</p>
+                            <div class="action-link">Truy cập ngay <span>➔</span></div>
                         </a>
+
+                        <!-- 2. Hàm số mũ - Hàm số lôgarit -->
+                        <a href="https://notebook.google.com/notebook/5786d59f-1596-4ef5-8c7e-5dbed92447af" target="_blank" class="card">
+                            <div class="card-header">
+                                <div class="card-icon">🌱</div>
+                                <span class="badge notebook">AI Notebook</span>
+                            </div>
+                            <h3>Hàm số mũ & Hàm số lôgarit</h3>
+                            <p>Biên soạn bài tập biến đổi lũy thừa, lôgarit, khảo sát đồ thị và giải các bài toán lãi suất, tăng trưởng thực tế.</p>
+                            <div class="action-link">Truy cập ngay <span>➔</span></div>
+                        </a>
+
+                        <!-- 3. Giới hạn -->
+                        <a href="https://notebook.google.com/notebook/0911e17e-ff1f-46e2-abde-638c51fc7826" target="_blank" class="card">
+                            <div class="card-header">
+                                <div class="card-icon">♾️</div>
+                                <span class="badge notebook">AI Notebook</span>
+                            </div>
+                            <h3>Giới hạn & Hàm số liên tục</h3>
+                            <p>Hỗ trợ sinh bài tập tính giới hạn của dãy số, giới hạn của hàm số và xét tính liên tục của hàm số tại một điểm.</p>
+                            <div class="action-link">Truy cập ngay <span>➔</span></div>
+                        </a>
+
                     </div>
                 </section>
 
                 <!-- ==========================================
-                     NHÓM 3: TOÁN 12 (Chứa 4 AI Notebook hiện có)
+                     NHÓM 3: TOÁN 12 (5 Ứng dụng)
                      ========================================== -->
                 <section id="panel-toan12" class="tab-panel">
                     <div class="group-header">
                         <h2 class="group-title">🎓 Tài Nguyên Toán 12</h2>
-                        <span class="group-count">4 ứng dụng</span>
+                        <span class="group-count">5 ứng dụng</span>
                     </div>
                     <div class="grid-container">
                         
+                        <!-- 1. Xác suất có điều kiện (Mới bổ sung) -->
+                        <a href="https://notebook.google.com/notebook/8c3445c8-2cfb-45e8-b83a-b5f8c5bdd2f6" target="_blank" class="card">
+                            <div class="card-header">
+                                <div class="card-icon">🎯</div>
+                                <span class="badge notebook">AI Notebook</span>
+                            </div>
+                            <h3>Xác suất có điều kiện</h3>
+                            <p>Sáng tác câu hỏi thực tiễn vận dụng công thức xác suất có điều kiện, công thức xác suất toàn phần và công thức Bayes.</p>
+                            <div class="action-link">Truy cập ngay <span>➔</span></div>
+                        </a>
+
+                        <!-- 2. Phương pháp toạ độ trong không gian -->
                         <a href="https://notebook.google.com/notebook/f3ce7e2c-75b4-45ba-a09d-a54a87f5fb57" target="_blank" class="card">
                             <div class="card-header">
                                 <div class="card-icon">🧊</div>
@@ -499,6 +578,7 @@
                             <div class="action-link">Truy cập ngay <span>➔</span></div>
                         </a>
 
+                        <!-- 3. Ứng dụng đạo hàm khảo sát hàm số -->
                         <a href="https://notebook.google.com/notebook/4b2ca9a5-d72b-457b-b226-0deabe36697f" target="_blank" class="card">
                             <div class="card-header">
                                 <div class="card-icon">📈</div>
@@ -509,6 +589,7 @@
                             <div class="action-link">Truy cập ngay <span>➔</span></div>
                         </a>
 
+                        <!-- 4. Vectơ và hệ trục toạ độ không gian -->
                         <a href="https://notebook.google.com/notebook/b19acb1d-5297-4d55-a7cd-d4e6f649b0e5" target="_blank" class="card">
                             <div class="card-header">
                                 <div class="card-icon">🚀</div>
@@ -519,6 +600,7 @@
                             <div class="action-link">Truy cập ngay <span>➔</span></div>
                         </a>
 
+                        <!-- 5. Nguyên hàm và tích phân -->
                         <a href="https://notebook.google.com/notebook/36815c9b-0a39-439e-86fa-9e46205ff457" target="_blank" class="card">
                             <div class="card-header">
                                 <div class="card-icon">🧩</div>
@@ -533,15 +615,38 @@
                 </section>
 
                 <!-- ==========================================
-                     NHÓM 4: LỆNH PROMPT (Chứa 3 Web HTML hiện có)
+                     NHÓM 4: LỆNH PROMPT (5 Công cụ)
                      ========================================== -->
                 <section id="panel-prompt" class="tab-panel">
                     <div class="group-header">
                         <h2 class="group-title">⚡ Công Cụ & Lệnh Prompt</h2>
-                        <span class="group-count">3 công cụ</span>
+                        <span class="group-count">5 công cụ</span>
                     </div>
                     <div class="grid-container">
 
+                        <!-- 1. Tạo đề iExam (Mới bổ sung) -->
+                        <a href="https://notebook.google.com/notebook/4ae381f3-19e3-45e1-a09a-f50fb1ac0a34" target="_blank" class="card">
+                            <div class="card-header">
+                                <div class="card-icon">📝</div>
+                                <span class="badge prompt">AI Prompt</span>
+                            </div>
+                            <h3>Tạo đề chuẩn cấu trúc iExam</h3>
+                            <p>Trợ lý AI chuyên biệt hỗ trợ chuyển đổi và biên soạn đề thi trắc nghiệm đúng chuẩn định dạng phần mềm iExam.</p>
+                            <div class="action-link">Mở Notebook <span>➔</span></div>
+                        </a>
+
+                        <!-- 2. Vẽ hình TikZ (Mới bổ sung) -->
+                        <a href="https://notebook.google.com/notebook/17415305-e0bb-4e50-8220-65c4ff4d3f2a" target="_blank" class="card">
+                            <div class="card-header">
+                                <div class="card-icon">🎨</div>
+                                <span class="badge prompt">AI Prompt</span>
+                            </div>
+                            <h3>Vẽ hình học & Đồ thị bằng TikZ</h3>
+                            <p>Sinh mã lệnh TikZ chuẩn xác để vẽ bảng biến thiên, đồ thị hàm số và hình học không gian phục vụ tài liệu LaTeX.</p>
+                            <div class="action-link">Mở Notebook <span>➔</span></div>
+                        </a>
+
+                        <!-- 3. Biên soạn dạng toán THPT -->
                         <a href="Prompt-bien-soan-dang-toan-THPT.html" target="_blank" class="card">
                             <div class="card-header">
                                 <div class="card-icon">📚</div>
@@ -552,9 +657,10 @@
                             <div class="action-link">Mở ứng dụng <span>➔</span></div>
                         </a>
 
+                        <!-- 4. Sáng tác câu hỏi Toán 12 -->
                         <a href="Prompt-sang-tac-cau-hoi-Toan-12.html" target="_blank" class="card">
                             <div class="card-header">
-                                <div class="card-icon">🎯</div>
+                                <div class="card-icon">💡</div>
                                 <span class="badge html">Web Tool</span>
                             </div>
                             <h3>Sáng tác câu hỏi Toán 12</h3>
@@ -562,6 +668,7 @@
                             <div class="action-link">Mở ứng dụng <span>➔</span></div>
                         </a>
 
+                        <!-- 5. Tạo đề ôn tập LaTeX -->
                         <a href="Prompt-tao-de-on-tap-LaTeX.html" target="_blank" class="card">
                             <div class="card-header">
                                 <div class="card-icon">📜</div>
