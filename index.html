@@ -17,7 +17,6 @@
             --glass-bg: rgba(255, 255, 255, 0.68);
             --glass-border: rgba(255, 255, 255, 0.85);
             
-            /* Nhãn phân loại */
             --badge-notebook-bg: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
             --badge-notebook-text: #0369a1;
             --badge-html-bg: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 100%);
@@ -43,9 +42,7 @@
             perspective: 1200px;
         }
 
-        /* ===================================================
-           1. HỆ THỐNG CHUYỂN MÀU MỀM MẠI (AURORA MESH GRADIENT)
-           =================================================== */
+        /* 1. HỆ THỐNG CHUYỂN MÀU MỀM MẠI (AURORA MESH GRADIENT) */
         .ambient-canvas {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -92,7 +89,6 @@
             100% { transform: translate(-50px, 90px) scale(0.95) rotate(-10deg); }
         }
 
-        /* Lớp lưới tọa độ không gian 3D dưới nền */
         .spatial-grid {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -106,7 +102,6 @@
             pointer-events: none;
         }
 
-        /* Đồ thị và công thức bay lơ lửng */
         .math-bg {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -139,9 +134,7 @@
         .el-3 { top: 14%; right: 7%; animation: floatSlow 22s infinite ease-in-out 2s; }
         .el-4 { bottom: 12%; right: 6%; animation: floatSlow 26s infinite ease-in-out; }
 
-        /* ===================================================
-           2. KHỐI ĐA DIỆN HÌNH HỌC 3D XOAY TRONG KHÔNG GIAN
-           =================================================== */
+        /* 2. KHỐI ĐA DIỆN HÌNH HỌC 3D XOAY TRONG KHÔNG GIAN */
         .hero-3d-wrapper {
             display: flex;
             justify-content: center;
@@ -191,9 +184,7 @@
             100% { transform: rotateX(20deg) rotateY(360deg) rotateZ(0deg); }
         }
 
-        /* ===================================================
-           3. HEADER & TIÊU ĐỀ NỔI BẬT
-           =================================================== */
+        /* 3. HEADER & TIÊU ĐỀ NỔI BẬT */
         .content-wrapper {
             position: relative;
             z-index: 1;
@@ -268,9 +259,7 @@
             padding: 0 20px 65px;
         }
 
-        /* ===================================================
-           4. THANH CHUYỂN ĐỔI 4 NHÓM (SPATIAL DOCK BAR)
-           =================================================== */
+        /* 4. THANH CHUYỂN ĐỔI 4 NHÓM */
         .tab-input {
             display: none;
         }
@@ -324,7 +313,6 @@
             transform: scale(1.2) rotate(-8deg);
         }
 
-        /* Khi nhóm được kích hoạt */
         #tab-toan10:checked ~ .tabs-nav label[for="tab-toan10"],
         #tab-toan11:checked ~ .tabs-nav label[for="tab-toan11"],
         #tab-toan12:checked ~ .tabs-nav label[for="tab-toan12"],
@@ -355,7 +343,6 @@
             display: block;
         }
 
-        /* Hiệu ứng xuất hiện lệch nhịp (Staggered Micro-interaction) cho các thẻ */
         @keyframes cardEntrance {
             0% {
                 opacity: 0;
@@ -407,9 +394,7 @@
             box-shadow: 0 2px 8px rgba(2, 132, 199, 0.08);
         }
 
-        /* ===================================================
-           5. THẺ 3D KÍNH MỜ & MICRO-INTERACTIONS
-           =================================================== */
+        /* 5. THẺ 3D KÍNH MỜ & MICRO-INTERACTIONS */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
@@ -441,7 +426,6 @@
             overflow: hidden;
         }
 
-        /* Ánh sáng Spotlight theo con trỏ chuột (hoặc trung tâm khi hover) */
         .card::before {
             content: '';
             position: absolute;
@@ -458,7 +442,6 @@
             z-index: 0;
         }
 
-        /* Tia sáng lướt ngang mặt kính (Shimmer) */
         .card::after {
             content: '';
             position: absolute;
@@ -486,13 +469,8 @@
             background-color: rgba(255, 255, 255, 0.88);
         }
 
-        .card:hover::before {
-            opacity: 1;
-        }
-
-        .card:hover::after {
-            left: 150%;
-        }
+        .card:hover::before { opacity: 1; }
+        .card:hover::after { left: 150%; }
 
         .card-header {
             display: flex;
@@ -504,7 +482,6 @@
             transform: translateZ(25px);
         }
 
-        /* Đế kính 3D chứa Icon */
         .icon-orb {
             width: 64px;
             height: 64px;
@@ -556,9 +533,7 @@
             transition: color 0.3s ease;
         }
 
-        .card:hover h3 {
-            color: var(--primary-dark);
-        }
+        .card:hover h3 { color: var(--primary-dark); }
 
         .card p {
             margin: 0 0 26px 0;
@@ -571,7 +546,6 @@
             transform: translateZ(12px);
         }
 
-        /* Nút bấm tương tác vi mô (Micro-interaction Button) */
         .action-link {
             position: relative;
             z-index: 1;
@@ -613,9 +587,7 @@
             color: var(--primary-dark);
         }
 
-        /* ===================================================
-           6. CHÂN TRANG (FOOTER NGHỆ THUẬT)
-           =================================================== */
+        /* 6. CHÂN TRANG */
         .site-footer {
             text-align: center;
             padding: 55px 20px 45px;
@@ -686,7 +658,6 @@
 </head>
 <body>
 
-    <!-- 1. LỚP NỀN CHUYỂN MÀU MỀM MẠI (AURORA MESH GRADIENT) -->
     <div class="ambient-canvas">
         <div class="aurora-blob blob-1"></div>
         <div class="aurora-blob blob-2"></div>
@@ -694,7 +665,6 @@
     </div>
     <div class="spatial-grid"></div>
 
-    <!-- 2. LỚP ĐỒ THỊ & CÔNG THỨC TOÁN HỌC TRÔI NỔI -->
     <div class="math-bg">
         <svg class="floating-el el-1" viewBox="0 0 100 100" width="170" height="170">
             <line x1="10" y1="90" x2="90" y2="90" stroke="currentColor" stroke-width="2" />
@@ -710,10 +680,8 @@
         <div class="floating-el el-4 formula">e<sup>i&pi;</sup> + 1 = 0</div>
     </div>
 
-    <!-- 3. GIAO DIỆN CHÍNH -->
     <div class="content-wrapper">
         <header class="header-section">
-            <!-- Khối Lập Phương 3D Thực Tế Ảo Xoay Liên Tục -->
             <div class="hero-3d-wrapper" aria-hidden="true">
                 <div class="cube-3d">
                     <div class="cube-face front">&int;</div>
@@ -734,13 +702,11 @@
 
         <div class="container">
             
-            <!-- 4 NÚT RADIO ẨN ĐIỀU KHIỂN TAB -->
             <input type="radio" name="category-tab" id="tab-toan10" class="tab-input" checked>
             <input type="radio" name="category-tab" id="tab-toan11" class="tab-input">
             <input type="radio" name="category-tab" id="tab-toan12" class="tab-input">
             <input type="radio" name="category-tab" id="tab-prompt" class="tab-input">
 
-            <!-- THANH MENU CHỌN 4 NHÓM -->
             <nav class="tabs-nav" aria-label="Danh mục tài nguyên">
                 <label for="tab-toan10" class="tab-btn">
                     <span class="tab-icon">📐</span> Toán 10
@@ -756,12 +722,9 @@
                 </label>
             </nav>
 
-            <!-- KHU VỰC HIỂN THỊ CÁC THẺ THEO TỪNG NHÓM -->
             <div class="tabs-content">
 
-                <!-- ==========================================
-                     NHÓM 1: TOÁN 10 (6 Ứng dụng)
-                     ========================================== -->
+                <!-- NHÓM 1: TOÁN 10 -->
                 <section id="panel-toan10" class="tab-panel">
                     <div class="group-header">
                         <h2 class="group-title">📐 Tài Nguyên Toán 10</h2>
@@ -850,9 +813,7 @@
                     </div>
                 </section>
 
-                <!-- ==========================================
-                     NHÓM 2: TOÁN 11 (3 Ứng dụng)
-                     ========================================== -->
+                <!-- NHÓM 2: TOÁN 11 -->
                 <section id="panel-toan11" class="tab-panel">
                     <div class="group-header">
                         <h2 class="group-title">📊 Tài Nguyên Toán 11</h2>
@@ -902,9 +863,7 @@
                     </div>
                 </section>
 
-                <!-- ==========================================
-                     NHÓM 3: TOÁN 12 (5 Ứng dụng)
-                     ========================================== -->
+                <!-- NHÓM 3: TOÁN 12 -->
                 <section id="panel-toan12" class="tab-panel">
                     <div class="group-header">
                         <h2 class="group-title">🎓 Tài Nguyên Toán 12</h2>
@@ -980,15 +939,27 @@
                     </div>
                 </section>
 
-                <!-- ==========================================
-                     NHÓM 4: LỆNH PROMPT (5 Công cụ)
-                     ========================================== -->
+                <!-- NHÓM 4: LỆNH PROMPT (6 Công cụ) -->
                 <section id="panel-prompt" class="tab-panel">
                     <div class="group-header">
                         <h2 class="group-title">⚡ Công Cụ & Lệnh Prompt</h2>
-                        <span class="group-count">5 công cụ</span>
+                        <span class="group-count">6 công cụ</span>
                     </div>
                     <div class="grid-container">
+
+                        <!-- Thẻ mới bổ sung: Tao-prompt-sang-tac-cau-hoi-Toan-THPT.html -->
+                        <a href="Tao-prompt-sang-tac-cau-hoi-Toan-THPT.html" target="_blank" class="card">
+                            <div class="card-header">
+                                <div class="icon-orb">✨</div>
+                                <span class="badge html">Web Tool</span>
+                            </div>
+                            <h3>Tạo Prompt Sáng Tác Câu Hỏi & Đề THPT</h3>
+                            <p>Trình tạo prompt Toán 10, 11, 12 theo từng dạng hoặc đề đủ 3 phần, tùy chọn xuất file .docx, .tex hoặc khung chat.</p>
+                            <div class="action-link">
+                                <span>Mở ứng dụng</span>
+                                <span class="action-arrow">➔</span>
+                            </div>
+                        </a>
 
                         <a href="https://notebook.google.com/notebook/4ae381f3-19e3-45e1-a09a-f50fb1ac0a34" target="_blank" class="card">
                             <div class="card-header">
@@ -1062,16 +1033,14 @@
         </div>
     </div>
 
-    <!-- CHÂN TRANG -->
     <footer class="site-footer">
         <div class="author-card">
-            <div class="author">ThS. Võ Thành Tài</div>
+            <div class="author">Ths. Võ Thành Tài</div>
         </div>
         <div class="school">Giáo viên Toán trường THPT Nguyễn Khuyến</div>
         <div class="quote">Hãy cố gắng hết sức khi bạn còn có thể,<br>thành công chỉ đến khi bạn dám bước tiếp.</div>
     </footer>
 
-    <!-- Hiệu ứng tương tác thực tế ảo: Nghiêng 3D & Đèn Spotlight theo vị trí chuột -->
     <script>
         document.querySelectorAll('.card').forEach(card => {
             card.addEventListener('mousemove', e => {
@@ -1079,11 +1048,9 @@
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
                 
-                // Cập nhật vị trí đèn Spotlight
                 card.style.setProperty('--mouse-x', `${x}px`);
                 card.style.setProperty('--mouse-y', `${y}px`);
                 
-                // Tính góc nghiêng 3D theo vị trí con trỏ
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
                 const rotateX = ((y - centerY) / centerY) * -6;
