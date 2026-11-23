@@ -404,6 +404,177 @@ html[data-theme=dark] .gik.k-TN,html[data-theme=dark] .gid.sug,html[data-theme=d
 @media (max-width:980px){.nhm,.nhex{grid-template-columns:1fr}.nhd{position:static;max-height:none}.nhrw{grid-template-columns:1fr 1fr}}
 .gfigs{margin:10px 0;padding:8px;border:1px dashed var(--edge);border-radius:10px}.gfh{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.85rem;margin-bottom:6px}.gfig{text-align:center;margin:6px 0}.gfig img{max-width:100%;max-height:230px;background:#fff;border-radius:8px;padding:4px;border:1px solid var(--edge)}.gfp{color:var(--muted);font-size:.82rem}.gfe{color:#c62828;font-size:.82rem}.gfi{font-size:.8rem}
 @media (max-width:980px){.gim{grid-template-columns:1fr}.gix{height:auto}.gilist{max-height:60vh}}
+
+/* ===== Nâng cấp nút bấm & Trộn đề theo mức độ (v4) ===== */
+.btn.ok{border:0;color:#fff;background:linear-gradient(120deg,#0f766e,#10b981);box-shadow:0 6px 18px -6px rgba(16,185,129,.55)}
+.btn.sec{background:rgba(14,130,220,.1);color:#0a62b5;border-color:rgba(14,130,220,.3)}
+.btn.sec:hover:not(:disabled){background:rgba(14,130,220,.18)}
+.btn.icon{padding:6px 10px;min-width:34px;display:inline-flex;align-items:center;justify-content:center}
+.sxb-act{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+.sxb-sep{width:1px;height:22px;background:var(--edge);margin:0 2px}
+.segbar{display:inline-flex;border:1px solid var(--edge);border-radius:99px;background:var(--surf);padding:2px;gap:2px}
+.segbar .btn.sm{border:0;background:transparent;padding:4px 10px;box-shadow:none}
+.segbar .btn.sm:hover{transform:none;background:rgba(14,130,220,.1)}
+.segbar .btn.sm.on{background:linear-gradient(120deg,#0b57c4,#1a73d6);color:#fff}
+.lv-box{margin-top:4px;padding:10px 12px;border:1px solid var(--edge);border-radius:12px;background:rgba(14,130,220,.05);display:grid;gap:8px}
+.lv-box[hidden]{display:none}
+.lv-presets{display:flex;flex-wrap:wrap;gap:5px}
+.lv-box label.v{display:grid;gap:3px;font-size:.76rem;font-weight:600;color:var(--muted)}
+.lv-box input,.lv-box select{font:500 .84rem 'Be Vietnam Pro',sans-serif;padding:7px 10px;border:1px solid var(--edge);border-radius:9px;background:var(--surf);color:var(--text);width:100%;box-sizing:border-box}
+.lv-note{font-size:.74rem;color:var(--muted);line-height:1.45}
+.res-sec{border:1px solid var(--edge);border-radius:14px;background:var(--surf);padding:12px;display:grid;gap:8px}
+.res-sec h4{margin:0;font-size:.86rem;color:var(--indigo);display:flex;align-items:center;justify-content:space-between;gap:6px}
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.res-grid .btn{width:100%;justify-content:center;display:inline-flex;align-items:center;gap:6px;text-align:center}
+.res-grid .w2{grid-column:1/-1}
+.res-list{display:grid;gap:6px;max-height:260px;overflow:auto}
+.res-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 10px;border:1px solid var(--edge);border-radius:10px;background:rgba(14,130,220,.03);flex-wrap:wrap}
+.res-row b{font-size:.84rem;color:var(--text)}
+.res-btns{display:flex;gap:5px;flex-wrap:wrap}
+.chk-stat{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chk-stat span{font-size:.76rem;font-weight:700;padding:3px 9px;border-radius:99px;background:rgba(14,130,220,.12);color:#0a62b5}
+html[data-theme=dark] .btn.sec{background:rgba(92,184,255,.14);color:#93c5fd;border-color:rgba(92,184,255,.35)}
+html[data-theme=dark] .lv-box{background:rgba(92,184,255,.06)}
+html[data-theme=dark] .res-row{background:rgba(92,184,255,.05)}
+html[data-theme=dark] .chk-stat span{background:rgba(92,184,255,.16);color:#93c5fd}
+@media (max-width:520px){.res-grid{grid-template-columns:1fr}}
+
+
+/* ===== Tab Chuẩn hoá LaTeX (v7) ===== */
+.ch-drop{display:block;border:2px dashed #9db6ee;border-radius:16px;padding:18px 12px;text-align:center;background:rgba(14,130,220,.05);cursor:pointer;transition:.2s;color:var(--muted);font-size:.82rem}
+.ch-drop:hover,.ch-drop.over{border-color:#1e8be8;background:rgba(14,130,220,.12)}
+.ch-drop b{display:block;color:var(--text);font-size:.94rem;margin-bottom:4px}
+.ch-thumbs{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.ch-thumb{position:relative;width:74px;height:74px;border-radius:10px;overflow:hidden;border:1px solid var(--edge);background:var(--surf)}
+.ch-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.ch-thumb button{position:absolute;top:2px;right:2px;width:20px;height:20px;border:0;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;font-size:.7rem;cursor:pointer;line-height:1}
+.ch-pdfbox{margin-top:8px;padding:10px;border:1px solid var(--edge);border-radius:12px;background:rgba(14,130,220,.04);display:grid;gap:6px;font-size:.8rem}
+.ch-pdfbox label{display:grid;gap:3px;font-weight:600;color:var(--muted)}
+.ch-pdfbox input,.ch-pdfbox select{font:500 .84rem 'Be Vietnam Pro',sans-serif;padding:6px 9px;border:1px solid var(--edge);border-radius:8px;background:var(--surf);color:var(--text)}
+.ch-idlist{padding:14px;display:grid;gap:10px;overflow:auto;flex:1;min-height:0}
+.ch-idcard{border:1px solid var(--edge);border-radius:14px;background:var(--surf);padding:12px 14px;display:grid;gap:8px}
+.ch-idh{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.ch-idh b{color:var(--indigo)}
+.ch-idrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch-idrow select{flex:1;min-width:180px;padding:6px 8px;border:1px solid var(--edge);border-radius:8px;background:var(--surf);color:var(--text);font:500 .82rem 'Be Vietnam Pro',sans-serif}
+.ch-idrow select.sm-sel{flex:0 0 auto;min-width:96px}
+.ch-pvlist{padding:16px;display:grid;gap:12px;overflow:auto;flex:1;min-height:0;background:linear-gradient(180deg,#e4ebf7,#eef3fb)}
+html[data-theme=dark] .ch-pvlist{background:linear-gradient(180deg,#131d34,#192542)}
+.ch-qcard{background:#fff;color:#111;border-radius:14px;padding:14px 18px;box-shadow:0 6px 20px -12px rgba(15,23,60,.25);border:1px solid var(--edge);font:15px/1.68 'Times New Roman',Times,serif}
+.ch-qcard header{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px;font-family:'Be Vietnam Pro',sans-serif;font-size:.82rem}
+.ch-qcard ol.gopt{margin:6px 0 6px 1.4em;padding:0;list-style:upper-alpha}.ch-qcard ol.gopt.tf{list-style:lower-alpha}.ch-qcard li.ok{font-weight:700;color:#047857}.ch-qcard li.ok::after{content:' ✓'}
+.ch-foot{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px 14px;border-top:1px solid var(--edge);background:var(--surf)}
+.ch-stat{font-size:.78rem;color:var(--muted);margin-right:auto}
+.ch-raw{width:100%;min-height:96px;margin-top:6px;padding:8px;border:1px solid var(--edge);border-radius:10px;background:var(--surf);color:var(--text);font:500 .8rem/1.5 ui-monospace,Consolas,monospace;resize:vertical;box-sizing:border-box}
+
+
+/* ===== Bố cục Tab 2 tầng khoa học & Khắc phục hiển thị khung kết quả trên Mobile (v12) ===== */
+.nav-dock{
+  position:sticky;top:12px;z-index:20;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  width:fit-content;max-width:100%;margin:0 auto 28px;
+  padding:8px 10px;border-radius:26px;
+  border:1px solid var(--edge);background:var(--g82);
+  backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);
+  box-shadow:0 20px 50px -24px rgba(11,99,201,.42);
+}
+.nav-groups{
+  display:inline-flex;gap:4px;padding:3px;border-radius:99px;
+  background:rgba(14,130,220,.08);border:1px solid var(--edge);
+}
+.ng-btn{
+  border:0;background:transparent;color:var(--muted);
+  font:700 .84rem 'Be Vietnam Pro',sans-serif;
+  padding:6px 14px;border-radius:99px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+  transition:background .2s,color .2s,box-shadow .2s;
+}
+.ng-btn:hover{color:var(--indigo)}
+.ng-btn.on{
+  background:var(--surf);color:var(--indigo);
+  box-shadow:0 4px 12px -4px rgba(11,99,201,.32);
+}
+.ng-cnt{
+  font-style:normal;font-size:.72rem;font-weight:700;
+  padding:1px 7px;border-radius:99px;
+  background:rgba(14,130,220,.12);color:var(--indigo);
+}
+.ng-btn.on .ng-cnt{background:linear-gradient(120deg,#0b57c4,#1a73d6);color:#fff}
+.nav-dock .tabs{
+  position:relative;top:auto;margin:0;padding:4px;
+  border:0;background:transparent;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;
+  border-radius:99px;max-width:100%;overflow-x:auto;scrollbar-width:none;
+}
+.nav-dock .tabs::-webkit-scrollbar{display:none}
+.nav-dock .tabs button{padding:8px 16px;font-size:.92rem}
+.nav-dock .tabs button[hidden]{display:none}
+.nav-dock .pill{top:4px;bottom:4px}
+html[data-theme=dark] .nav-groups{background:rgba(92,184,255,.1)}
+html[data-theme=dark] .ng-btn.on{background:#1b2c4d;color:#bfe0ff;box-shadow:0 4px 14px -4px rgba(0,0,0,.5)}
+html[data-theme=dark] .ng-cnt{background:rgba(92,184,255,.18);color:#93c5fd}
+
+/* Mobile & Tablet: sửa triệt để lỗi ẩn khung kết quả (grid-row 0px ở .tzs và chiều cao ở .sxm/.gim) */
+@media (max-width:980px){
+  .tzx{height:auto!important;min-height:0!important}
+  .tzs{display:flex!important;flex-direction:column!important;gap:14px!important}
+  .tzg{display:none!important}
+  .tzx .tzp{height:auto!important;min-height:380px!important}
+  .tzx .code{min-height:280px!important;height:44vh!important}
+  .tzx .pvw{min-height:58vh!important;max-height:82vh!important;padding:14px 10px 32px!important}
+  .tzx .tzo{min-height:48vh!important}
+
+  .sx{height:auto!important;min-height:0!important}
+  .sxm{display:flex!important;flex-direction:column!important;gap:14px!important}
+  .sx .tzp{height:auto!important;min-height:0!important}
+  .sx .sxs .sxbd{max-height:54vh!important}
+  .sx .sxv{min-height:68vh!important}
+  .sx .sxv .tvEd,.sx .sxv .ch-pvlist,.sx .sxv .ch-idlist{min-height:52vh!important;max-height:76vh!important}
+  .sx .sxv .sxe{position:relative!important;inset:auto!important;min-height:190px!important;margin:12px!important}
+  .sx .sxv .sxsc{min-height:54vh!important;max-height:78vh!important}
+
+  .gix{height:auto!important;min-height:0!important}
+  .gim{display:flex!important;flex-direction:column!important;gap:14px!important}
+  .gix .tzp{height:auto!important;min-height:320px!important}
+  .gilist{max-height:48vh!important;min-height:220px!important}
+
+  .sxb{gap:6px;padding:10px}
+  .sxb .st{margin-left:0;flex-basis:100%;order:9}
+  .sxb .sxn{max-width:100%}
+  .tzbar{gap:6px}
+  .tzbar .st{margin-left:0;flex-basis:100%}
+}
+
+@media (max-width:680px){
+  .wrap{padding:0 12px 48px}
+  .wrap.tzwide{padding:0 8px 36px}
+  .hero{padding:6px 14px 10px;gap:8px}
+  .hero p{margin:10px 0 14px;font-size:.96rem}
+  .stage{display:none}
+  .sbar{margin-bottom:12px}
+  .nav-dock{
+    position:static;width:100%;padding:8px;border-radius:20px;margin:0 auto 18px;
+  }
+  .nav-groups{width:100%;display:grid;grid-template-columns:1fr 1fr}
+  .ng-btn{justify-content:center;padding:8px 8px;font-size:.8rem}
+  .nav-dock .tabs{
+    width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;
+    padding:2px 0 0;border-radius:14px;overflow:visible;
+  }
+  .nav-dock .pill{display:none}
+  .nav-dock .tabs button{
+    justify-content:center;padding:9px 8px;font-size:.82rem;border-radius:12px;
+    border:1px solid var(--edge);background:var(--surf);white-space:normal;text-align:center;line-height:1.25;
+  }
+  .nav-dock .tabs button[aria-selected=true]{
+    border-color:transparent;color:#fff;
+    background:linear-gradient(120deg,#0b57c4,#1a73d6);
+    box-shadow:0 6px 16px -6px rgba(14,120,210,.55);
+  }
+  .tzh{padding:10px 12px;gap:6px}
+  .ch-foot{padding:8px 10px}
+  .ch-qcard{padding:12px 12px;font-size:14px}
+}
+
 </style>
 </head>
 <body>
@@ -443,7 +614,13 @@ html[data-theme=dark] .gik.k-TN,html[data-theme=dark] .gid.sug,html[data-theme=d
 
 <main class="wrap" id="kho">
   <div class="sbar"><input id="q" type="search" placeholder="Tìm tài nguyên… (vd: tích phân, vectơ, iExam, TikZ)  —  phím /" aria-label="Tìm tài nguyên" autocomplete="off"></div>
-  <nav class="tabs" role="tablist" aria-label="Danh mục tài nguyên" id="tabs"><span class="pill" id="pill"></span></nav>
+  <div class="nav-dock" id="navDock">
+    <div class="nav-groups" role="group" aria-label="Phân khu chức năng" id="navGroups">
+      <button type="button" class="ng-btn on" data-grp="res"><span>📚</span>Kho tài nguyên AI<i class="ng-cnt">4</i></button>
+      <button type="button" class="ng-btn" data-grp="tool"><span>🛠️</span>Xưởng biên soạn đề<i class="ng-cnt">6</i></button>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Danh mục tài nguyên" id="tabs"><span class="pill" id="pill"></span></nav>
+  </div>
   <div id="panel" role="tabpanel"></div>
 </main>
 
@@ -457,47 +634,74 @@ html[data-theme=dark] .gik.k-TN,html[data-theme=dark] .gid.sug,html[data-theme=d
 <script>
 const NB='https://notebook.google.com/notebook/';
 const TABS=[
- {id:'t10',icon:'📐',label:'Toán 10',title:'Tài nguyên Toán 10',unit:'ứng dụng',items:[
+ {id:'t10',grp:'res',icon:'📐',label:'Toán 10',title:'Tài nguyên Toán 10',unit:'ứng dụng',items:[
   ['🧭','nb','Vectơ trong mặt phẳng','Biên soạn câu hỏi và bài tập về phép toán vectơ, tích vô hướng và hình học phẳng.',NB+'4cf4a945-08b6-4b99-b9fc-3357099303c8'],
   ['🔗','nb','Mệnh đề & Tập hợp','Hệ thống hóa lý thuyết, tạo nhanh bài tập trắc nghiệm về mệnh đề, phép toán tập hợp và biểu đồ Ven.',NB+'62f22c48-6168-4239-bf5d-2582922812ec'],
   ['🎲','nb','Đại số tổ hợp & Xác suất','Sáng tác bài toán thực tế về quy tắc đếm, hoán vị, chỉnh hợp, tổ hợp, nhị thức Newton và xác suất.',NB+'e183be35-916d-4b84-abc1-2705d47cb48a'],
   ['📏','nb','Phương pháp toạ độ trong mặt phẳng','Tạo đề chuyên sâu về đường thẳng, đường tròn và ba đường conic trong hệ trục Oxy.',NB+'1095f76e-c613-4b25-b97a-facc9c9d7dbb'],
   ['📐','nb','Hệ thức lượng trong tam giác','Thiết kế bài toán giải tam giác, định lý côsin, định lý sin và ứng dụng đo đạc thực tiễn.',NB+'a0168619-ccea-45ba-9761-4ddc12792090'],
   ['📋','nb','Các số đặc trưng của MSL không ghép nhóm','Tạo bộ dữ liệu thống kê thực tế, tính trung bình, trung vị, tứ phân vị và độ lệch chuẩn.',NB+'a5e68eef-f92a-48c9-bfa8-8de84c081fd7']]},
- {id:'t11',icon:'📊',label:'Toán 11',title:'Tài nguyên Toán 11',unit:'ứng dụng',items:[
+ {id:'t11',grp:'res',icon:'📊',label:'Toán 11',title:'Tài nguyên Toán 11',unit:'ứng dụng',items:[
   ['🔢','nb','Dãy số - Cấp số cộng & Cấp số nhân','Xây dựng câu hỏi về tính chất dãy số, số hạng tổng quát và bài toán thực tế về cấp số.',NB+'b5f01a18-8ab5-4612-a5e1-b7c1a88b55f6'],
   ['🌱','nb','Hàm số mũ & Hàm số lôgarit','Biên soạn bài tập lũy thừa, lôgarit, khảo sát đồ thị và bài toán lãi suất, tăng trưởng.',NB+'5786d59f-1596-4ef5-8c7e-5dbed92447af'],
   ['♾️','nb','Giới hạn & Hàm số liên tục','Sinh bài tập giới hạn của dãy số, của hàm số và xét tính liên tục tại một điểm.',NB+'0911e17e-ff1f-46e2-abde-638c51fc7826']]},
- {id:'t12',icon:'🎓',label:'Toán 12',title:'Tài nguyên Toán 12',unit:'ứng dụng',items:[
+ {id:'t12',grp:'res',icon:'🎓',label:'Toán 12',title:'Tài nguyên Toán 12',unit:'ứng dụng',items:[
   ['🎯','nb','Xác suất có điều kiện','Sáng tác câu hỏi thực tiễn về xác suất có điều kiện, xác suất toàn phần và công thức Bayes.',NB+'8c3445c8-2cfb-45e8-b83a-b5f8c5bdd2f6'],
   ['🧊','nb','Phương pháp toạ độ trong không gian','Sinh đề thi, bài tập và hệ thống lý thuyết chuyên sâu cho hình học không gian Oxyz.',NB+'f3ce7e2c-75b4-45ba-a09d-a54a87f5fb57'],
   ['📈','nb','Ứng dụng đạo hàm khảo sát hàm số','Tự động tạo bài tập khảo sát, vẽ đồ thị hàm số và bài toán tối ưu thực tế.',NB+'4b2ca9a5-d72b-457b-b226-0deabe36697f'],
   ['🚀','nb','Vectơ và hệ trục toạ độ không gian','Xây dựng bài tập trắc nghiệm và tự luận về vectơ, tích vô hướng và ứng dụng trong không gian.',NB+'b19acb1d-5297-4d55-a7cd-d4e6f649b0e5'],
   ['🧩','nb','Nguyên hàm và tích phân','Biên soạn nhanh các dạng toán từ cơ bản đến vận dụng cao về nguyên hàm - tích phân.',NB+'36815c9b-0a39-439e-86fa-9e46205ff457']]},
- {id:'tp',icon:'⚡',label:'Lệnh Prompt',title:'Công cụ & Lệnh Prompt',unit:'công cụ',items:[
+ {id:'tp',grp:'res',icon:'⚡',label:'Lệnh Prompt',title:'Công cụ & Lệnh Prompt',unit:'công cụ',items:[
   ['✨','wt','Tạo Prompt Sáng Tác Câu Hỏi & Đề THPT','Trình tạo prompt Toán 10, 11, 12 theo từng dạng hoặc đề đủ 3 phần, xuất .docx, .tex hoặc khung chat.','Tao-prompt-sang-tac-cau-hoi-Toan-THPT.html','Mở ứng dụng'],
   ['📝','pr','Tạo đề chuẩn cấu trúc iExam','Trợ lý AI chuyển đổi và biên soạn đề trắc nghiệm đúng định dạng phần mềm iExam.',NB+'4ae381f3-19e3-45e1-a09a-f50fb1ac0a34','Mở Notebook'],
   ['🎨','pr','Vẽ hình học & Đồ thị bằng TikZ','Sinh mã TikZ chuẩn để vẽ bảng biến thiên, đồ thị hàm số và hình học không gian cho LaTeX.',NB+'17415305-e0bb-4e50-8220-65c4ff4d3f2a','Mở Notebook'],
   ['📚','wt','Biên soạn dạng toán THPT','Trình tạo prompt sáng tác câu hỏi Toán 10, 11, 12 theo 3 dạng thức mới, kèm quy tắc macro và xuất .docx.','T%E1%BA%A1o%20prompt%20s%C3%A1ng%20t%C3%A1c%20c%C3%A2u%20h%E1%BB%8Fi%20To%C3%A1n%20THPT.html','Mở ứng dụng'],
   ['💡','wt','Sáng tác câu hỏi Toán 12','Trình tạo câu hỏi trắc nghiệm theo cấu trúc mới, bám sát ma trận đề thi tốt nghiệp THPT.','Prompt-sang-tac-cau-hoi-Toan-12.html','Mở ứng dụng'],
   ['📜','wt','Tạo đề ôn tập LaTeX','Biên soạn đề ôn tập Toán 10, 11, 12 theo bộ sách và chương bài, xuất thẳng file .tex.','Prompt-tao-de-on-tap-LaTex.html','Mở ứng dụng']]},
- {id:'tz',icon:'🖍️',label:'Vẽ TikZ',custom:true},
- {id:'sh',icon:'🔀',label:'Trộn đề',custom:true},
- {id:'iq',icon:'🎯',label:'Tạo câu hỏi tương tác',custom:true},
- {id:'gid',icon:'🏷️',label:'Gán ID',custom:true},
- {id:'nh',icon:'🏦',label:'Ngân hàng',custom:true}
+ {id:'ch',grp:'tool',icon:'✨',label:'Chuẩn hoá LaTeX',custom:true},
+ {id:'tz',grp:'tool',icon:'🖍️',label:'Vẽ TikZ',custom:true},
+ {id:'gid',grp:'tool',icon:'🏷️',label:'Gán ID',custom:true},
+ {id:'nh',grp:'tool',icon:'🏦',label:'Ngân hàng',custom:true},
+ {id:'sh',grp:'tool',icon:'🔀',label:'Trộn đề',custom:true},
+ {id:'iq',grp:'tool',icon:'🎯',label:'Đề tương tác',custom:true}
 ];
 const BL={nb:'AI Notebook',wt:'Web Tool',pr:'AI Prompt'};
-const tabsEl=document.getElementById('tabs'),pill=document.getElementById('pill'),panel=document.getElementById('panel');
-let cur=0;
-TABS.forEach((t,i)=>{const b=document.createElement('button');b.role='tab';b.innerHTML=`<span>${t.icon}</span>${t.label}`;b.onclick=()=>show(i);tabsEl.appendChild(b)});
-function movePill(){const b=tabsEl.querySelectorAll('button')[cur];pill.style.width=b.offsetWidth+'px';pill.style.transform=`translateX(${b.offsetLeft}px)`;b.scrollIntoView({inline:'center',block:'nearest'})}
+const tabsEl=document.getElementById('tabs'),pill=document.getElementById('pill'),panel=document.getElementById('panel'),navGroups=document.getElementById('navGroups');
+let cur=0,curGrp='res',lastInGrp={res:0,tool:TABS.findIndex(t=>t.grp==='tool')};
+TABS.forEach((t,i)=>{
+  const b=document.createElement('button');
+  b.role='tab';b.dataset.i=i;b.dataset.grp=t.grp;
+  b.innerHTML=`<span>${t.icon}</span>${t.label}`;
+  b.onclick=()=>show(i);
+  tabsEl.appendChild(b);
+});
+navGroups.querySelectorAll('.ng-btn').forEach(btn=>{
+  btn.onclick=()=>{
+    const g=btn.dataset.grp;
+    const idx=lastInGrp[g]!=null?lastInGrp[g]:TABS.findIndex(t=>t.grp===g);
+    if(idx>=0)show(idx);
+  };
+});
+function syncNavGroup(g){
+  curGrp=g;
+  navGroups.querySelectorAll('.ng-btn').forEach(b=>b.classList.toggle('on',b.dataset.grp===g));
+  tabsEl.querySelectorAll('button').forEach(b=>{b.hidden=b.dataset.grp!==g});
+}
+function movePill(){
+  const b=tabsEl.querySelector('button[data-i="'+cur+'"]');
+  if(!b||b.hidden||window.innerWidth<=680){pill.style.width='0px';return}
+  pill.style.width=b.offsetWidth+'px';
+  pill.style.transform=`translateX(${b.offsetLeft}px)`;
+  b.scrollIntoView({inline:'center',block:'nearest'});
+}
 const q=document.getElementById('q');
 const nz=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').toLowerCase();
-const INT=[['🖍️','wt','Vẽ hình TikZ','Biên dịch LaTeX thật, thư viện mẫu: đồ thị hàm số, bảng biến thiên, hình không gian, conic, thống kê; tải PNG/PDF hoặc sao chép ảnh.','#tz','Mở công cụ'],
- ['🔀','wt','Trộn đề','Trộn thứ tự câu hỏi, phương án A–D, ý a–d từ file .docx hoặc .tex; xuất nhiều mã đề kèm bảng đáp án.','#sh','Mở công cụ'],
+const INT=[['✨','wt','Chuẩn hoá định dạng LaTeX','Chuyển đổi & chuẩn hoá file .docx (Word Equation / MathType), PDF, ảnh chụp sang mã LaTeX ex_test chuẩn ký hiệu toán học, vẽ lại TikZ và gợi ý ID.','#ch','Mở công cụ'],
+ ['🖍️','wt','Vẽ hình TikZ','Biên dịch LaTeX thật, thư viện mẫu: đồ thị hàm số, bảng biến thiên, hình không gian, conic, thống kê; tải PNG/PDF hoặc sao chép ảnh.','#tz','Mở công cụ'],
  ['🏷️','wt','Gán ID câu hỏi','Gán mã ID chuẩn (lớp, chương, mức độ, bài, dạng) cho câu hỏi .tex theo ma trận GDPT 2018; xuất .tex, JSON, CSV và lưu ngân hàng câu hỏi.','#gid','Mở công cụ'],
- ['🏦','wt','Ngân hàng câu hỏi','Lưu câu đã gán ID vào thư mục trên máy (mỗi bài một file JSON), tìm kiếm, duyệt, phát hiện trùng, thống kê độ phủ và lập đề theo ma trận.','#nh','Mở công cụ']];
+ ['🏦','wt','Ngân hàng câu hỏi','Lưu câu đã gán ID vào thư mục trên máy (mỗi bài một file JSON), tìm kiếm, duyệt, phát hiện trùng, thống kê độ phủ và lập đề theo ma trận.','#nh','Mở công cụ'],
+ ['🔀','wt','Trộn đề','Trộn thứ tự câu hỏi, phương án A–D, ý a–d từ file .docx hoặc .tex; xuất nhiều mã đề kèm bảng đáp án.','#sh','Mở công cụ'],
+ ['🎯','wt','Tạo câu hỏi tương tác','Biến file .docx / .tex thành trang bài tập trắc nghiệm tương tác trực tuyến có chấm điểm và lời giải cho học sinh.','#iq','Mở công cụ']];
 function cardsHTML(a){return a.map(([ic,ty,ti,de,url,cta])=>`<a class="card" href="${url}" ${url[0]==='#'?'':'target="_blank" rel="noopener"'}><div class="top"><div class="orb">${ic}</div><span class="badge ${ty}">${BL[ty]}</span></div><h3>${ti}</h3><p>${de}</p><div class="go">${cta||'Truy cập ngay'} <b>→</b></div></a>`).join('')}
 function bind(){panel.querySelectorAll('.card').forEach(c=>{
   c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
@@ -506,17 +710,24 @@ function bind(){panel.querySelectorAll('.card').forEach(c=>{
   c.addEventListener('mouseleave',()=>c.style.transform='');
   const h=c.getAttribute('href');if(h[0]==='#')c.addEventListener('click',e=>{e.preventDefault();show(TABS.findIndex(t=>'#'+t.id===h))})})}
 function show(i){
-  cur=i;const t=TABS[i];document.querySelector('.wrap').classList.toggle('tzwide',t.id==='tz'||t.id==='sh'||t.id==='iq'||t.id==='gid'||t.id==='nh');if(t.id==='tz'||t.id==='sh'||t.id==='iq'||t.id==='gid'||t.id==='nh')setTimeout(()=>window.scrollTo({top:Math.max(0,panel.getBoundingClientRect().top+scrollY-84),behavior:'smooth'}),60);q.value='';
-  tabsEl.querySelectorAll('button').forEach((b,k)=>b.setAttribute('aria-selected',k===i));
-  if(t.custom){panel.innerHTML='';panel.appendChild(t.id==='sh'?shufflePanel():t.id==='iq'?quizPanel():t.id==='gid'?gidPanel():t.id==='nh'?bankPanel():tikzPanel());if(t.id==='nh')nhNode.dispatchEvent(new Event('tm-show'));movePill();return}
+  if(i<0||i>=TABS.length)i=0;
+  cur=i;const t=TABS[i],wide=!!t.custom;
+  lastInGrp[t.grp]=i;
+  syncNavGroup(t.grp);
+  document.querySelector('.wrap').classList.toggle('tzwide',wide);
+  if(wide&&window.innerWidth>680)setTimeout(()=>window.scrollTo({top:Math.max(0,panel.getBoundingClientRect().top+scrollY-118),behavior:'smooth'}),60);
+  q.value='';
+  tabsEl.querySelectorAll('button').forEach(b=>b.setAttribute('aria-selected',+b.dataset.i===i));
+  if(t.custom){panel.innerHTML='';panel.appendChild(t.id==='sh'?shufflePanel():t.id==='iq'?quizPanel():t.id==='ch'?normPanel():t.id==='gid'?gidPanel():t.id==='nh'?bankPanel():tikzPanel());if(t.id==='nh')nhNode.dispatchEvent(new Event('tm-show'));requestAnimationFrame(movePill);return}
   panel.innerHTML=`<div class="ghead"><h2>${t.icon} ${t.title}</h2><span>${t.items.length} ${t.unit}</span></div><div class="cards">${cardsHTML(t.items)}</div>`;
-  bind();movePill();
+  bind();requestAnimationFrame(movePill);
 }
 function find(v){
   const ks=nz(v).split(/\s+/).filter(Boolean);if(!ks.length){show(cur);return}
   const all=[];TABS.forEach(t=>t.items&&all.push(...t.items));all.push(...INT);
   const r=all.filter(x=>{const s=nz(x[2]+' '+x[3]);return ks.every(k=>s.includes(k))});
   tabsEl.querySelectorAll('button').forEach(b=>b.setAttribute('aria-selected',false));
+  pill.style.width='0px';
   panel.innerHTML=`<div class="ghead"><h2>🔍 Kết quả tìm kiếm</h2><span>${r.length} kết quả</span></div>`+(r.length?`<div class="cards">${cardsHTML(r)}</div>`:'<p style="color:var(--muted)">Không tìm thấy tài nguyên phù hợp. Thử từ khóa ngắn hơn (vd: "vecto", "tich phan").</p>');
   bind();
 }
@@ -749,6 +960,148 @@ Object.assign(TPL,{
   child{node{$\overline{A}$} child{node{$B$} edge from parent node[above]{$0{,}2$}} child{node{$\overline{B}$} edge from parent node[below]{$0{,}8$}} edge from parent node[below]{$0{,}4$}};
 \end{tikzpicture}`
 });
+Object.assign(TPL,{
+'Hàm số|Hàm phân thức bậc 2/bậc 1 (TCX)':String.raw`\begin{tikzpicture}[>=Stealth,scale=.75]
+  \draw[->] (-3.5,0)--(5.5,0) node[right]{$x$};
+  \draw[->] (0,-3.5)--(0,5.5) node[above]{$y$};
+  \draw[dashed,orange] (1,-3.2)--(1,5.2) node[right]{$x=1$};
+  \draw[dashed,orange] (-3.2,-3.2)--(5.2,5.2) node[above left]{$y=x$};
+  \begin{scope}\clip (-3.4,-3.4) rectangle (5.4,5.4);
+    \draw[very thick,blue,domain=-3.4:0.82,samples=100] plot(\x,{\x+1/(\x-1)});
+    \draw[very thick,blue,domain=1.18:5.4,samples=100] plot(\x,{\x+1/(\x-1)});
+  \end{scope}
+  \fill[red] (0,-1) circle(2.2pt) node[below left]{$(0;-1)$};
+  \fill[red] (2,3) circle(2.2pt) node[above left]{$(2;3)$};
+  \fill[orange] (1,1) circle(2pt) node[below right]{$I(1;1)$};
+  \node[below right] at (0,0){$O$};
+\end{tikzpicture}`,
+'Hàm số|Hàm lượng giác (sin x, cos x)':String.raw`\begin{tikzpicture}[>=Stealth,xscale=0.85,yscale=1.2]
+  \draw[->] (-3.8,0)--(7.2,0) node[right]{$x$};
+  \draw[->] (0,-1.6)--(0,1.7) node[above]{$y$};
+  \draw[very thick,blue,domain=-3.5:6.7,samples=120] plot(\x,{sin(\x r)});
+  \draw[thick,red,dashed,domain=-3.5:6.7,samples=120] plot(\x,{cos(\x r)});
+  \foreach \x/\l in {-3.1416/$-\pi$,-1.5708/$-\frac{\pi}{2}$,1.5708/$\frac{\pi}{2}$,3.1416/$\pi$,4.7124/$\frac{3\pi}{2}$,6.2832/$2\pi$}
+    \draw (\x,2pt)--(\x,-2pt) node[below]{\small\l};
+  \draw (2pt,1)--(-2pt,1) node[left]{\small$1$};
+  \draw (2pt,-1)--(-2pt,-1) node[left]{\small$-1$};
+  \node[below left] at (0,0){\small$O$};
+  \node[blue] at (2.1,1.35){$y=\sin x$};
+  \node[red] at (5.6,1.35){$y=\cos x$};
+\end{tikzpicture}`,
+'Hàm số|Miền nghiệm hệ BPT bậc nhất 2 ẩn':String.raw`\begin{tikzpicture}[>=Stealth,scale=.75]
+  \fill[blue!15] (0,0)--(4,0)--(2,3)--(0,3)--cycle;
+  \draw[->] (-1,0)--(6,0) node[right]{$x$};
+  \draw[->] (0,-1)--(0,5) node[above]{$y$};
+  \draw[thick,blue] (-0.5,3)--(5.5,3) node[right]{$y=3$};
+  \draw[thick,red] (0.8,4.8)--(4.8,-1.2) node[right]{$3x+2y=12$};
+  \foreach \p/\pos/\lb in {(0,0)/below left/$O$,(4,0)/below/$A(4;0)$,(2,3)/above right/$B(2;3)$,(0,3)/above left/$C(0;3)$}
+    \fill[blue!80!black] \p circle(2.2pt) node[\pos]{\small\lb};
+  \node[blue!80!black] at (1.5,1.4){\textbf{Miền nghiệm}};
+\end{tikzpicture}`,
+'Bảng biến thiên|Hàm phân thức bậc 2/bậc 1':String.raw`\begin{tikzpicture}
+  \tkzTabInit[lgt=1.6,espcl=2.2]{$x$/1,$y'$/1,$y$/2.5}{$-\infty$,$0$,$1$,$2$,$+\infty$}
+  \tkzTabLine{,+,0,-,d,-,0,+,}
+  \tkzTabVar{-/$-\infty$,+/$-1$,-D+/$-\infty$/$+\infty$,-/$3$,+/$+\infty$}
+\end{tikzpicture}`,
+'Hình phẳng|Parabol (Conic - tiêu điểm & đường chuẩn)':String.raw`\begin{tikzpicture}[>=Stealth,scale=.75]
+  \draw[->] (-2.8,0)--(5.4,0) node[right]{$x$};
+  \draw[->] (0,-3.6)--(0,3.8) node[above]{$y$};
+  \draw[very thick,blue,domain=-3.2:3.2,samples=100] plot({0.25*\x*\x},\x);
+  \draw[dashed,orange,thick] (-1,-3.4)--(-1,3.4) node[above]{$\Delta: x=-1$};
+  \coordinate (F) at (1,0);
+  \coordinate (M) at (2.25,3);
+  \coordinate (H) at (-1,3);
+  \draw[thick,red] (F)--(M)--(H);
+  \draw ($(H)+(0,-0.25)$)--++(0.25,0)--++(0,0.25);
+  \fill[red] (F) circle(2.2pt) node[below]{$F(1;0)$};
+  \fill[blue] (M) circle(2.2pt) node[above right]{$M$};
+  \fill[orange] (H) circle(2.2pt) node[left]{$H$};
+  \node[below left] at (0,0){$O$};
+  \node[blue] at (4.2,-2.6){$y^2=4x$};
+\end{tikzpicture}`,
+'Hình phẳng|Đường tròn & tiếp tuyến':String.raw`\begin{tikzpicture}[>=Stealth]
+  \coordinate (I) at (0,0);
+  \coordinate (M) at (40:2);
+  \coordinate (T1) at ($(M)+(-50:2.2)$);
+  \coordinate (T2) at ($(M)+(130:2.2)$);
+  \draw[thick,blue] (I) circle(2);
+  \draw[thick,red] (T1)--(T2) node[above left]{$d$};
+  \draw[dashed] (I)--(M) node[midway,above left]{$R$};
+  \draw ($(M)!0.26cm!(I)$)--($($(M)!0.26cm!(I)$)+($(M)!0.26cm!(T1)$)-(M)$)--($(M)!0.26cm!(T1)$);
+  \fill (I) circle(1.8pt) node[below left]{$I$};
+  \fill[red] (M) circle(1.8pt) node[above right]{$M$};
+\end{tikzpicture}`,
+'Hình học không gian|Hình chóp S.ABCD (SA ⊥ đáy)':String.raw`\begin{tikzpicture}[line join=round]
+  \coordinate (A) at (0,0); \coordinate (B) at (-1.3,-1.2); \coordinate (C) at (2.5,-1.2); \coordinate (D) at (3.8,0);
+  \coordinate (S) at (0,3.6);
+  \draw[thick] (S)--(B)--(C)--(D)--(S) (S)--(C);
+  \draw[dashed] (S)--(A)--(B) (A)--(D);
+  \draw (0,0.3)--(0.3,0.3)--(0.3,0);
+  \draw (0,0.3)--(-0.22,0.1)--(-0.22,-0.2);
+  \foreach \p/\pos in {A/above right,B/below left,C/below right,D/right,S/above}
+    \fill (\p) circle(1.3pt) node[\pos]{$\p$};
+\end{tikzpicture}`,
+'Hình học không gian|Hình chóp tam giác S.ABC (Tứ diện)':String.raw`\begin{tikzpicture}[line join=round]
+  \coordinate (A) at (0,0); \coordinate (B) at (1.5,-1.4); \coordinate (C) at (4.2,0); \coordinate (S) at (1.6,3.4);
+  \draw[thick] (S)--(A)--(B)--(C)--(S) (S)--(B);
+  \draw[dashed] (A)--(C);
+  \foreach \p/\pos in {A/left,B/below,C/right,S/above}
+    \fill (\p) circle(1.3pt) node[\pos]{$\p$};
+\end{tikzpicture}`,
+'Hình học không gian|Hình hộp / Lập phương ABCD.A′B′C′D′':String.raw`\begin{tikzpicture}[line join=round]
+  \coordinate (A) at (0,0); \coordinate (B) at (-1.2,-1.1); \coordinate (C) at (2.3,-1.1); \coordinate (D) at (3.5,0);
+  \coordinate (A') at (0,2.8); \coordinate (B') at (-1.2,1.7); \coordinate (C') at (2.3,1.7); \coordinate (D') at (3.5,2.8);
+  \draw[thick] (B)--(C)--(D)--(D')--(C')--(B')--cycle (C)--(C') (B')--(A')--(D');
+  \draw[dashed] (A)--(B) (A)--(D) (A)--(A');
+  \node[above right] at (A){$A$}; \node[below left] at (B){$B$}; \node[below right] at (C){$C$}; \node[right] at (D){$D$};
+  \node[above] at (A'){$A'$}; \node[left] at (B'){$B'$}; \node[above left] at (C'){$C'$}; \node[above right] at (D'){$D'$};
+\end{tikzpicture}`,
+'Hình học không gian|Hình nón (khối tròn xoay)':String.raw`\begin{tikzpicture}[line join=round]
+  \coordinate (O) at (0,0); \coordinate (S) at (0,3.6); \coordinate (A) at (-1.8,0); \coordinate (B) at (1.8,0);
+  \draw[thick] (S)--(A) (S)--(B);
+  \draw[thick] (A) arc (180:360:1.8 and 0.55);
+  \draw[dashed] (A) arc (180:0:1.8 and 0.55);
+  \draw[dashed] (S)--(O) node[midway,left]{$h$} (O)--(B) node[midway,below]{$R$};
+  \draw (0,0.28)--(0.28,0.28)--(0.28,0);
+  \path (S)--(B) node[midway,above right]{$l$};
+  \fill (S) circle(1.3pt) node[above]{$S$};
+  \fill (O) circle(1.3pt) node[below left]{$O$};
+\end{tikzpicture}`,
+'Hình học không gian|Hình trụ (khối tròn xoay)':String.raw`\begin{tikzpicture}[line join=round]
+  \coordinate (O) at (0,0); \coordinate (O') at (0,3.2);
+  \draw[thick] (-1.6,0)--(-1.6,3.2) (1.6,0)--(1.6,3.2);
+  \draw[thick] (O') ellipse (1.6 and 0.48);
+  \draw[thick] (-1.6,0) arc (180:360:1.6 and 0.48);
+  \draw[dashed] (-1.6,0) arc (180:0:1.6 and 0.48);
+  \draw[dashed] (O)--(O') node[midway,left]{$h$} (O)--(1.6,0) node[midway,below]{$R$};
+  \draw (0,0.25)--(0.25,0.25)--(0.25,0);
+  \fill (O) circle(1.3pt) node[below left]{$O$};
+  \fill (O') circle(1.3pt) node[above]{$O'$};
+\end{tikzpicture}`,
+'Hình học không gian|Mặt cầu (tâm I, bán kính R)':String.raw`\begin{tikzpicture}
+  \coordinate (I) at (0,0);
+  \draw[thick,blue] (I) circle(2);
+  \draw[thick,blue] (-2,0) arc (180:360:2 and 0.6);
+  \draw[dashed,blue] (-2,0) arc (180:0:2 and 0.6);
+  \draw[dashed,red] (I)--(45:2) node[midway,above left]{$R$};
+  \fill (I) circle(1.5pt) node[below left]{$I$};
+  \fill[red] (45:2) circle(1.5pt) node[above right]{$M$};
+\end{tikzpicture}`,
+'Thống kê & Xác suất|Biểu đồ hộp (Tứ phân vị Q1, Q2, Q3)':String.raw`\begin{tikzpicture}[>=Stealth]
+  \draw[->] (0,0)--(8.5,0) node[right]{Giá trị};
+  \foreach \x/\l in {1/4,2/5,3/6,4/7,5/8,6/9,7/10}
+    \draw (\x,0.08)--(\x,-0.08) node[below]{\small\l};
+  \draw[thick] (1.2,1.2)--(2.6,1.2) (5.6,1.2)--(7.1,1.2);
+  \draw[thick] (1.2,0.95)--(1.2,1.45) (7.1,0.95)--(7.1,1.45);
+  \draw[thick,blue,fill=blue!15] (2.6,0.75) rectangle (5.6,1.65);
+  \draw[very thick,red] (4.2,0.75)--(4.2,1.65);
+  \node[above] at (1.2,1.5){\small$\min$};
+  \node[above] at (2.6,1.7){\small$Q_1$};
+  \node[above,red] at (4.2,1.7){\small$Q_2$};
+  \node[above] at (5.6,1.7){\small$Q_3$};
+  \node[above] at (7.1,1.5){\small$\max$};
+\end{tikzpicture}`
+});
 TPL['Đề thi (ex_test)|Mẫu đề có lời giải']=`% ===== MẪU ĐỀ THI VỚI GÓI ex_test =====
 % Chỉ cần dán phần nội dung đề (không cần khai báo lớp văn bản và gói lệnh).
 % Trang tự nhận gói ex_test, tự đính kèm file .sty và dùng XeLaTeX (không cần gói vntex).
@@ -917,7 +1270,7 @@ function tikzPanel(){
       for(let n=1;n<=pdf.numPages;n++){const pg=await pdf.getPage(n),v1=pg.getViewport({scale:1}),vp=pg.getViewport({scale:2.5}),[c,x]=mk(Math.ceil(vp.width),Math.ceil(vp.height));await pg.render({canvasContext:x,viewport:vp}).promise;
         const el=E('div','pgx'),sl=E('div','tzsel'),lab=E('span','pgn','Trang '+n+' / '+pdf.numPages);sl.hidden=true;el.dataset.i=n-1;el.append(c,sl,lab);out.appendChild(el);pages.push({c,el,sl,w:v1.width,h:v1.height})}
       ['tzPng','tzPngT','tzCp','tzPdf'].forEach(i=>$(i).disabled=false);zm='w';layout();out.scrollTop=0;where();
-      say('Biên dịch thành công — '+pdf.numPages+' trang','ok');
+      say('Biên dịch thành công — '+pdf.numPages+' trang','ok');if(window.innerWidth<=980)out.closest('.tzp').scrollIntoView({behavior:'smooth',block:'start'});
     }catch(e){
       let msg=e instanceof TypeError?'Không kết nối được máy chủ biên dịch. Hãy bấm nút “⚙️ Máy chủ” để kiểm tra hoặc chuyển sang máy chủ công cộng.':e.message;
       if(eng==='pdflatex'&&/vietnam\.sty|t5enc|\bT5\b/.test(msg))msg='→ Gợi ý: MiKTeX chưa có gói vntex (chứa vietnam.sty và mã hóa T5). Hãy cài gói vntex rồi biên dịch lại, hoặc chọn XeLaTeX.\n\n'+msg;
@@ -961,6 +1314,75 @@ function rebuild(M,o){const b=M.body,d=b.ownerDocument,add=a=>a.forEach(e=>b.app
   M.parts.forEach(P=>{add(P.head);P.qs.forEach(q=>{const ps=q.optP.map(x=>x.p);ps.forEach(p=>kids(p).concat([...p.children].filter(c=>/^bookmark/.test(c.localName))).forEach(c=>p.removeChild(c)));
     let k=0;q.optP.forEach(({p,n})=>{for(let j=0;j<n;j++){if(j){const r=d.createElementNS(SW,'w:r');r.appendChild(d.createElementNS(SW,'w:tab'));p.appendChild(r)}q.opts[k++].ch.forEach(c=>p.appendChild(c))}});
     add(q.stem);add(ps);add(q.subs.map(x=>x.el));if(!o.h){add(q.ans);add(q.sol)}})});o.x&&o.x(add,d);M.sect&&b.appendChild(M.sect)}
+const FIXED_OPT_RE=/\b(cả\s+[a-d]|tất\s+cả\s+(các\s+)?(phương\s+án|đáp\s+án|ý|câu|đều)|các\s+phương\s+án\s+(trên|đều)|không\s+có\s+(giá\s+trị|phương\s+án|đáp\s+án)\s+nào|phương\s+án\s+khác)\b/i;
+function chkShortAns(v){
+  const s=String(v||'').replace(/\$/g,'').trim();
+  if(!s)return 'Đáp án trả lời ngắn đang trống';
+  const clean=s.replace(/\s+/g,'');
+  if(!/^-?\d+(?:[.,]\d+)?$/.test(clean))return 'Đáp án “'+s+'” chứa ký tự không hợp lệ cho phiếu tô (chỉ gồm chữ số, dấu - và dấu ,)';
+  if(clean.length>4)return 'Đáp án “'+s+'” có '+clean.length+' ký tự (phiếu tô chuẩn TN THPT chỉ tối đa 4 ký tự, gồm cả dấu - và dấu ,)';
+  return '';
+}
+function detectLvl(s){
+  s=String(s||'');
+  if(/[\[(]\s*(VDC|MĐ4|M4|Vận\s*dụng\s*cao)\s*[\])]/i.test(s))return 4;
+  if(/[\[(]\s*(VD|MĐ3|M3|Vận\s*dụng)\s*[\])]/i.test(s))return 3;
+  if(/[\[(]\s*(TH|MĐ2|M2|Thông\s*hiểu)\s*[\])]/i.test(s))return 2;
+  if(/[\[(]\s*(NB|MĐ1|M1|Nhận\s*biết)\s*[\])]/i.test(s))return 1;
+  const idm=s.match(/\[\s*[0126789][DHCX]\d([NBHVGKY])[\dA-Za-z-]*\s*\]/);
+  if(idm){const ch=idm[1];return ch==='N'||ch==='Y'?1:ch==='H'||ch==='B'?2:ch==='V'||ch==='K'?3:4}
+  return 0;
+}
+function parsePartSpec(spec,pi){
+  const raw=String(spec||'').trim();if(!raw)return '';
+  const segs=raw.split(';').map(x=>x.trim());
+  if(segs.length>1)return segs[pi]||'';
+  return pi===0?segs[0]:'';
+}
+function parsePinSet(pinStr,pi){
+  const sub=parsePartSpec(pinStr,pi),set=new Set();
+  if(!sub)return set;
+  sub.split(/[,.\s]+/).forEach(tok=>{
+    const m=tok.match(/^(\d+)-(\d+)$/);
+    if(m){const a=+m[1],b=+m[2];for(let k=Math.min(a,b);k<=Math.max(a,b);k++)set.add(k-1)}
+    else if(/^\d+$/.test(tok))set.add(+tok-1);
+  });
+  return set;
+}
+function shufByLevel(arr,getText,o,pi){
+  const n=arr.length;if(n<=1)return;
+  const pinned=parsePinSet(o.pin,pi);
+  const shufIdx=idxs=>{const free=idxs.filter(i=>!pinned.has(i));if(free.length<=1)return;const vals=free.map(i=>arr[i]);shuf(vals);free.forEach((pos,k)=>arr[pos]=vals[k])};
+  if(o.lvl){
+    if(o.lvlMode==='auto'){
+      const buckets=new Map();let found=0;
+      arr.forEach((it,i)=>{const lv=detectLvl(getText(it));if(lv)found++;if(!buckets.has(lv))buckets.set(lv,[]);buckets.get(lv).push(i)});
+      if(found>0){buckets.forEach(idxs=>shufIdx(idxs));return}
+    }
+    const spec=parsePartSpec(o.grp,pi);
+    if(spec){
+      const used=new Set(),ranges=[];
+      spec.split(/[,]+/).map(x=>x.trim()).filter(Boolean).forEach(tok=>{
+        const m=tok.match(/^(\d+)\s*[-–]\s*(\d+)$/);
+        if(m){const a=Math.max(1,+m[1]),b=Math.min(n,+m[2]),ix=[];for(let k=a;k<=b;k++){if(!used.has(k-1)){used.add(k-1);ix.push(k-1)}}if(ix.length)ranges.push(ix)}
+        else if(/^\d+$/.test(tok)){const k=+tok-1;if(k>=0&&k<n&&!used.has(k)){used.add(k);ranges.push([k])}}
+      });
+      const rest=[];for(let i=0;i<n;i++)if(!used.has(i))rest.push(i);
+      if(rest.length)ranges.push(rest);
+      ranges.forEach(shufIdx);
+      return;
+    }
+  }
+  shufIdx(Array.from({length:n},(_,i)=>i));
+}
+function shufOptsSafe(arr,getText,fixOpt){
+  if(arr.length<=1)return;
+  if(fixOpt){
+    const idx=arr.findIndex(x=>FIXED_OPT_RE.test(getText(x)));
+    if(idx>=0){const fixed=arr.splice(idx,1)[0];shuf(arr);arr.push(fixed);return}
+  }
+  shuf(arr);
+}
 const AX={head(P,t){const el=P.head[0],d=P.qs[0].stem[0].ownerDocument,nr=d.createElementNS(SW,'w:r'),tt=d.createElementNS(SW,'w:t');
   const r0=el&&[...el.children].filter(c=>c.localName==='r').find(r=>/\S/.test(txt(r)));
   let rp=r0&&rpr(r0);rp=rp?rp.cloneNode(true):d.createElementNS(SW,'w:rPr');
@@ -972,10 +1394,11 @@ const AX={head(P,t){const el=P.head[0],d=P.qs[0].stem[0].ownerDocument,nr=d.crea
   rel(x,l){const t=[...x.lab.getElementsByTagNameNS(SW,'t')].find(t=>/\S/.test(t.textContent));if(t)t.textContent=t.textContent.replace(/^(\s*)[A-Da-d]/,'$1'+l)},
   strip(x){const p=rpr(x.lab);p&&[...p.children].forEach(c=>{if(c.localName==='u'||(c.localName==='color'&&/^ff0000$/i.test(gv(c))))p.removeChild(c)})},
   sol(q,m){if(!q.subs.length||!q.sol.length)return;const G=[],H=[];let g;
-    q.sol.forEach(e=>{const mm=(e.localName==='p'?txt(e):'').match(/^\s*•\s*([a-d])\)/);if(mm){g={l:m[mm[1]]||mm[1],es:[e]};G.push(g)}else if(g)g.es.push(e);else H.push(e)});
+    const RE_SOL=/^\s*(?:[•\-+*]\s*|(?:Ý|Mệnh\s*đề)\s+)?([a-d])\)/i;
+    q.sol.forEach(e=>{const mm=(e.localName==='p'?txt(e):'').match(RE_SOL);if(mm){g={l:m[mm[1].toLowerCase()]||mm[1].toLowerCase(),es:[e]};G.push(g)}else if(g)g.es.push(e);else H.push(e)});
     G.sort((a,b)=>a.l<b.l?-1:1);
-    const fx=e=>{for(const t of e.getElementsByTagNameNS(SW,'t'))t.textContent=t.textContent.replace(/(mệnh đề\s+)([a-d])\)/g,(_,a,c)=>a+(m[c]||c)+')')};
-    G.forEach(g=>{for(const t of g.es[0].getElementsByTagNameNS(SW,'t')){const n=t.textContent.replace(/^(\s*(?:•\s*)?)([a-d])\)/,(_,a)=>a+g.l+')');if(n!==t.textContent){t.textContent=n;break}}g.es.forEach(fx)});H.forEach(fx);
+    const fx=e=>{for(const t of e.getElementsByTagNameNS(SW,'t'))t.textContent=t.textContent.replace(/((?:mệnh\s*đề|ý)\s+)([a-d])\)/gi,(_,a,c)=>a+(m[c.toLowerCase()]||c)+')')};
+    G.forEach(g=>{for(const t of g.es[0].getElementsByTagNameNS(SW,'t')){const n=t.textContent.replace(/^(\s*(?:[•\-+*]\s*|(?:Ý|Mệnh\s*đề)\s+)?)([a-d])\)/i,(_,a)=>a+g.l+')');if(n!==t.textContent){t.textContent=n;break}}g.es.forEach(fx)});H.forEach(fx);
     q.sol=[...H,...G.flatMap(x=>x.es)]}};
 const isTL=P=>/tự luận/i.test(P.head[0]&&P.head[0].localName?txt(P.head[0]):String(P.head[0]||''));
 const isSA=P=>!!P.qs.length&&!isTL(P)&&P.qs.every(q=>!q.opts.length&&!q.subs.length);
@@ -984,8 +1407,9 @@ const partTitle=(P,pi)=>{const q=P.qs[0],n=P.qs.length,r='PHẦN '+(['I','II','I
   if(q.opts.length)return r+'Câu trắc nghiệm nhiều phương án lựa chọn. Thí sinh trả lời từ câu 1 đến câu '+n+'. Mỗi câu hỏi thí sinh chỉ chọn một phương án.';
   if(q.subs.length)return r+'Câu trắc nghiệm đúng sai. Thí sinh trả lời từ câu 1 đến câu '+n+'. Trong mỗi ý a), b), c), d) ở mỗi câu, thí sinh chọn đúng hoặc sai.';
   return r+'Câu trắc nghiệm trả lời ngắn. Thí sinh trả lời từ câu 1 đến câu '+n+'.'};
-function mix(M,o,A){const key=[];M.parts.forEach((P,pi)=>{const k=[];if(isSA(P)?o.tl:o.q)shuf(P.qs);
-  P.qs.forEach((q,i)=>{if(o.o)shuf(q.opts);if(o.d)shuf(q.subs);A.num(q,i+1);q.opts.forEach((x,j)=>A.rel(x,'ABCD'[j]));q.subs.forEach((x,j)=>A.rel(x,'abcd'[j]));
+function mix(M,o,A){const key=[];M.parts.forEach((P,pi)=>{const k=[];
+  if(isSA(P)?o.tl:o.q)shufByLevel(P.qs,q=>q.stem.map(e=>e.localName==='p'?txt(e):'').join(' '),o,pi);
+  P.qs.forEach((q,i)=>{if(o.o)shufOptsSafe(q.opts,x=>x.ch.map(c=>txt(c)).join(''),o.fixOpt);if(o.d)shuf(q.subs);A.num(q,i+1);q.opts.forEach((x,j)=>A.rel(x,'ABCD'[j]));q.subs.forEach((x,j)=>A.rel(x,'abcd'[j]));
     if(o.s)[...q.opts,...q.subs].forEach(x=>x.ok&&A.strip(x));
     if(A.sol){const mp={};q.subs.forEach((x,j)=>mp[x.o]='abcd'[j]);A.sol(q,mp)}
     const c=q.opts.findIndex(x=>x.ok);k.push(q.opts.length?(c<0?'?':'ABCD'[c]):q.subs.length?q.subs.map(x=>x.ok?'Đ':'S').join(''):(q.at||'–'))});P.qs.length&&A.head(P,partTitle(P,pi));key.push(k)});return key}
@@ -1069,11 +1493,11 @@ async function add(z,i,c,a){const ct='application/vnd.openxmlformats-officedocum
  let rel=(await z.file('word/_rels/document.xml.rels').async('string')).replace(/<Relationship [^>]*Id="rIdTM\d"[^>]*\/>/g,''),ty=(await z.file('[Content_Types].xml').async('string')).replace(/<Override [^>]*PartName="\/word\/(hdr|ftr)TM\d\.xml"[^>]*\/>/g,''),ra='',ta='';
  [['hdrTM1','header',xml(i,c,a)],['hdrTM2','header',hdr0],['ftrTM1','footer',ftr(c)],['ftrTM2','footer',ftr(c)]].forEach(([n,k,x],j)=>{z.file('word/'+n+'.xml',x);ra+='<Relationship Id="rIdTM'+(j+1)+'" Type="'+RN+'/'+k+'" Target="'+n+'.xml"/>';ta+='<Override PartName="/word/'+n+'.xml" ContentType="'+ct+k+'+xml"/>'});
  z.file('word/_rels/document.xml.rels',rel.replace('</Relationships>',ra+'</Relationships>'));z.file('[Content_Types].xml',ty.replace('</Types>',ta+'</Types>'))}
-function chk(M,dx){const W=[],rn=['I','II','III'];
+function chk(M,dx){const W=[],rn=['I','II','III','IV'];
  M.parts.forEach((P,pi)=>P.qs.forEach((q,i)=>{const w='Phần '+(rn[pi]||pi+1)+', Câu '+(i+1)+': ';
   if(q.opts.length){const c=q.opts.filter(x=>x.ok).length;if(!c)W.push(w+'chưa có đáp án đúng (chưa đánh dấu phương án nào)');else if(c>1)W.push(w+'có '+c+' phương án được đánh dấu đúng, chỉ nên có 1');if(q.opts.length!==4)W.push(w+'có '+q.opts.length+' phương án (cần 4)')}
   else if(q.subs.length){const c=q.subs.filter(x=>x.ok).length;if(c===q.subs.length)W.push(w+'cả '+c+' ý đều ĐÚNG — kiểm tra lại');else if(!c)W.push(w+'cả '+q.subs.length+' ý đều SAI (chưa đánh dấu ý đúng nào)');if(q.subs.length!==4)W.push(w+'có '+q.subs.length+' ý (cần 4)')}
-  else if(!isTL(P)&&!(dx?q.at:/Đáp án\s*:/i.test([...q.stem,...q.after].join('\n'))))W.push(w+'câu trả lời ngắn chưa có dòng “Đáp án: …”')}));
+  else if(!isTL(P)){const v=dx?q.at:(([...q.stem,...(q.after||[])].join('\n').match(/Đáp án\s*:\s*([^\n]+)/i)||[])[1]||'').trim();if(!v)W.push(w+'câu trả lời ngắn chưa có dòng “Đáp án: …”');else{const e=chkShortAns(v);if(e)W.push(w+e)}}}));
  return W}
 return{xml,sect,add,chk,esc}})();
 let shNode=null;
@@ -1126,17 +1550,21 @@ function texOpts(c,o,rec){const re=/\\choice(TF[A-Za-z]*)?(?![A-Za-z])/g,TR=/\\T
   while((m=re.exec(c))){const ls=c.lastIndexOf('\n',m.index)+1;if(/(^|[^\\])%/.test(c.slice(ls,m.index)))continue;
     let k=re.lastIndex;const op=c.slice(k).match(/^\s*\[[^\]]*\]/);if(op)k+=op[0].length;
     const g=[];let p=k;for(let j=0;j<4;j++){const q=p+c.slice(p).match(/^\s*/)[0].length;if(c[q]!=='{')break;const e=texBal(c,q);g.push({pre:c.slice(p,q),t:c.slice(q,e+1)});p=e+1}
-    if(g.length<4)continue;const tf=!!m[1],it=g.map(x=>x.t);if(tf?o.d:o.o)shuf(it);
+    if(g.length<4)continue;const tf=!!m[1],it=g.map(x=>x.t);if(tf){if(o.d)shuf(it)}else if(o.o)shufOptsSafe(it,x=>x,o.fixOpt);
     out+=c.slice(pos,k)+g.map((x,i)=>x.pre+it[i]).join('');pos=re.lastIndex=p;
     rec.push(tf?it.map(t=>TR.test(t)?'Đ':'S').join(''):(i=>i<0?'?':'ABCD'[i])(it.findIndex(t=>TR.test(t))))}
-  if(!rec.length){const mm=c.match(/\\shortans(?![A-Za-z])\s*(\[[^\]]*\])?\s*\{/);if(mm){const q=mm.index+mm[0].length-1,e=texBal(c,q);rec.push(c.slice(q+1,e).replace(/\s+/g,' ').trim().slice(0,14)||'–')}}
+  if(!rec.length){const mm=c.match(/\\shortans(?![A-Za-z])\s*(\[[^\]]*\])?\s*\{/);if(mm){const q=mm.index+mm[0].length-1,e=texBal(c,q);rec.push(c.slice(q+1,e).replace(/\s+/g,' ').trim().slice(0,20)||'–')}}
   return out+c.slice(pos)}
 function texBuild(P,o){const segs=P.segs.map(s=>({t:s.t,c:s.c})),isH=s=>s.t==='x'&&/(PHẦN|Phần)\s+[IVX\d]+/.test(s.c),parts=[[]];
   segs.forEach((s,i)=>{if(isH(s))parts.push([]);if(s.t==='q')parts[parts.length-1].push(i)});
-  parts.forEach(ix=>{const cs=ix.map(i=>segs[i].c),sa=cs.length>0&&cs.every(c=>/\\shortans(?![A-Za-z])/.test(c)&&!/\\choice/.test(c));if(sa?o.tl:o.q)shuf(cs);ix.forEach((i,j)=>segs[i].c=cs[j])});
-  const key=[[]];let q=0,miss=0;
-  segs.forEach(s=>{if(isH(s))key.push([]);if(s.t==='q'){q++;const rec=[];s.c=texOpts(s.c,o,rec);const k=rec[0]||'–';if(/\?/.test(k))miss++;key[key.length-1].push(k)}});
-  return{src:P.head+segs.map(s=>s.c).join('')+P.tail,key:key.filter(a=>a.length),q,warns:miss?['Có '+miss+' câu trắc nghiệm chưa đánh dấu \\True (bảng đáp án ghi “?”).']:[]}}
+  const nonEmptyParts=parts.filter(ix=>ix.length);
+  nonEmptyParts.forEach((ix,pi)=>{const cs=ix.map(i=>segs[i].c),sa=cs.length>0&&cs.every(c=>/\\shortans(?![A-Za-z])/.test(c)&&!/\\choice/.test(c));if(sa?o.tl:o.q)shufByLevel(cs,c=>c,o,pi);ix.forEach((i,j)=>segs[i].c=cs[j])});
+  const key=[[]],warns=[];let q=0,miss=0,pIdx=0,qInP=0;
+  segs.forEach(s=>{if(isH(s)){if(key[key.length-1].length){key.push([]);pIdx++;qInP=0}}if(s.t==='q'){q++;qInP++;const rec=[];s.c=texOpts(s.c,o,rec);const k=rec[0]||'–';if(/\?/.test(k))miss++;
+    if(/\\shortans(?![A-Za-z])/.test(s.c)&&!/\\choice/.test(s.c)){const se=chkShortAns(k==='–'?'':k);if(se)warns.push('Phần '+(pIdx+1)+', Câu '+qInP+': '+se)}
+    key[key.length-1].push(k)}});
+  if(miss)warns.unshift('Có '+miss+' câu trắc nghiệm chưa đánh dấu \\True (bảng đáp án ghi “?”).');
+  return{src:P.head+segs.map(s=>s.c).join('')+P.tail,key:key.filter(a=>a.length),q,warns}}
 function texVariant(src,ans,code,o,inf){
   src=src.replace(/\\usepackage\s*(?:\[([^\]]*)\])?\s*\{ex_test\}/,(m,op)=>{const a=(op||'').split(',').map(x=>x.trim()).filter(x=>x&&x!=='loigiai');if(ans)a.push('loigiai');return '\\usepackage'+(a.length?'['+a.join(',')+']':'')+'{ex_test}'});
   if(o.hd){const E=texEsc,I=inf||{},L=[];
@@ -1148,21 +1576,53 @@ function texVariant(src,ans,code,o,inf){
   return src}
 function shufflePanel(){if(shNode)return shNode;shNode=document.createElement('div');
   shNode.innerHTML=`<div class="sx" id="sxRoot">
-<div class="sxb"><b class="sxh1">🔀 Trộn đề</b><button class="btn sm" id="shF">📎 Tải lên .docx / .tex</button><input type="file" id="shI" accept=".docx,.tex,.sty,.cls,.png,.jpg,.jpeg,.pdf,.eps" multiple hidden><span class="sxn" id="shN">Chưa chọn file</span><select class="btn sm" id="shMd" hidden title="Cách xử lý file .tex"><option value="tex">🧪 Biên dịch LaTeX (PDF)</option><option value="docx">📄 Chuyển sang Word (.docx)</option></select><span class="sxpc" id="shPc" hidden>0%</span><span class="st" id="shSt">Sẵn sàng</span><button class="btn sm" id="shSrv" title="Cấu hình máy chủ biên dịch LaTeX">⚙️</button><button class="btn sm" id="shFs" title="Toàn màn hình">⛶</button><button class="btn pri" id="shGo">🔀 Trộn đề</button><div class="sxpg" id="shPg"></div></div>
+<div class="sxb"><b class="sxh1">🔀 Trộn đề</b><button class="btn sm sec" id="shF">📂 Chọn đề (.docx / .tex)</button><input type="file" id="shI" accept=".docx,.tex,.sty,.cls,.png,.jpg,.jpeg,.pdf,.eps" multiple hidden><span class="sxn" id="shN">Chưa chọn file</span><select class="btn sm" id="shMd" hidden title="Cách xử lý file .tex"><option value="tex">🧪 Biên dịch LaTeX (PDF)</option><option value="docx">📄 Chuyển sang Word (.docx)</option></select><span class="sxpc" id="shPc" hidden>0%</span><span class="st" id="shSt">Sẵn sàng</span><div class="sxb-act"><button class="btn sm sec" id="shChk" title="Kiểm tra đáp án, số lượng phương án, chuẩn ô tô 4 ký tự trước khi trộn">🔍 Kiểm tra đề</button><button class="btn pri" id="shGo">🔀 Trộn đề ngay</button><span class="sxb-sep"></span><button class="btn sm icon" id="shSrv" title="Cấu hình máy chủ biên dịch LaTeX">⚙️</button><button class="btn sm icon" id="shFs" title="Toàn màn hình">⛶</button></div><div class="sxpg" id="shPg"></div></div>
 <div class="sxm" id="sxM">
 <div class="tzp sxs"><div class="tzh"><span><button class="chip on" id="sxT0">⚙️ Thiết lập</button> <button class="chip" id="sxT1">📦 Kết quả</button></span></div>
 <div class="sxbd" id="sxP0">
 <details open class="sxd"><summary>📝 Thông tin đề</summary><div class="shg"><label class="w2">Tên cơ sở (Sở / Phòng GD&amp;ĐT)<input id="shC" value="SỞ GIÁO DỤC VÀ ĐÀO TẠO THÀNH PHỐ HỒ CHÍ MINH"></label><label>Tên trường<input id="shSc" value="TRƯỜNG THPT NK"></label><label>Tên kỳ thi<input id="shEx" value="ĐỀ KIỂM TRA GIỮA HKI"></label><label>Môn thi<input id="shSb" value="TOÁN 10"></label><label>Thời gian làm bài (phút)<input id="shTm" type="number" min="1" value="90"></label></div></details>
 <details open class="sxd"><summary>🔢 Mã đề</summary><div class="shg"><label>Số mã đề<input id="shK" type="number" value="4" min="1" max="24"></label><label>Mã đề đầu tiên<input id="shS" type="number" value="101"></label><label class="w2">Hoặc nhập danh sách mã đề (cách nhau bằng dấu phẩy)<input id="shL" placeholder="vd: 191, 192, 193, 194 — để trống nếu dùng số mã đề + mã đầu tiên"></label></div></details>
-<details open class="sxd"><summary>🔀 Tùy chọn trộn</summary><div class="sxo"><label><input type="checkbox" id="shQ" checked> Trộn thứ tự câu hỏi (trắc nghiệm, đúng/sai)</label><label><input type="checkbox" id="shTl" checked> Trộn thứ tự câu trả lời ngắn</label><label><input type="checkbox" id="shO" checked> Trộn phương án A–D</label><label><input type="checkbox" id="shD" checked> Trộn ý a–d (Đúng/Sai)</label><label><input type="checkbox" id="shX" checked> Ẩn dấu đáp án trong đề (gạch chân / tô đỏ)</label><label><input type="checkbox" id="shHd" checked> Hiện thông tin đề thi</label><label title="Tạo thêm file .json cho từng mã đề (kèm đáp án và lời giải) để đưa sang thẻ Tạo câu hỏi tương tác và xuất thành trang web cho học sinh"><input type="checkbox" id="shJ"> Xuất kèm file .json (đề tương tác) cho từng mã đề</label></div></details>
+<details open class="sxd"><summary>🔀 Tùy chọn trộn &amp; mức độ</summary><div class="sxo">
+<label><input type="checkbox" id="shQ" checked> Trộn thứ tự câu hỏi (trắc nghiệm, đúng/sai)</label>
+<label><input type="checkbox" id="shTl" checked> Trộn thứ tự câu trả lời ngắn</label>
+<label><input type="checkbox" id="shLvl"> <b>Trộn theo nhóm mức độ (giữ độ khó tăng dần)</b></label>
+<div class="lv-box" id="shLvBox" hidden>
+  <label class="v">Chế độ phân nhóm mức độ
+    <select id="shLvMd">
+      <option value="group">Phân nhóm theo số thứ tự câu (vd: 1-6, 7-10, 11-12)</option>
+      <option value="auto">Tự động nhận diện nhãn [NB]/[TH]/[VD]/[VDC] hoặc mã ID</option>
+    </select>
+  </label>
+  <div id="shGrpW">
+    <div class="lv-presets" id="shLvPre">
+      <button type="button" class="chip" data-g="1-6, 7-10, 11-12">Chuẩn TN 2025 (12 câu)</button>
+      <button type="button" class="chip" data-g="1-4, 5-8, 9-10, 11-12">4 mức (NB-TH-VD-VDC)</button>
+      <button type="button" class="chip" data-g="1-6, 7-10, 11-12 ; 1-2, 3-4 ; 1-3, 4-6">Đủ 3 phần (TN; Đ/S; TLN)</button>
+    </div>
+    <label class="v" style="margin-top:6px">Nhóm câu trộn riêng trong từng phần (ngăn phần bằng dấu ;)
+      <input id="shGrp" value="1-6, 7-10, 11-12" placeholder="vd: 1-6, 7-10, 11-12 ; 1-2, 3-4">
+    </label>
+  </div>
+  <label class="v">Ghim câu cố định vị trí (không đảo, vd: 1, 12)
+    <input id="shPin" placeholder="Để trống nếu không ghim (vd: 1, 12)">
+  </label>
+  <div class="lv-note">Các câu cùng một nhóm chỉ đảo vị trí cho nhau, giúp đề sau trộn vẫn giữ đúng mạch từ dễ đến khó.</div>
+</div>
+<label><input type="checkbox" id="shO" checked> Trộn phương án A–D</label>
+<label><input type="checkbox" id="shFixOpt" checked> Giữ cố định phương án “Cả A và B… / Tất cả…” ở vị trí D</label>
+<label><input type="checkbox" id="shD" checked> Trộn ý a–d (Đúng/Sai)</label>
+<label><input type="checkbox" id="shX" checked> Ẩn dấu đáp án trong đề (gạch chân / tô đỏ)</label>
+<label><input type="checkbox" id="shHd" checked> Hiện thông tin đề thi</label>
+<label title="Tạo thêm file .json cho từng mã đề (kèm đáp án và lời giải) để đưa sang thẻ Tạo câu hỏi tương tác và xuất thành trang web cho học sinh"><input type="checkbox" id="shJ"> Xuất kèm file .json (đề tương tác) cho từng mã đề</label>
+</div></details>
 <details class="sxd"><summary>ℹ️ Hướng dẫn &amp; quy ước</summary><p class="shh"><b>File .tex:</b> dùng mẫu \begin{ex} … \choice / \choiceTFt / \shortans / \loigiai … \end{ex} (có \True đánh dấu đáp án đúng); file được chuyển thành đề Word có công thức thật để xem và sửa như file .docx (hình TikZ được biên dịch qua máy chủ LaTeX và chèn thành ảnh, cần có mạng). <b>Quy ước.</b> File .docx: mỗi câu bắt đầu bằng “Câu n”, phương án A. B. C. D. có thể nằm chung một dòng (cách nhau bằng Tab), chia 2 dòng hoặc mỗi phương án một dòng, nhãn A/B/C/D in đậm; ý a) b) c) d) mỗi ý một đoạn; đáp án đúng được <u>gạch chân</u> (hoặc tô đỏ) ở nhãn. Câu trả lời ngắn lấy từ dòng “Đáp án: …”. Công thức MathType được giữ nguyên, đi theo từng phương án. Mỗi “PHẦN I/II/III” được trộn riêng và đánh số lại từ Câu 1; hình ảnh, công thức đi theo từng đoạn. Các dấu đánh dấu (bookmark) trong file gốc sẽ bị xóa khỏi đề đã trộn. <b>Tiêu đề đề thi:</b> với file .docx, trang tạo tiêu đề trang đầu (cơ sở, trường, kỳ thi, môn, thời gian, khung “Mã đề”) và chân trang “trang/tổng số - Mã đề” giống file mẫu De_191, thay cho tiêu đề cũ của file gốc; bỏ chọn ô tương ứng nếu muốn giữ nguyên tiêu đề của file gốc. Tiêu đề và chân trang dùng font <b>Times New Roman cỡ 12</b>. <b>Kết quả:</b> mỗi mã đề tạo 2 tệp — <b>De-XXX</b> (đề không đáp án, không lời giải) và <b>DapAn-XXX</b> (đề + bảng đáp án + lời giải chi tiết từng câu, lấy từ phần “Lời giải” trong đề gốc và đã đổi theo thứ tự trộn).</p><p class="shh"><b>Chế độ LaTeX (file .tex):</b> chọn “Biên dịch LaTeX” để xem đề đúng như khi biên dịch bằng LaTeX (PDF), sửa mã ở thẻ “Mã .tex” rồi bấm Biên dịch. Khi trộn, trang trộn ở mức mã nguồn (câu <code>\begin{ex}…\end{ex}</code>, <code>\choice</code>, <code>\choiceTF</code>), sau đó biên dịch từng mã đề: <b>De-XXX</b> (không đáp án) và <b>DapAn-XXX</b> (bật tùy chọn <code>loigiai</code> của ex_test) — mỗi bản xuất PDF và .tex. Có thể chọn kèm .sty / ảnh. Ô “Hiện thông tin đề thi” ở chế độ này chỉ thêm khung “Mã đề”; các ô thông tin đề (Sở, trường…) chỉ dùng cho file Word.</p></details>
 </div>
 <div class="sxbd" id="sxP1" hidden><div class="shr" id="shR"><p class="sxe0">Chưa có kết quả. Tải đề lên, chọn tùy chọn rồi bấm “🔀 Trộn đề”. Mỗi mã đề xuất 2 tệp: đề không đáp án + đề kèm bảng đáp án &amp; lời giải.</p></div></div>
 </div>
 <div class="tzg" id="sxG"></div>
 <div class="tzp sxv">
-<div class="pvbox" id="shPv" hidden><div class="tzh"><span>✏️ Xem &amp; sửa đề gốc</span><span class="sxtb"><button class="btn sm" id="stTg" title="Hiện / ẩn bảng cấu trúc đề thi">🗂 Cấu trúc đề</button> <button class="btn sm" id="shU" title="Đặt con trỏ vào nhãn A/B/C/D hoặc a/b/c/d rồi bấm để gạch chân / bỏ gạch chân (đánh dấu đáp án đúng)">U̲ Đáp án đúng</button> <button class="btn sm" id="shFm" title="Đặt con trỏ vào vị trí cần chèn trong đề rồi bấm để thêm công thức mới">∑ Chèn công thức</button> <button class="btn sm" id="shSv">💾 Áp dụng</button> <button class="btn sm" id="shDl">⬇ Tải .docx đã sửa</button></span></div>
-<div class="sxfmt" id="shFmt"><span>Canh lề:</span><button class="btn sm" data-al="left" title="Canh trái">⇤ Trái</button><button class="btn sm" data-al="center" title="Canh giữa">↔ Giữa</button><button class="btn sm" data-al="right" title="Canh phải">⇥ Phải</button><button class="btn sm" data-al="both" title="Canh đều hai bên">☰ Đều</button><span class="sep"></span><button class="btn sm" id="shImgB" title="Chèn ảnh vào sau đoạn đang chọn (hoặc dán ảnh bằng Ctrl+V)">🖼 Chèn ảnh</button><input type="file" id="shImg" accept="image/*" hidden><span id="shImT" hidden><span class="sep"></span>Ảnh: <button class="btn sm" id="imS" title="Thu nhỏ 10%">－</button><b id="imW">—</b><button class="btn sm" id="imB" title="Phóng to 10%">＋</button><button class="btn sm" id="imD" title="Xóa ảnh">🗑 Xóa</button></span></div>
+<div class="pvbox" id="shPv" hidden><div class="tzh"><span>✏️ Xem &amp; sửa đề gốc</span><span class="sxtb"><button class="btn sm sec" id="stTg" title="Hiện / ẩn bảng cấu trúc đề thi">🗂 Cấu trúc đề</button><button class="btn sm" id="shU" title="Đặt con trỏ vào nhãn A/B/C/D hoặc a/b/c/d rồi bấm để gạch chân / bỏ gạch chân (đánh dấu đáp án đúng)">U̲ Đáp án đúng</button><button class="btn sm" id="shFm" title="Đặt con trỏ vào vị trí cần chèn trong đề rồi bấm để thêm công thức mới">∑ Công thức</button><span class="sxb-sep"></span><button class="btn sm ok" id="shSv">💾 Áp dụng</button><button class="btn sm" id="shDl">⬇ Tải .docx</button></span></div>
+<div class="sxfmt" id="shFmt"><span>Canh lề:</span><div class="segbar"><button class="btn sm" data-al="left" title="Canh trái">⇤ Trái</button><button class="btn sm" data-al="center" title="Canh giữa">↔ Giữa</button><button class="btn sm" data-al="right" title="Canh phải">⇥ Phải</button><button class="btn sm" data-al="both" title="Canh đều hai bên">☰ Đều</button></div><span class="sep"></span><button class="btn sm sec" id="shImgB" title="Chèn ảnh vào sau đoạn đang chọn (hoặc dán ảnh bằng Ctrl+V)">🖼 Chèn ảnh</button><input type="file" id="shImg" accept="image/*" hidden><span id="shImT" hidden><span class="sep"></span>Ảnh: <button class="btn sm" id="imS" title="Thu nhỏ 10%">－</button><b id="imW">—</b><button class="btn sm" id="imB" title="Phóng to 10%">＋</button><button class="btn sm" id="imD" title="Xóa ảnh">🗑 Xóa</button></span></div>
 <details class="pvh"><summary>Hướng dẫn sửa nhanh</summary><div id="shPh">Bản xem nhanh: bấm vào chữ để sửa trực tiếp. <b>Công thức Word (Equation)</b> hiển thị đẹp trong khung viền nét đứt — <b>bấm vào để sửa</b> bằng LaTeX (có bảng ký hiệu); dùng nút “∑ Chèn công thức” để thêm mới. <b>Công thức MathType</b> cũng được đọc và hiển thị; bấm vào để sửa thì công thức đó được đổi thành công thức Word. Công thức nào không đọc được hiện khung xanh “⟦MathType: không đọc được⟧” và được giữ nguyên. Không dùng Enter / ghép đoạn; chỉnh sửa tự áp dụng khi bấm “Trộn đề”. <b>Enter</b>: xuống dòng tại vị trí con trỏ (ngắt dòng mềm, không làm thay đổi cấu trúc câu hỏi); Backspace / Delete ở đầu hoặc cuối dòng để gộp lại.</div></details>
 <div class="sxrow"><div class="sxsc"><div class="sxpw" id="shPw"><div class="pvd" id="shPd" contenteditable="true" spellcheck="false"></div><div class="qov" id="qOv" hidden><span class="qtag" id="qTag"></span></div><div class="qbar" id="qBar" hidden></div></div></div><aside class="sxst" id="shSd" aria-label="Cấu trúc đề thi"></aside></div></div>
 <div class="pvbox" id="shTv" hidden><div class="tzh"><span><button class="chip on" id="tvB0">📄 Kết quả LaTeX</button> <button class="chip" id="tvB1">📝 Mã .tex</button></span><span class="sxtb"><button class="btn sm pri" id="tvRun">▶ Biên dịch</button> <button class="btn sm" id="tvPdf" disabled>⬇ PDF</button></span></div>
@@ -1878,7 +2338,7 @@ function mathTypeToL(bin){const st=cfbStreams(bin),k=Object.keys(st).find(n=>/Eq
     M.parts.forEach((P,pi)=>{const items=P.qs.map(q=>{no++;const k=qKind(P,q),nm=(txt(q.stem[0]).match(/C[âa]u\s*(\d+)/i)||[])[1]||no;let ans='',warn='';
         if(k==='mc'){const on=q.opts.map((x,i)=>isOn(x.lab)?String.fromCharCode(65+i):'').filter(Boolean);ans=on.join(',');if(!on.length)warn='Chưa có đáp án';else if(on.length>1)warn='Có hơn 1 đáp án được đánh dấu'}
         else if(k==='tf'){const on=q.subs.map(x=>isOn(x.lab));ans=on.map(v=>v?'Đ':'S').join('');if(!on.some(Boolean))warn='Chưa đánh dấu mệnh đề đúng nào'}
-        else if(k==='sa'){const v=saText(q,dm);ans=v==null?'':v;if(v==null)warn='Chưa có dòng “Đáp án:”';else if(!v)warn='Đáp án đang trống'}
+        else if(k==='sa'){const v=saText(q,dm);ans=v==null?'':v;if(v==null)warn='Chưa có dòng “Đáp án:”';else if(!v)warn='Đáp án đang trống';else{const e=chkShortAns(v);if(e)warn=e}}
         return{nm,k,ans,warn,sol:q.sol.length>0,ref:q.stem[0]}});
       const h=P.head[0]?txt(P.head[0]):'',m=h.match(/^\s*(PHẦN|Phần)\s+([IVX\d]+)/),cnt={};items.forEach(i=>cnt[i.k]=(cnt[i.k]||0)+1);
       const hk=/tự luận/i.test(h)?'tl':/đúng\s*[\/-]?\s*sai/i.test(h)?'tf':/trả lời ngắn/i.test(h)?'sa':'mc';
@@ -2027,6 +2487,7 @@ function mathTypeToL(bin){const st=cfbStreams(bin),k=Object.keys(st).find(n=>/Eq
         else if(name==='dots'||name==='ldots'||name==='cdots'){buf+='…';sk()}
         else if(name==='quad'||name==='qquad'||name==='hspace'||name==='enspace'){if(name==='hspace')arg();else sk();buf+=' '}
         else if(name==='vspace'||name==='noindent'||name==='hrule'||name==='medskip'||name==='bigskip'||name==='smallskip'||name==='centering'||name==='par'||name==='newline'||name==='True'||name==='indent'){if(name==='vspace')arg();else sk()}
+        else if(name==='setcounter'){arg();arg()}
         else if(name==='textbackslash'){buf+='\\';sk()}
         else{const a=arg();if(a!=null)x+=inl(a,Object.assign({},st),T)}
         i=k;if(buf==='')continue}
@@ -2064,11 +2525,13 @@ function mathTypeToL(bin){const st=cfbStreams(bin),k=Object.keys(st).find(n=>/Eq
       if(keys.length){say();const iv=setInterval(say,250);try{await Promise.all(Array.from({length:Math.min(3,keys.length)},async()=>{while(nx<keys.length)await work(nx++)}))}finally{clearInterval(iv)}}}
     function question(inner){
       stats.q++;qn++;
-      // tách các lệnh
+      // tách các lệnh (hỗ trợ tham số tùy chọn [...] như \loigiai[8]{...}, \loigiai[-1]{...}, \choice[2]{...}, \shortans[oly]{...})
+      const optSkip=(s,i)=>{let j=i;while(/\s/.test(s[j]||''))j++;if(s[j]==='['){const k=s.indexOf(']',j);if(k>j)return k+1}return i};
       const cmdRe=/\\(choice[A-Za-z]*|shortans|loigiai)\b/g;let m,first=-1;const cmds=[];
-      while((m=cmdRe.exec(inner))){if(first<0)first=m.index;const g=m[1]==='shortans'||m[1]==='loigiai'?grp(inner,cmdRe.lastIndex):null;
+      while((m=cmdRe.exec(inner))){if(first<0)first=m.index;const afterOpt=optSkip(inner,cmdRe.lastIndex);
+        const g=m[1]==='shortans'||m[1]==='loigiai'?grp(inner,afterOpt):null;
         if(g){cmds.push({n:m[1],t:g.t});cmdRe.lastIndex=g.end}
-        else{const items=[];let p=cmdRe.lastIndex,g2;while(items.length<4&&(g2=grp(inner,p))){items.push(g2.t);p=g2.end}cmds.push({n:m[1],items});cmdRe.lastIndex=p}}
+        else if(/^choice/.test(m[1])){const items=[];let p=afterOpt,g2;while(items.length<4&&(g2=grp(inner,p))){items.push(g2.t);p=g2.end}cmds.push({n:m[1],items});cmdRe.lastIndex=p}}
       const stem=inner.slice(0,first<0?inner.length:first),out=[];
       const sp=paras(stem);
       if(sp.length&&sp[0].x!=null){out.push(PAR(plainRun('Câu '+qn+'. ',{b:1})+sp[0].x));for(const e of sp.slice(1))out.push(e.xml)}else{out.push(PAR(plainRun('Câu '+qn+'. ',{b:1})));sp.forEach(e=>out.push(e.xml))}
@@ -2160,7 +2623,39 @@ function mathTypeToL(bin){const st=cfbStreams(bin),k=Object.keys(st).find(n=>/Eq
      const on=!r.classList.contains('u');r.classList.toggle('u',on);r.dataset.uc=on?'1':'0';pv.dirty=true}}
   $('shSv').onclick=async()=>{await pvCommit();$('shSt').className='st ok';$('shSt').textContent='Đã áp dụng chỉnh sửa vào đề gốc'};
   $('shDl').onclick=async()=>{if(!buf)return;if(pv)pv.dirty=true;await pvCommit();dl(URL.createObjectURL(new Blob([buf],{type:MIME})),'de-goc-da-sua.docx')};
-  $('shGo').onclick=async()=>{const st=$('shSt'),R=$('shR'),L=$('shL').value.split(/[,;\s]+/).filter(Boolean),n0=Math.min(24,Math.max(1,+$('shK').value||1)),s0=+$('shS').value||101,codes=L.length?L.slice(0,40):Array.from({length:n0},(_,i)=>String(s0+i)),n=codes.length,inf={c:$('shC').value.trim(),s:$('shSc').value.trim(),e:$('shEx').value.trim(),m:$('shSb').value.trim(),t:$('shTm').value.trim()},o={q:$('shQ').checked,o:$('shO').checked,d:$('shD').checked,s:$('shX').checked,hd:$('shHd').checked,tl:$('shTl').checked},wj=$('shJ').checked,jt=c=>(inf.e||inf.m||'Đề ôn tập')+' – Mã đề '+c;
+  $('shLvl').onchange=()=>{$('shLvBox').hidden=!$('shLvl').checked};
+  $('shLvMd').onchange=()=>{$('shGrpW').hidden=$('shLvMd').value==='auto'};
+  $('shLvPre').onclick=e=>{const b=e.target.closest('button[data-g]');if(!b)return;$('shGrp').value=b.dataset.g;$('shLvPre').querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c===b))};
+  $('shChk').onclick=async()=>{
+    const st=$('shSt'),R=$('shR');
+    try{
+      if(buf&&pv)await pvCommit();
+      let warns=[],stats=[];
+      if(texOn()){
+        const full=texFull(tex.src),P=texParse(full),B=texBuild(P,{q:false,tl:false,o:false,d:false,lvl:false,fixOpt:false});
+        if(!B.q)throw new Error('Không nhận ra câu hỏi nào trong file .tex (cần dùng \\begin{ex}…\\end{ex}).');
+        warns=B.warns;
+        B.key.forEach((a,i)=>stats.push('Phần '+(i+1)+': '+a.length+' câu'));
+      }else if(buf){
+        await loadJS('https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js');
+        const xml=await(await JSZip.loadAsync(buf)).file('word/document.xml').async('string');
+        const doc=new DOMParser().parseFromString(xml,'application/xml'),M=parseDocx(doc);
+        if(!M.parts.length)throw new Error('Không nhận ra câu hỏi nào. Mỗi câu cần bắt đầu bằng “Câu 1”, “Câu 2”…');
+        warns=HD.chk(M,1);
+        let noSol=0,fixCnt=0;
+        M.parts.forEach((P,pi)=>{
+          stats.push('Phần '+(pi+1)+': '+P.qs.length+' câu');
+          P.qs.forEach(q=>{if(!q.sol.length)noSol++;if(q.opts.some(x=>FIXED_OPT_RE.test(x.ch.map(c=>txt(c)).join(''))))fixCnt++});
+        });
+        if(noSol)stats.push('Chưa có lời giải: '+noSol+' câu');
+        if(fixCnt)stats.push('Phương án tự khóa vị trí D: '+fixCnt+' câu');
+        if(pv&&!$('shSd').hidden){stSig='';stRender(M)}
+      }else throw new Error('Hãy tải lên file .docx hoặc .tex trước khi kiểm tra');
+      R.innerHTML=(warns.length?'<div class="shw"><b>⚠ Kết quả kiểm tra đề gốc ('+warns.length+' cảnh báo)</b><div class="chk-stat">'+stats.map(s=>'<span>'+HD.esc(s)+'</span>').join('')+'</div><ul>'+warns.map(w=>'<li>'+HD.esc(w)+'</li>').join('')+'</ul>Hãy sửa trực tiếp ở khung bên phải rồi bấm Kiểm tra lại hoặc Trộn đề.</div>':'<div class="shw ok"><b>✓ Đề gốc đạt chuẩn — không phát hiện lỗi đáp án hay định dạng ô tô!</b><div class="chk-stat">'+stats.map(s=>'<span>'+HD.esc(s)+'</span>').join('')+'</div><div style="margin-top:6px">Thầy có thể bấm <b>🔀 Trộn đề ngay</b> để xuất các mã đề.</div></div>');
+      sxTab(1);st.className=warns.length?'st err':'st ok';st.textContent=warns.length?'Phát hiện '+warns.length+' cảnh báo cần kiểm tra':'Kiểm tra đề đạt chuẩn (0 lỗi)';
+    }catch(e){st.className='st err';st.textContent=e.message}
+  };
+  $('shGo').onclick=async()=>{const st=$('shSt'),R=$('shR'),L=$('shL').value.split(/[,;\s]+/).filter(Boolean),n0=Math.min(24,Math.max(1,+$('shK').value||1)),s0=+$('shS').value||101,codes=L.length?L.slice(0,40):Array.from({length:n0},(_,i)=>String(s0+i)),n=codes.length,inf={c:$('shC').value.trim(),s:$('shSc').value.trim(),e:$('shEx').value.trim(),m:$('shSb').value.trim(),t:$('shTm').value.trim()},o={q:$('shQ').checked,o:$('shO').checked,d:$('shD').checked,s:$('shX').checked,hd:$('shHd').checked,tl:$('shTl').checked,lvl:$('shLvl').checked,lvlMode:$('shLvMd').value,grp:$('shGrp').value.trim(),pin:$('shPin').value.trim(),fixOpt:$('shFixOpt').checked},wj=$('shJ').checked,jt=c=>(inf.e||inf.m||'Đề ôn tập')+' – Mã đề '+c;
     st.className='st';st.textContent='Đang trộn…';R.innerHTML='';outs=[];const keys=[];let warn=0,warns=[];
     try{
       if(buf&&pv)await pvCommit();
@@ -2177,8 +2672,25 @@ function mathTypeToL(bin){const st=cfbStreams(bin),k=Object.keys(st).find(n=>/Eq
             if(wj){try{const pj=await qzDocx(await(await build(2)).arrayBuffer(),'De-'+codes[i],key);outs.push({name:'De-'+codes[i]+'.json',label:'Mã đề '+codes[i]+' – File .json (câu hỏi tương tác)',blob:new Blob([JSON.stringify(qzMk(pj,jt(codes[i]),codes[i]),null,2)],{type:'application/json'})});if(!i&&pj.warnings.length)warns.push('Tạo .json: '+pj.warnings.join(' | '))}catch(e){warns.push('Mã đề '+codes[i]+': lỗi tạo .json – '+e.message)}}}pgSet((i+1)/n,'Đang trộn mã đề '+codes[i]+' ('+(i+1)+'/'+n+')…');await new Promise(r=>setTimeout(r))}
       }else throw new Error('Hãy tải lên file .docx hoặc .tex trước khi trộn');
       kt=keyTxt(keys,codes);lk=keys;lc=codes;
-      R.innerHTML=outs.map((x,i)=>`<div><button class="btn" data-a="dl" data-i="${i}">⬇ ${x.label} (.${x.name.split('.').pop()})</button></div>`).join('')
-        +`<pre class="tzlog" style="background:#eef6ff;color:#0b2a4a">${kt}</pre><div>${outs.some(x=>/^DapAn-/.test(x.name))?'<button class="btn pri" data-a="zipD">⬇ Tải .zip Đề (không đáp án)</button> <button class="btn pri" data-a="zipA">⬇ Tải .zip Đáp án &amp; lời giải</button>':'<button class="btn pri" data-a="zipD">⬇ Tải .zip</button>'}${outs.some(x=>/\.json$/.test(x.name))?' <button class="btn pri" data-a="zipJ">⬇ Tải .zip file .json</button>':''} <button class="btn sm" data-a="ck">📋 Sao chép đáp án</button> <button class="btn" data-a="xlT">⬇ Excel đáp án TNMaker</button> <button class="btn" data-a="xlQ">⬇ Excel đáp án QM Chấm thi</button> <button class="btn" data-a="qrT">📱 QR đáp án TNMaker</button> <button class="btn" data-a="qrQ">📱 QR đáp án QM Chấm thi</button></div><div id="shQR" class="qrbox"></div>`;
+      const byCode=new Map();
+      outs.forEach((x,i)=>{const m=x.name.match(/^(?:De|DapAn)-([^.]+)\.(.+)$/),c=m?m[1]:'Khác',ext=m?m[2]:x.name.split('.').pop(),isA=/^DapAn-/.test(x.name),isJ=ext==='json';
+        if(!byCode.has(c))byCode.set(c,[]);
+        byCode.get(c).push({i,ext,lbl:isJ?'🎯 JSON':(isA?'📘 Đáp án':'📄 Đề')+(ext==='tex'?' (.tex)':ext==='pdf'?' (.pdf)':'')})});
+      const hasA=outs.some(x=>/^DapAn-/.test(x.name)),hasJ=outs.some(x=>/\.json$/.test(x.name));
+      R.innerHTML=`<div class="res-sec"><h4>📦 Tải nhanh trọn bộ (.zip)</h4><div class="res-grid">
+          <button class="btn pri${hasA?'':' w2'}" data-a="zipD">⬇ Bộ Đề thi (.zip)</button>
+          ${hasA?'<button class="btn ok" data-a="zipA">⬇ Bộ Đáp án &amp; LG (.zip)</button>':''}
+          ${hasJ?'<button class="btn sec w2" data-a="zipJ">🎯 Bộ đề tương tác (.json .zip)</button>':''}
+        </div></div>
+        <div class="res-sec"><h4>📊 Xuất đáp án chấm thi</h4><div class="res-grid">
+          <button class="btn sm sec" data-a="xlT">📗 Excel TNMaker</button>
+          <button class="btn sm sec" data-a="xlQ">📘 Excel QM Chấm thi</button>
+          <button class="btn sm" data-a="qrT">📱 QR TNMaker</button>
+          <button class="btn sm" data-a="qrQ">📱 QR QM Chấm thi</button>
+          <button class="btn sm w2" data-a="ck">📋 Sao chép bảng đáp án dạng chữ</button>
+        </div><div id="shQR" class="qrbox"></div></div>
+        <div class="res-sec"><h4>📑 Tải lẻ từng mã đề (${byCode.size} mã)</h4><div class="res-list">${[...byCode.entries()].map(([c,ls])=>`<div class="res-row"><b>Mã đề ${HD.esc(c)}</b><span class="res-btns">${ls.map(it=>`<button class="btn sm" data-a="dl" data-i="${it.i}">${it.lbl}</button>`).join('')}</span></div>`).join('')}</div></div>
+        <details class="sxd" style="border:1px solid var(--edge);border-radius:12px;overflow:hidden"><summary>👁️ Xem nhanh bảng đáp án (${n} mã đề)</summary><pre class="tzlog" style="background:#eef6ff;color:#0b2a4a;max-height:240px">${kt}</pre></details>`;
       R.insertAdjacentHTML('afterbegin',warns.length?'<div class="shw"><b>⚠ Đề gốc cần kiểm tra ('+warns.length+' cảnh báo)</b><ul>'+warns.map(w=>'<li>'+HD.esc(w)+'</li>').join('')+'</ul>Hãy sửa trong đề gốc rồi trộn lại: đánh dấu đáp án đúng bằng gạch chân / tô đỏ ở nhãn A–D, a–d; câu trả lời ngắn cần dòng “Đáp án: …”.</div>':'<div class="shw ok">✓ Đề gốc đã đủ đáp án, không có cảnh báo.</div>');
       pgSet(null);sxTab(1);st.className='st ok';st.textContent='Đã tạo '+n+' mã đề × '+(outs.filter(x=>!/\.json$/.test(x.name)).length/n)+' tệp (đề / đáp án + lời giải)'+(wj?' + '+outs.filter(x=>/\.json$/.test(x.name)).length+' file .json':'')+(warns.length?' — ⚠ '+warns.length+' cảnh báo':'')+(warn?' — '+warn+' đoạn phương án lạ giữ nguyên':'');
     }catch(e){pgSet(null);st.className='st err';st.textContent=e.message}};
@@ -2194,7 +2706,1344 @@ function mathTypeToL(bin){const st=cfbStreams(bin),k=Object.keys(st).find(n=>/Eq
     else if(a==='zipD'||a==='zipA'){await loadJS('https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js');const A=a==='zipA',z=new JSZip();
       outs.filter(o=>!/\.json$/.test(o.name)&&/^DapAn-/.test(o.name)===A).forEach(o=>z.file(o.name,o.blob));if(A||!outs.some(o=>/^DapAn-/.test(o.name))){z.file('dap-an.txt',kt);(await XL.files(lk,lc)).forEach(x=>z.file(x.name,x.blob))}
       dl(URL.createObjectURL(await z.generateAsync({type:'blob'})),A?'dap-an-loi-giai.zip':'de-tron.zip')}};
+  shNode.loadFromBank=async({name,src,mode,examTitle,levelGroups,count})=>{
+    tex={name:name||'de-ngan-hang.tex',src:String(src||'').replace(/\r\n?/g,'\n'),att:[]};
+    $('shMd').hidden=false;
+    $('shMd').value=mode==='tex'?'tex':'docx';
+    if(examTitle){$('shEx').value=examTitle;try{localStorage.setItem('tmInfo',JSON.stringify(Object.fromEntries(IDS.map(j=>[j,$(j).value]))))}catch(_){}}
+    if(levelGroups){$('shGrp').value=levelGroups;$('shLvMd').value='group';$('shGrpW').hidden=false;$('shLvl').checked=true;$('shLvBox').hidden=false}
+    sxTab(0);
+    await loadTex();
+    if($('shSt').className!=='st err'){$('shSt').className='st ok';$('shSt').textContent='Đã nhận đề từ Ngân hàng'+(count?' ('+count+' câu)':'')+' — sẵn sàng kiểm tra & trộn đề'}
+  };
   return shNode}
+
+/* ===== CHUẨN HOÁ ĐỊNH DẠNG LATEX (.docx / .pdf / Ảnh chụp -> .tex mẫu T-Math + Vẽ lại TikZ + Lời giải ngắn gọn + Gợi ý ID) ===== */
+const CH_UNI_MATH={
+  '≤':'\\le ','≥':'\\ge ','≠':'\\ne ','∞':'\\infty ','±':'\\pm ','∓':'\\mp ','×':'\\times ','÷':'\\div ',
+  '·':'\\cdot ','⋅':'\\cdot ','→':'\\to ','←':'\\leftarrow ','⇒':'\\Rightarrow ','⇔':'\\Leftrightarrow ',
+  '⇐':'\\Leftarrow ','↔':'\\leftrightarrow ','∈':'\\in ','∉':'\\notin ','⊂':'\\subset ','⊃':'\\supset ',
+  '⊆':'\\subseteq ','⊇':'\\supseteq ','∪':'\\cup ','∩':'\\cap ','∅':'\\emptyset ','∀':'\\forall ','∃':'\\exists ',
+  '∠':'\\angle ','°':'^\\circ ','∥':'\\parallel ','⊥':'\\perp ','⟂':'\\perp ','≈':'\\approx ','≡':'\\equiv ',
+  '∼':'\\sim ','ℝ':'\\mathbb{R}','ℕ':'\\mathbb{N}','ℤ':'\\mathbb{Z}','ℚ':'\\mathbb{Q}','ℂ':'\\mathbb{C}',
+  '∂':'\\partial ','∇':'\\nabla ','−':'-','∖':'\\setminus ','△':'\\triangle ','∑':'\\sum ','∏':'\\prod ','∫':'\\int ',
+  'α':'\\alpha ','β':'\\beta ','γ':'\\gamma ','δ':'\\delta ','ε':'\\varepsilon ','ϵ':'\\epsilon ','ζ':'\\zeta ',
+  'η':'\\eta ','θ':'\\theta ','λ':'\\lambda ','μ':'\\mu ','ν':'\\nu ','ξ':'\\xi ','π':'\\pi ','ρ':'\\rho ',
+  'σ':'\\sigma ','τ':'\\tau ','φ':'\\varphi ','ϕ':'\\phi ','χ':'\\chi ','ψ':'\\psi ','ω':'\\omega ',
+  'Γ':'\\Gamma ','Δ':'\\Delta ','Θ':'\\Theta ','Λ':'\\Lambda ','Π':'\\Pi ','Σ':'\\Sigma ','Φ':'\\Phi ','Ω':'\\Omega ',
+  '²':'^{2}','³':'^{3}','¹':'^{1}','⁰':'^{0}','⁴':'^{4}','⁵':'^{5}','⁶':'^{6}','⁷':'^{7}','⁸':'^{8}','⁹':'^{9}',
+  '₀':'_{0}','₁':'_{1}','₂':'_{2}','₃':'_{3}','₄':'_{4}','₅':'_{5}','₆':'_{6}','₇':'_{7}','₈':'_{8}','₉':'_{9}'
+};
+const CH_UNI_RE=new RegExp('['+Object.keys(CH_UNI_MATH).map(c=>c.replace(/[-\\^$*+?.()|[\]{}]/g,'\\$&')).join('')+']','g');
+const CH_LV_VN={Y:'NB',B:'TH',K:'VD',G:'VDC'};
+
+function chU8ToB64(u8){
+  let bin='';
+  for(let i=0;i<u8.length;i+=0x8000)bin+=String.fromCharCode.apply(null,u8.subarray(i,i+0x8000));
+  return btoa(bin);
+}
+
+function chNormMathExpr(expr,opts){
+  let s=String(expr||'').trim();
+  if(!s)return '';
+  s=s.replace(CH_UNI_RE,m=>CH_UNI_MATH[m]||m);
+  s=s.replace(/\\leq(?![a-zA-Z])/g,'\\le').replace(/\\geq(?![a-zA-Z])/g,'\\ge').replace(/\\neq(?![a-zA-Z])/g,'\\ne');
+  s=s.replace(/\\rightarrow(?![a-zA-Z])/g,'\\to');
+  if(opts.dfrac)s=s.replace(/\\frac(?![a-zA-Z])/g,'\\dfrac');
+  if(opts.decComma)s=s.replace(/(\d),(\d)/g,'$1{,}$2');
+  if(opts.heva){
+    s=s.replace(/\\begin\{cases\}([\s\S]*?)\\end\{cases\}/g,(_,b)=>{
+      const rows=b.split(/\\\\/).map(x=>x.trim()).filter(Boolean);
+      return '\\heva{'+rows.join(' \\\\ ')+'}';
+    });
+  }
+  s=s.replace(/\s{2,}/g,' ').trim();
+  return s;
+}
+
+function chNormTextChunk(t,opts){
+  if(!t)return '';
+  if(!opts.uniMath)return t;
+  let out=t.replace(/√\s*\(([^)]+)\)/g,'$\\sqrt{$1}$').replace(/√\s*(\d+|[a-zA-Z])/g,'$\\sqrt{$1}$');
+  out=out.replace(/([A-Za-z0-9)\]])([⁰¹²³⁴⁵⁶⁷⁸⁹]+)/g,(_,b,p)=>'$'+b+'^{'+[...p].map(c=>'⁰¹²³⁴⁵⁶⁷⁸⁹'.indexOf(c)).join('')+'}$');
+  out=out.replace(/([A-Za-z])([₀₁₂₃₄₅₆₇₈₉]+)/g,(_,b,p)=>'$'+b+'_{'+[...p].map(c=>'₀₁₂₃₄₅₆₇₈₉'.indexOf(c)).join('')+'}$');
+  out=out.replace(/(\d+)\s*°/g,'$$$1^\\circ$$');
+  out=out.replace(CH_UNI_RE,m=>'$'+CH_UNI_MATH[m].trim()+'$');
+  return out;
+}
+
+function chMergeInlineMath(s){
+  let prev='';
+  for(let k=0;k<6&&s!==prev;k++){
+    prev=s;
+    s=s.replace(/\$([^$\n]+)\$\s*\$([^$\n]+)\$/g,(_,a,b)=>{
+      const aa=a.trim(),bb=b.trim();
+      const join=(/^[a-zA-Z0-9\\]$/.test(aa.slice(-1))&&/^[a-zA-Z0-9]$/.test(bb[0]))?' ':'';
+      return '$'+aa+join+bb+'$';
+    });
+    s=s.replace(/([A-Za-z0-9]+)\$(\^\{[^}]+\}|_\{[^}]+\})\$/g,'$$$1$2$$');
+  }
+  return s.replace(/\$\s+\$/g,'').replace(/\$\s+([^$\n]*?)\s+\$/g,'$$$1$$');
+}
+
+function chNormFullTex(src,opts){
+  let s=String(src||'').replace(/\r\n?/g,'\n').trim();
+  s=s.replace(/^```(?:latex|tex)?\s*\n?/i,'').replace(/\n?```\s*$/,'').trim();
+  // Bảo vệ các khối tikzpicture khỏi bị thay đổi dấu phẩy tọa độ (vd: (1,2) -> (1{,}2))
+  const tkzStash=[];
+  s=s.replace(/\\begin\{tikzpicture\}[\s\S]*?\\end\{tikzpicture\}/g,m=>{
+    const id='@@TKZ_STASH_'+(tkzStash.length)+'@@';
+    tkzStash.push(m);
+    return id;
+  });
+  s=s.replace(/(\\\[[\s\S]*?\\\]|\$\$[\s\S]*?\$\$|\$(?!\$)[^$\n]+?\$)/g,m=>{
+    if(m.startsWith('\\['))return '\\[\n'+chNormMathExpr(m.slice(2,-2),opts)+'\n\\]';
+    if(m.startsWith('$$'))return '\\[\n'+chNormMathExpr(m.slice(2,-2),opts)+'\n\\]';
+    return '$'+chNormMathExpr(m.slice(1,-1),opts)+'$';
+  });
+  const parts=s.split(/(\\\[[\s\S]*?\\\]|\$(?!\$)[^$\n]+?\$)/g);
+  s=parts.map((seg,i)=>i%2?seg:chNormTextChunk(seg,opts)).join('');
+  s=chMergeInlineMath(s);
+  if(opts.solOptMode&&opts.solOptMode!=='keep'&&opts.solOptMode!=='tmath'){
+    const tag=opts.solOptMode==='none'?'\\loigiai{':opts.solOptMode==='neg1'?'\\loigiai[-1]{':'\\loigiai['+(opts.solLines||8)+']{';
+    s=s.replace(/\\loigiai(?![A-Za-z])\s*(?:\[[^\]]*\])?\s*\{/g,tag);
+  }
+  tkzStash.forEach((m,i)=>{s=s.replace('@@TKZ_STASH_'+i+'@@',()=>m)});
+  return s;
+}
+
+function chSolTagFor(kind,lv,origOpt,opts){
+  const m=opts.solOptMode||'tmath';
+  if(m==='keep')return origOpt?'\\loigiai['+origOpt+']{':'\\loigiai{';
+  if(m==='none')return '\\loigiai{';
+  if(m==='neg1')return '\\loigiai[-1]{';
+  if(m==='dot')return '\\loigiai['+(opts.solLines||8)+']{';
+  if(kind==='TN')return (lv==='K'||lv==='G')?'\\loigiai[5]{':'\\loigiai[-1]{';
+  if(kind==='DS')return '\\loigiai[5]{';
+  if(kind==='TL')return '\\loigiai[8]{';
+  return '\\loigiai{';
+}
+
+function chAnsSummary(p,kind){
+  const clean=s=>String(s||'').replace(/\$/g,'').replace(/\\dfrac/g,'\\frac').replace(/\\text\{([^}]*)\}/g,'$1').replace(/\\,/g,' ').replace(/\{,\}/g,',').replace(/\s+/g,' ').trim();
+  if(kind==='TN'){
+    const ok=p.items.find(x=>x.ok);
+    return ok?clean(ok.t).slice(0,48):'(chưa đánh dấu)';
+  }
+  if(kind==='DS'){
+    return p.items.map((x,j)=>'abcd'[j]+') '+(x.ok?'Đ':'S')).join('  ');
+  }
+  if(kind==='TL'&&p.items[0]){const v=clean(p.items[0].t).slice(0,32);return v||'(chưa có)'}
+  return '';
+}
+
+function chIndent(text,spaces){
+  const pad=' '.repeat(spaces);
+  return String(text||'').trim().split('\n').map(l=>l.trim()?pad+l.trim():'').join('\n');
+}
+
+function chBanner(label){
+  const bar='%'.repeat(79);
+  const pad=Math.max(2,Math.floor((77-label.length)/2));
+  return bar+'\n%'+' '.repeat(pad)+label+'\n'+bar;
+}
+
+function chRuleCau(n){
+  const mid=' Câu '+n+' ';
+  const left=Math.max(4,Math.floor((73-mid.length)/2));
+  const right=Math.max(4,73-mid.length-left);
+  return '%'+'-'.repeat(left)+mid+'-'.repeat(right);
+}
+
+function chDetectPartKind(t){
+  const s=String(t||'').toLowerCase();
+  if(/đúng\s*[-/]?\s*sai/.test(s))return 'DS';
+  if(/trả\s*lời\s*ngắn/.test(s))return 'TL';
+  if(/tự\s*luận/.test(s))return 'TU';
+  if(/nhiều\s*phương\s*án|trắc\s*nghiệm/.test(s))return 'TN';
+  return '';
+}
+
+function chFormatTMath(texSrc,sugs,opts){
+  const blocks=gidScan(texSrc);
+  if(!blocks.length)return texSrc;
+  const groups={TN:[],DS:[],TL:[],TU:[]};
+  blocks.forEach((b,idx)=>{
+    const p=gidParseQ(b.code);
+    const rawKind=gidKind(b.code);
+    const grp=rawKind==='TN'?'TN':rawKind==='DS'?'DS':rawKind==='TL'?'TL':'TU';
+    const sg=sugs&&sugs[idx]?sugs[idx]:null;
+    groups[grp].push({b,p,grp,sg,idx});
+  });
+
+  const partsMeta=[
+    {k:'TN',roman:'I',title:'Câu trắc nghiệm nhiều phương án lựa chọn',sub:n=>'Thí sinh trả lời từ câu 1 đến câu '+n+'. Mỗi câu hỏi thí sinh chỉ chọn một phương án.',short:'Trắc nghiệm nhiều phương án lựa chọn'},
+    {k:'DS',roman:'II',title:'Câu trắc nghiệm đúng sai',sub:n=>'Thí sinh trả lời từ câu 1 đến câu '+n+'. Trong mỗi ý \\textbf{a)}, \\textbf{b)}, \\textbf{c)}, \\textbf{d)} ở mỗi câu, thí sinh chọn đúng hoặc sai.',short:'Trắc nghiệm đúng sai'},
+    {k:'TL',roman:'III',title:'Câu trắc nghiệm trả lời ngắn',sub:n=>'Thí sinh trả lời từ câu 1 đến câu '+n+'.',short:'Trắc nghiệm trả lời ngắn'},
+    {k:'TU',roman:'IV',title:'Tự luận',sub:n=>n===1?'Thí sinh trả lời câu 1.':'Thí sinh trả lời từ câu 1 đến câu '+n+'.',short:'Tự luận'}
+  ];
+  const activeParts=partsMeta.filter(pm=>groups[pm.k].length>0);
+  const romans=['I','II','III','IV'];
+
+  const out=[];
+  const docTitle=(opts.docTitle||'ĐỀ ÔN TẬP – KIỂM TRA – TOÁN THPT (2026 - 2027)').trim();
+  const bar='%'.repeat(79);
+  const headerLines=[bar,'%             '+docTitle];
+  activeParts.forEach((pm,pi)=>{
+    const n=groups[pm.k].length,rm=romans[pi]||pm.roman;
+    const range=n===1?'(Câu 1)':'(Câu 1 -> Câu '+n+')';
+    const prefix=pi===0?'%  Cấu trúc : ':'%             ';
+    headerLines.push(prefix+'Phần '+rm.padEnd(3,' ')+'– '+pm.short.padEnd(38,' ')+' '+range);
+  });
+  headerLines.push(
+    '%  Ký hiệu mức độ: NB = Nhận biết | TH = Thông hiểu | VD = Vận dụng | VDC = Vận dụng cao',
+    '%  Mã ID (theo Ma_Tran_ID_Toan_GDPT2018): [Lớp][Phân môn][Chương][Mức độ][Bài]-[Hậu tố]',
+    '%  Mức độ: Y = NB | B = TH | K = VD | G = VDC ; Hậu tố: TN | DS | TL',
+    '%  Quy ước ghi chú mỗi câu: % Chủ đề – Dạng | Mức độ | Đáp án',
+    bar
+  );
+  out.push(headerLines.join('\n'));
+
+  activeParts.forEach((pm,pi)=>{
+    const list=groups[pm.k],rm=romans[pi]||pm.roman;
+    out.push('\n'+chBanner('PHẦN '+rm)+'\n\\phan{'+rm+'}{'+pm.title+'}{'+pm.sub(list.length)+'}');
+    list.forEach((item,qi)=>{
+      const qNum=qi+1,{p,grp,sg,b}=item;
+      const lv=sg&&sg.lv?sg.lv:'B';
+      const lvVn=CH_LV_VN[lv]||'TH';
+      const existId=(b.code.slice(0,400).match(/%\s*\[([^\]]+)\]/)||[])[1]||'';
+      const idStr=(opts.insertId!==false&&sg&&sg.id)?sg.id:existId;
+      const topic=(sg&&sg.tenBai)?sg.tenBai:'Chủ đề chưa phân loại';
+      const ansTxt=chAnsSummary(p,grp);
+      const commentLine='% '+topic+' | '+lvVn+(ansTxt?' | Đáp án: '+ansTxt:'');
+
+      const qLines=[chRuleCau(qNum),commentLine,'\\begin{ex}'+(idStr?'%['+idStr+']':'')];
+      if(p.stem)qLines.push(chIndent(p.stem,2));
+      if(grp==='TN'){
+        qLines.push('  \\choice');
+        p.items.forEach(x=>qLines.push('  {'+(x.ok?'\\True ':'')+x.t.trim()+'}'));
+      }else if(grp==='DS'){
+        qLines.push('  \\choiceTFt');
+        p.items.forEach(x=>qLines.push('  {'+(x.ok?'\\True ':'')+x.t.trim()+'}'));
+      }else if(grp==='TL'){
+        qLines.push('  \\shortans{'+(p.items[0]?p.items[0].t.trim():'')+'}');
+      }
+      if(p.sol){
+        const solHead=chSolTagFor(grp,lv,p.solOpt,opts);
+        qLines.push('  '+solHead);
+        qLines.push(chIndent(p.sol,4));
+        qLines.push('  }');
+      }
+      qLines.push('\\end{ex}');
+      out.push(qLines.join('\n'));
+    });
+  });
+
+  let finalTex=out.join('\n\n')+'\n';
+  if(opts.wrap)finalTex=texFull(finalTex);
+  return finalTex;
+}
+
+/* Bộ đọc .docx chuyên dụng cho Chuẩn hoá LaTeX */
+function chParseDocx(doc){
+  const body=doc.getElementsByTagNameNS(SW,'body')[0];
+  const parts=[];let P=null,q=null;
+  const R_END=/^\s*[-—–\xad*_=\s]*HẾT[-—–\xad*_=\s]*$/i;
+  const splitOptRuns=p=>{
+    const ch=kids(p),pre=[],opts=[];
+    for(const c of ch){
+      if(c.localName==='r'){
+        const rt=txt(c);
+        const m=rt.match(/^\s*([A-D])\s*[.)](?:\s+|$)/);
+        if(m&&(isB(c)||/^\s*[A-D]\s*[.)]\s*$/.test(rt)||!opts.length||rt.indexOf(m[1])<=2)){
+          opts.push({let:m[1],ch:[c],ok:mark(c)});continue;
+        }
+      }
+      if(opts.length)opts[opts.length-1].ch.push(c);else pre.push(c);
+    }
+    return{pre,opts};
+  };
+  for(const e of [...body.children]){
+    if(e.localName==='sectPr')continue;
+    const isP=e.localName==='p',t=isP?txt(e):'';
+    if(isP&&R_END.test(t))continue;
+    if(isP&&RP.test(t)){
+      P={head:t.trim(),kind:chDetectPartKind(t),qs:[]};parts.push(P);q=null;continue;
+    }
+    if(isP&&RQ.test(t)){
+      if(!P){P={head:'',kind:'',qs:[]};parts.push(P)}
+      q={stem:[e],opts:[],subs:[],at:'',sol:[]};P.qs.push(q);continue;
+    }
+    if(!q)continue;
+    if(q.sol.length||(isP&&/^\s*(?:Lời\s*giải|Hướng\s*dẫn\s*giải)\s*[:.]?/i.test(t))){q.sol.push(e);continue}
+    if(isP&&/^\s*Đáp\s*án\s*:/i.test(t)){q.at=t.replace(/^\s*Đáp\s*án\s*:\s*/i,'').replace(/\s*\.\s*$/,'').trim();continue}
+    if(isP&&(P.kind===''||P.kind==='TN')&&/^\s*[A-D]\s*[.)]/.test(t)){
+      const{pre,opts}=splitOptRuns(e);
+      if(opts.length){
+        if(pre.some(n=>n.getElementsByTagNameNS(SW,'drawing').length||n.getElementsByTagNameNS(SW,'pict').length||txt(n).trim())){
+          q.stem.push({__nodes:pre});
+        }
+        q.opts.push(...opts);continue;
+      }
+    }
+    if(isP&&(P.kind===''||P.kind==='DS')&&/^\s*[a-d]\s*\)/.test(t)){
+      const r=run0(e);
+      q.subs.push({el:e,ok:mark(r)});continue;
+    }
+    const hasMedia=!isP||e.getElementsByTagNameNS(SW,'drawing').length||e.getElementsByTagNameNS(SW,'pict').length||e.getElementsByTagNameNS(SW,'object').length||e.getElementsByTagNameNS('http://schemas.openxmlformats.org/officeDocument/2006/math','oMath').length;
+    if(t.trim()||hasMedia)q.stem.push(e);
+  }
+  return parts;
+}
+
+async function chDocxToTex(arrayBuffer,opts){
+  if(!window.TMX)shufflePanel();
+  await loadJS('https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js');
+  const z=await JSZip.loadAsync(arrayBuffer);
+  const xml=await z.file('word/document.xml').async('string');
+  const doc=new DOMParser().parseFromString(xml,'application/xml');
+  const relMap={};
+  const relFile=z.file('word/_rels/document.xml.rels');
+  if(relFile){
+    const rdoc=new DOMParser().parseFromString(await relFile.async('string'),'application/xml');
+    [...rdoc.getElementsByTagName('Relationship')].forEach(r=>{relMap[r.getAttribute('Id')]=r.getAttribute('Target')});
+  }
+  const mtCache={},imgCache={};
+  const stats={q:0,tn:0,ds:0,tl:0,tu:0,omml:0,mt:0,mtErr:0,img:0};
+  for(const[rid,tgt]of Object.entries(relMap)){
+    const path=tgt.startsWith('/')?tgt.slice(1):'word/'+tgt.replace(/^\.\//,'');
+    const f=z.file(path);if(!f)continue;
+    if(/oleObject.*\.bin$/i.test(tgt)){
+      try{mtCache[rid]=window.TMX.mathTypeToL(await f.async('uint8array'));stats.mt++}
+      catch(_){mtCache[rid]=null;stats.mtErr++}
+    }else if(/\.(png|jpe?g|webp|gif|wmf)$/i.test(tgt)){
+      try{
+        const u8=await f.async('uint8array');
+        if(/\.wmf$/i.test(tgt)){
+          const png=window.TMX.wmfToPng(u8);
+          imgCache[rid]={mime:'image/png',b64:png.url.split(',')[1],url:png.url,name:tgt.split('/').pop()};
+        }else{
+          const ext=tgt.split('.').pop().toLowerCase();
+          const mime=ext==='jpg'||ext==='jpeg'?'image/jpeg':ext==='webp'?'image/webp':ext==='gif'?'image/gif':'image/png';
+          const b64=chU8ToB64(u8);
+          imgCache[rid]={mime,b64,url:'data:'+mime+';base64,'+b64,name:tgt.split('/').pop()};
+        }
+      }catch(_){}
+    }
+  }
+  const NS_R='http://schemas.openxmlformats.org/officeDocument/2006/relationships';
+  const escPlain=t=>String(t).replace(/([%&#_])/g,'\\$1');
+  const docImgs=[];
+  function findImgRid(node){
+    const blips=[...node.getElementsByTagName('*')].filter(e=>e.localName==='blip');
+    for(const b of blips){const r=b.getAttributeNS(NS_R,'embed')||b.getAttribute('r:embed');if(r&&imgCache[r])return r}
+    const imds=[...node.getElementsByTagName('*')].filter(e=>e.localName==='imagedata');
+    for(const im of imds){const r=im.getAttributeNS(NS_R,'id')||im.getAttribute('r:id');if(r&&imgCache[r])return r}
+    return '';
+  }
+  function nodeToTex(node){
+    if(!node||node.nodeType!==1)return '';
+    const ln=node.localName;
+    if(ln==='oMath'){stats.omml++;return '$'+chNormMathExpr(window.TMX.o2l(node),opts)+'$'}
+    if(ln==='oMathPara'){stats.omml++;return '\n\\[\n'+chNormMathExpr(window.TMX.o2l(node),opts)+'\n\\]\n'}
+    if(ln==='r'){
+      const ole=node.getElementsByTagName('OLEObject')[0]||[...node.getElementsByTagName('*')].find(e=>e.localName==='OLEObject');
+      if(ole){
+        const rid=ole.getAttributeNS(NS_R,'id')||ole.getAttribute('r:id');
+        if(rid&&mtCache[rid])return '$'+chNormMathExpr(mtCache[rid],opts)+'$';
+        return ' % [Công thức MathType chưa đọc được] ';
+      }
+      if(node.getElementsByTagNameNS(SW,'drawing').length||node.getElementsByTagNameNS(SW,'pict').length){
+        stats.img++;
+        const rid=findImgRid(node);
+        const idx=docImgs.length+1;
+        const marker='% [HINH_'+idx+']';
+        if(rid&&imgCache[rid]){
+          docImgs.push({idx,marker,...imgCache[rid]});
+          return '\n'+marker+'\n';
+        }
+        return '\n% [Hình vẽ '+idx+' - định dạng ảnh không hỗ trợ trích xuất]\n';
+      }
+      let out='';
+      for(const c of node.children){
+        if(c.localName==='t')out+=c.textContent;
+        else if(c.localName==='tab')out+=' ';
+        else if(c.localName==='br')out+=' \\\\ ';
+      }
+      if(!out)return '';
+      const rp=rpr(node);
+      const va=rp&&[...rp.children].find(c=>c.localName==='vertAlign');
+      const vav=va?gv(va):'';
+      if(vav==='superscript')return '$^{'+out.trim()+'}$';
+      if(vav==='subscript')return '$_{'+out.trim()+'}$';
+      return chNormTextChunk(escPlain(out),opts);
+    }
+    if(ln==='tbl'){
+      const rows=[...node.children].filter(c=>c.localName==='tr');
+      if(!rows.length)return '';
+      const cols=Math.max(...rows.map(r=>[...r.children].filter(c=>c.localName==='tc').length));
+      const body=rows.map(r=>[...r.children].filter(c=>c.localName==='tc').map(tc=>[...tc.children].map(p=>parToTex(p)).join(' ').trim()).join(' & ')).join(' \\\\\n\\hline\n');
+      return '\n\\begin{center}\n\\begin{tabular}{|'+'c|'.repeat(Math.max(1,cols))+'}\n\\hline\n'+body+' \\\\\n\\hline\n\\end{tabular}\n\\end{center}\n';
+    }
+    return [...node.children].map(nodeToTex).join('');
+  }
+  function nodesToTex(arr){
+    return chMergeInlineMath(arr.map(nodeToTex).join('')).replace(/[ \t]{2,}/g,' ').trim();
+  }
+  function parToTex(p){
+    if(!p)return '';
+    if(p.__nodes)return nodesToTex(p.__nodes);
+    if(p.localName==='tbl')return nodeToTex(p);
+    return nodesToTex([...p.children].filter(c=>c.localName!=='pPr'&&!/^bookmark/.test(c.localName)));
+  }
+
+  const parts=chParseDocx(doc);
+  if(!parts.length){
+    const all=[...doc.getElementsByTagNameNS(SW,'body')[0].children].filter(c=>c.localName!=='sectPr').map(parToTex).filter(Boolean).join('\n\n');
+    return{tex:chNormFullTex(all,opts),stats,docImgs};
+  }
+  const lines=[];
+  parts.forEach(P=>{
+    P.qs.forEach(q=>{
+      stats.q++;
+      let stemParts=q.stem.map((el,idx)=>{
+        let t=parToTex(el);
+        if(idx===0)t=t.replace(/^\s*C[âa]u\s*\d+\s*[:.)]?\s*/i,'');
+        return t;
+      }).filter(Boolean);
+
+      const qKind=q.opts.length?'TN':q.subs.length?'DS':(P.kind==='TL'||q.at)?'TL':P.kind==='TU'?'TU':(P.kind||'TU');
+      if(qKind==='TN')stats.tn++;else if(qKind==='DS')stats.ds++;else if(qKind==='TL')stats.tl++;else stats.tu++;
+
+      if(qKind==='TU'&&stemParts.some(l=>/^[a-e]\s*[.)]\s+/.test(l))){
+        const pre=[],items=[];let curI=null;
+        stemParts.forEach(l=>{
+          const mm=l.match(/^([a-e])\s*[.)]\s+([\s\S]*)$/);
+          if(mm){curI={k:mm[1],t:[mm[2]]};items.push(curI)}
+          else if(curI)curI.t.push(l);else pre.push(l);
+        });
+        if(items.length){
+          stemParts=[...pre,'\\begin{enumerate}\n'+items.map(x=>'  \\item['+x.k+')] '+x.t.join('\n')).join('\n')+'\n\\end{enumerate}'];
+        }
+      }
+
+      let block='\\begin{ex}\n'+stemParts.join('\n');
+      if(qKind==='TN'&&q.opts.length){
+        const its=q.opts.map(op=>{
+          let t=nodesToTex(op.ch).replace(/^\s*[A-D]\s*[.)]\s*/,'').replace(/\s*\.\s*$/,'').trim();
+          return '{'+(op.ok?'\\True ':'')+t+'}';
+        });
+        block+='\n\\choice\n'+its.join('\n');
+      }else if(qKind==='DS'&&q.subs.length){
+        const its=q.subs.map(sb=>{
+          let t=parToTex(sb.el).replace(/^\s*[a-d]\s*\)\s*/,'').replace(/\s*\.\s*$/,'').trim();
+          return '{'+(sb.ok?'\\True ':'')+t+'}';
+        });
+        block+='\n\\choiceTFt\n'+its.join('\n');
+      }else if(qKind==='TL'){
+        block+='\n\\shortans{'+(q.at||'').trim()+'}';
+      }
+      if(q.sol.length){
+        const solPs=q.sol.map((el,idx)=>{
+          let t=parToTex(el);
+          if(idx===0)t=t.replace(/^\s*(?:Lời\s*giải|Hướng\s*dẫn\s*giải)\s*[:.]?\s*/i,'');
+          return t;
+        }).filter(Boolean);
+        if(qKind==='DS'&&solPs.some(l=>/^(?:[•\-+*]\s*)?[a-d]\)/.test(l))){
+          const pre=[],its=[];let curI=null;
+          solPs.forEach(l=>{
+            const mm=l.match(/^(?:[•\-+*]\s*)?[a-d]\)\s*([\s\S]*)$/);
+            if(mm){curI=[mm[1]];its.push(curI)}else if(curI)curI.push(l);else pre.push(l);
+          });
+          const body=(pre.length?pre.join('\n')+'\n':'')+'\\begin{itemchoice}\n'+its.map(a=>'\\itemch '+a.join('\n')).join('\n')+'\n\\end{itemchoice}';
+          block+='\n\\loigiai{\n'+body+'\n}';
+        }else if(solPs.length){
+          block+='\n\\loigiai{\n'+solPs.join('\n\n')+'\n}';
+        }
+      }
+      block+='\n\\end{ex}';
+      lines.push(block);
+    });
+  });
+  return{tex:chNormFullTex(lines.join('\n\n'),opts),stats,docImgs};
+}
+
+function chPlainTextToTex(raw,opts){
+  const s=String(raw||'').replace(/\r\n?/g,'\n');
+  if(/\\begin\{ex\}/.test(s))return chNormFullTex(s,opts);
+  const lines=s.split('\n'),out=[];let cur=null,partKind='';
+  const flush=()=>{
+    if(!cur)return;
+    const k=cur.opts.length?'TN':cur.subs.length?'DS':(partKind==='TL'||cur.ans)?'TL':'TU';
+    let b='\\begin{ex}\n'+cur.stem.join('\n').trim();
+    if(k==='TN')b+='\n\\choice\n'+cur.opts.map(x=>'{'+x+'}').join('\n');
+    else if(k==='DS')b+='\n\\choiceTFt\n'+cur.subs.map(x=>'{'+x+'}').join('\n');
+    else if(k==='TL')b+='\n\\shortans{'+(cur.ans||'')+'}';
+    if(cur.sol.length)b+='\n\\loigiai{\n'+cur.sol.join('\n').trim()+'\n}';
+    b+='\n\\end{ex}';
+    out.push(b);cur=null;
+  };
+  let mode='stem';
+  for(const rawL of lines){
+    const l=rawL.trim();if(!l||/^[-—–\xad*_=\s]*HẾT[-—–\xad*_=\s]*$/i.test(l))continue;
+    if(/^(?:[IVX]+\.\s*)?(?:PHẦN|Phần)\s+[IVX\d]+/.test(l)){flush();partKind=chDetectPartKind(l);continue}
+    if(/^C[âa]u\s*\d+\s*[:.)]?/i.test(l)){flush();cur={stem:[l.replace(/^C[âa]u\s*\d+\s*[:.)]?\s*/i,'')],opts:[],subs:[],ans:'',sol:[]};mode='stem';continue}
+    if(!cur)continue;
+    if(/^(?:Lời\s*giải|Hướng\s*dẫn\s*giải)\s*[:.]?/i.test(l)){mode='sol';const r=l.replace(/^(?:Lời\s*giải|Hướng\s*dẫn\s*giải)\s*[:.]?\s*/i,'');if(r)cur.sol.push(r);continue}
+    if(mode==='sol'){cur.sol.push(l);continue}
+    if(/^Đáp\s*án\s*:/i.test(l)){cur.ans=l.replace(/^Đáp\s*án\s*:\s*/i,'').replace(/\.$/,'').trim();continue}
+    if((partKind===''||partKind==='TN')&&/^[A-D]\s*[.)]/.test(l)){
+      const segs=l.split(/(?=(?:^|\s)[A-D]\s*[.)]\s*)/).map(x=>x.trim()).filter(Boolean);
+      segs.forEach(sg=>cur.opts.push(sg.replace(/^[A-D]\s*[.)]\s*/,'').replace(/\s*\.\s*$/,'')));
+      continue;
+    }
+    if((partKind===''||partKind==='DS')&&/^[a-d]\s*\)/.test(l)){cur.subs.push(l.replace(/^[a-d]\s*\)\s*/,'').replace(/\s*\.\s*$/,''));continue}
+    cur.stem.push(l);
+  }
+  flush();
+  return chNormFullTex(out.join('\n\n')||s,opts);
+}
+
+function chBuildVisionPrompt(opts){
+  const tikzRule=opts&&opts.imgTikz
+    ? `5. HÌNH VẼ, ĐỒ THỊ, BẢNG BIẾN THIÊN, BẢNG SỐ LIỆU: KHÔNG bỏ qua — hãy VẼ LẠI ĐẦY ĐỦ bằng mã LaTeX/TikZ đặt trong \\begin{center}...\\end{center}:
+   - Bảng biến thiên / Bảng xét dấu: dùng gói tkz-tab (\\tkzTabInit, \\tkzTabLine, \\tkzTabVar) trong \\begin{tikzpicture}...\\end{tikzpicture}.
+   - Đồ thị hàm số: dùng \\begin{tikzpicture}[>=Stealth, scale=0.75, line join=round, line cap=round], vẽ đủ trục Oxy, mũi tên, các mốc tọa độ, tiệm cận (dashed), đường gióng (dashed), điểm cực trị/giao điểm (\\fill), đường cong mượt bằng plot hoặc controls.
+   - Hình học phẳng / không gian: dùng \\begin{tikzpicture}[scale=0.9, line join=round, line cap=round], phân biệt rõ nét thấy và nét khuất (dashed), ghi đủ tên điểm và ký hiệu vuông góc.
+   - Bảng số liệu thống kê (mẫu ghép nhóm / tần số): chuyển thành bảng LaTeX chuẩn \\begin{tabular}{|c|...|}\\hline ... \\end{tabular}.`
+    : `5. Nếu có hình vẽ/đồ thị, chèn chú thích % [Hình vẽ].`;
+  return `Bạn là chuyên gia biên soạn Toán THPT Việt Nam bằng LaTeX (gói ex_test theo mẫu T-Math).
+Hãy chuyển toàn bộ các câu hỏi Toán trong hình/trang tài liệu này sang mã LaTeX chuẩn ex_test và KÈM THEO LỜI GIẢI NGẮN GỌN, CHÍNH XÁC:
+1. Cấu trúc mỗi câu:
+   \\begin{ex}
+     <Đề bài>
+     \\choice (trắc nghiệm 4 phương án, đặt \\True trước đáp án đúng)
+     hoặc \\choiceTFt (Đúng/Sai 4 ý, đặt \\True trước các ý đúng)
+     hoặc \\shortans{<kết quả>} (trả lời ngắn)
+     \\loigiai[-1]{ (hoặc \\loigiai[5]{ cho câu VD/VDC, Đ/S; \\loigiai[8]{ cho câu TLN; \\loigiai{ cho tự luận)
+       <Lời giải ngắn gọn, rõ ràng; với câu Đúng/Sai dùng \\begin{itemchoice} \\itemch Đúng./Sai. ... \\end{itemchoice}>
+     }
+   \\end{ex}
+2. Nếu tài liệu gốc CHƯA CÓ LỜI GIẢI hoặc CHƯA ĐÁNH DẤU ĐÁP ÁN ĐÚNG: hãy tự giải chính xác, đặt \\True đúng phương án/ý đúng (hoặc điền \\shortans{...}) và viết lời giải ngắn gọn trong \\loigiai[...]{...}.
+3. Không ghi lại chữ "Câu 1.", "Câu 2." ở đầu đề bài.
+4. Ký hiệu toán học chuẩn Việt Nam: dùng \\dfrac thay \\frac, số thập phân dùng {,} (vd: 1{,}5), dùng \\le, \\ge, \\ne, \\iff, \\implies, \\mathbb{R}, \\widehat{ABC}, \\overrightarrow{AB}, ^\\circ cho độ, \\begin{cases}...\\end{cases} cho hệ phương trình, \\lim \\limits_{...} cho giới hạn.
+${tikzRule}
+6. CHỈ trả về mã LaTeX thuần (các khối \\begin{ex}...\\end{ex}), không giải thích ngoài lề, không dùng \\documentclass.`;
+}
+
+const CH_MODEL_CACHE=new Map();
+async function chFetchGeminiModels(apiKey,force){
+  if(!force&&CH_MODEL_CACHE.has(apiKey))return CH_MODEL_CACHE.get(apiKey);
+  const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models?key='+encodeURIComponent(apiKey));
+  const j=await r.json();
+  if(!r.ok)throw new Error((j.error&&j.error.message)||('API Key không hợp lệ (mã '+r.status+')'));
+  const list=(j.models||[]).filter(m=>(m.supportedGenerationMethods||[]).includes('generateContent')&&/^models\/gemini-/i.test(m.name)).map(m=>m.name.replace(/^models\//,'')).filter(n=>!/tts|image|audio|live|computer|embedding|robotics|aqa|bisociat|veo|imagen/i.test(n));
+  // Ưu tiên bản ổn định (GA) ít bị quá tải 503 trước các bản preview
+  const score=n=>{
+    let s=0;
+    const isPrev=/preview|exp|beta/i.test(n);
+    if(/^gemini-2\.5-flash$/i.test(n))s+=500;
+    else if(/^gemini-2\.5-flash-lite$/i.test(n))s+=440;
+    else if(/^gemini-2\.0-flash$/i.test(n))s+=410;
+    else if(/^gemini-2\.5-pro$/i.test(n))s+=390;
+    else if(/gemini-2\.5/i.test(n))s+=340;
+    else if(/gemini-3/i.test(n))s+=310;
+    else if(/gemini-2\.0/i.test(n))s+=260;
+    if(/flash/i.test(n)&&!/lite|8b/i.test(n))s+=40;
+    else if(/pro/i.test(n))s+=25;
+    else if(/lite/i.test(n))s+=20;
+    if(isPrev)s-=90;
+    if(/thinking/i.test(n))s-=80;
+    return s;
+  };
+  const sorted=[...new Set(list)].sort((a,b)=>score(b)-score(a));
+  CH_MODEL_CACHE.set(apiKey,sorted);
+  return sorted;
+}
+
+async function chCallGemini(apiKey,model,parts,onStatus){
+  const callOnce=async md=>{
+    const url='https://generativelanguage.googleapis.com/v1beta/models/'+encodeURIComponent(md)+':generateContent?key='+encodeURIComponent(apiKey);
+    const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts}],generationConfig:{temperature:0.15,maxOutputTokens:16384}})});
+    let j={};try{j=await r.json()}catch(_){}
+    if(!r.ok){
+      const msg=(j.error&&j.error.message)||('Lỗi Gemini API ('+r.status+')');
+      const err=new Error(msg);err.status=r.status;throw err;
+    }
+    const cand=j.candidates&&j.candidates[0];
+    const text=(cand&&cand.content&&cand.content.parts||[]).map(p=>p.text||'').join('\n');
+    if(!text.trim())throw new Error('Gemini không trả về nội dung (có thể bị giới hạn bộ lọc hoặc quá tải).');
+    return text;
+  };
+  const isBusy=e=>e.status===503||e.status===500||e.status===502||e.status===504||e.status===429||/high demand|overloaded|unavailable|try again later|rate limit|quota|resource_exhausted/i.test(e.message||'');
+  const isMissing=e=>e.status===404||/not found|deprecated|not supported|no longer/i.test(e.message||'');
+
+  const defaults=['gemini-2.5-flash','gemini-2.5-flash-lite','gemini-2.0-flash','gemini-2.5-pro','gemini-3-flash-preview'];
+  let avail=[];
+  try{avail=await chFetchGeminiModels(apiKey)}catch(_){avail=defaults}
+  if(!avail.length)avail=defaults;
+
+  const pref=(model||'auto').trim();
+  const chain=[];
+  if(pref&&pref!=='auto')chain.push(pref);
+  for(const m of avail)if(!chain.includes(m))chain.push(m);
+  for(const m of defaults)if(!chain.includes(m))chain.push(m);
+  const candidates=chain.slice(0,5);
+
+  let lastErr=null;
+  for(let i=0;i<candidates.length;i++){
+    const md=candidates[i];
+    for(let attempt=0;attempt<2;attempt++){
+      try{
+        return await callOnce(md);
+      }catch(err){
+        lastErr=err;
+        if(isMissing(err))break; // Model không tồn tại -> chuyển ngay sang model kế tiếp
+        if(isBusy(err)){
+          if(attempt===0){
+            onStatus&&onStatus('Model '+md+' đang quá tải ('+(err.status||'503')+') — thử lại sau 2,5 giây…');
+            await new Promise(ok=>setTimeout(ok,2500));
+            continue;
+          }
+          if(i<candidates.length-1){
+            onStatus&&onStatus('Model '+md+' vẫn quá tải — tự động chuyển sang '+candidates[i+1]+'…');
+          }
+          break;
+        }
+        throw err; // Lỗi khác (vd: 400, 401, 403 sai API Key) -> báo ngay
+      }
+    }
+  }
+  throw new Error('Các phiên bản Gemini đều đang quá tải tạm thời. Thầy thử lại sau ít phút hoặc chuyển sang chế độ Trích chữ nhanh.\nChi tiết: '+(lastErr?lastErr.message:'503'));
+}
+
+async function chGeminiVision(apiKey,model,images,opts,onStatus){
+  const parts=[{text:chBuildVisionPrompt(opts)}];
+  images.forEach(im=>parts.push({inline_data:{mime_type:im.mime||'image/jpeg',data:im.b64}}));
+  const txt=await chCallGemini(apiKey,model,parts,onStatus);
+  return chNormFullTex(txt,opts);
+}
+
+async function chImageToTikzAI(img,contextTex,apiKey,model,onStatus){
+  const prompt=`Bạn là chuyên gia vẽ hình Toán học THPT bằng LaTeX (TikZ, tkz-tab, tabular) biên dịch bằng pdfLaTeX.
+Hãy phân tích hình ảnh đính kèm và chuyển sang mã LaTeX chính xác, đẹp, biên dịch được ngay:
+- Nếu là BẢNG BIẾN THIÊN hoặc BẢNG XÉT DẤU: dùng gói tkz-tab (\\tkzTabInit, \\tkzTabLine, \\tkzTabVar) đặt trong \\begin{center}\\begin{tikzpicture}...\\end{tikzpicture}\\end{center}.
+- Nếu là ĐỒ THỊ HÀM SỐ: dùng \\begin{center}\\begin{tikzpicture}[>=Stealth, scale=0.75, line join=round, line cap=round]...\\end{tikzpicture}\\end{center}. Vẽ đúng trục Oxy, mũi tên, lưới mờ (nếu có), tiệm cận (dashed), đường gióng (dashed), đánh dấu đúng các tọa độ điểm quan trọng và vẽ nhánh đồ thị chính xác bằng plot hoặc controls.
+- Nếu là HÌNH HỌC PHẲNG hoặc KHÔNG GIAN (hoặc hình minh họa thực tế như hồ bơi, khối hình): dùng \\begin{center}\\begin{tikzpicture}[scale=0.9, line join=round, line cap=round]...\\end{tikzpicture}\\end{center}. Phân biệt rõ nét thấy và nét khuất (dashed), tô vùng (fill=gray!30 nếu có tô đậm), ghi đầy đủ tên điểm, ký hiệu vuông góc.
+- Nếu là BẢNG SỐ LIỆU THỐNG KÊ (mẫu ghép nhóm, tần số, chiều cao, độ dài...): chuyển thành bảng LaTeX chuẩn \\begin{center}\\begin{tabular}{|c|...|}\\hline ... \\end{tabular}\\end{center}, giữ đúng mọi giá trị số và đơn vị.
+Quy tắc bắt buộc:
+- CHỈ sử dụng các gói chuẩn có sẵn: tikz (arrows.meta, calc, angles, quotes, intersections, positioning, patterns), tkz-tab, tkz-euclide, amsmath, amssymb.
+- KHÔNG viết \\documentclass, KHÔNG viết \\usepackage, KHÔNG dùng \\begin{document}, KHÔNG giải thích ngoài lề, KHÔNG bọc markdown.
+- CHỈ trả về duy nhất khối \\begin{center} ... \\end{center}.`+(contextTex?`\n\nNgữ cảnh câu hỏi chứa hình này:\n`+contextTex.slice(0,900):'');
+  const raw=await chCallGemini(apiKey,model,[{text:prompt},{inline_data:{mime_type:img.mime||'image/png',data:img.b64}}],onStatus);
+  let code=String(raw||'').replace(/^```(?:latex|tex)?\s*\n?/i,'').replace(/\n?```\s*$/,'').trim();
+  const m=code.match(/\\begin\{center\}[\s\S]*?\\end\{center\}/);
+  if(m)code=m[0];
+  else if(/\\begin\{(?:tikzpicture|tabular)\}/.test(code))code='\\begin{center}\n'+code+'\n\\end{center}';
+  return code;
+}
+
+async function chConvertDocImgsToTikz(texSrc,docImgs,apiKey,model,onProg){
+  if(!docImgs||!docImgs.length)return{tex:texSrc,done:0};
+  const blocks=gidScan(texSrc);
+  let out=texSrc,done=0;
+  for(let i=0;i<docImgs.length;i++){
+    const im=docImgs[i];
+    if(!out.includes(im.marker))continue;
+    onProg&&onProg('AI đang vẽ lại hình '+(i+1)+'/'+docImgs.length+' sang mã TikZ/LaTeX…');
+    const hostBlock=blocks.find(b=>b.code.includes(im.marker));
+    const tikzCode=await chImageToTikzAI(im,hostBlock?hostBlock.code:'',apiKey,model,onProg);
+    if(tikzCode){
+      out=out.replace(im.marker,()=>tikzCode);
+      done++;
+    }
+  }
+  return{tex:out,done};
+}
+
+async function chSolveMissingAI(texSrc,apiKey,model,opts,onProg){
+  const blocks=gidScan(texSrc);
+  const missing=[];
+  blocks.forEach((b,i)=>{
+    const p=gidParseQ(b.code);
+    if(!p.sol)missing.push({i,b,p});
+  });
+  if(!missing.length)return{tex:texSrc,solved:0};
+  const updatedCodes=blocks.map(b=>b.code);
+  const BATCH=3;
+  let solved=0;
+  for(let k=0;k<missing.length;k+=BATCH){
+    const batch=missing.slice(k,k+BATCH);
+    onProg&&onProg('AI đang giải câu '+(batch[0].i+1)+'–'+(batch[batch.length-1].i+1)+' ('+Math.min(k+BATCH,missing.length)+'/'+missing.length+')…');
+    const prompt=`Bạn là giáo viên Toán THPT. Dưới đây là ${batch.length} câu hỏi LaTeX (gói ex_test) chưa có lời giải.
+Hãy giải chính xác từng câu và trả về ĐÚNG ${batch.length} khối \\begin{ex} ... \\end{ex} hoàn chỉnh theo đúng thứ tự:
+- Giữ nguyên toàn bộ đề bài, mã %[ID], và các đoạn mã hình TikZ / bảng tabular (nếu có).
+- Nếu câu trắc nghiệm (\\choice) hoặc Đúng/Sai (\\choiceTFt) chưa có \\True, hãy thêm \\True vào đúng phương án/ý đúng.
+- Nếu câu trả lời ngắn có \\shortans{} đang trống, hãy điền kết quả số vào trong \\shortans{...}.
+- Nếu câu vẫn còn dấu % [HINH_...] chưa vẽ nên không đủ dữ kiện, vẫn thêm \\loigiai{Cần bổ sung hình vẽ để giải chi tiết.} để không bỏ sót khối.
+- Viết lời giải NGẮN GỌN, súc tích, chuẩn ký hiệu toán VN (\\dfrac, {,} cho thập phân, \\le, \\ge, \\ne) trong \\loigiai{...}. Với câu Đúng/Sai dùng \\begin{itemchoice} \\itemch Đúng./Sai. ... \\end{itemchoice}.
+- CHỈ trả về mã LaTeX thuần gồm đúng ${batch.length} khối \\begin{ex}...\\end{ex}, không giải thích ngoài lề.\n\n`+batch.map(x=>x.b.code).join('\n\n');
+    const txt=await chCallGemini(apiKey,model,[{text:prompt}],onProg);
+    const cleaned=chNormFullTex(txt,opts);
+    const retBlocks=gidScan(cleaned);
+    batch.forEach((item,bi)=>{
+      if(retBlocks[bi]){updatedCodes[item.i]=retBlocks[bi].code;solved++}
+    });
+  }
+  let out=texSrc;
+  for(let i=blocks.length-1;i>=0;i--){
+    if(updatedCodes[i]!==blocks[i].code){
+      out=out.slice(0,blocks[i].s)+updatedCodes[i]+out.slice(blocks[i].e);
+    }
+  }
+  return{tex:out,solved};
+}
+
+function chSuggestIDs(texSrc,lopFilter){
+  const blocks=gidScan(texSrc);
+  const ctx=idFileCtx(texSrc),lop=(lopFilter!==''&&lopFilter!=null)?lopFilter:(ctx.lop||'');
+  const mxMap=new Map(ID_MX.map(m=>[m[5],m]));
+  return blocks.map((b,idx)=>{
+    const p=gidParseQ(b.code),kind=gidKind(b.code)||'TL';
+    const text=p.stem+' '+p.items.map(x=>x.t).join(' ');
+    const rk=idRank(text,p.sol,lop,ctx.prior);
+    const short=p.stem.replace(/\$[^$]*\$/g,'').replace(/\\[a-zA-Z]+/g,'').trim().length<40;
+    const cb=idClassBai(rk,'',short);
+    const lvObj=idLevel({code:b.code,kind},p);
+    const bai=cb.bai||(rk[0]?rk[0].bai:'');
+    const lv=lvObj.lv||'B';
+    const id=bai?idFull(bai,lv,kind):'';
+    const m=bai?mxMap.get(bai):null;
+    const exist=(b.code.slice(0,400).match(/%\s*\[([^\]]+)\]/)||[])[1]||'';
+    return{
+      idx,n:idx+1,s:b.s,e:b.e,code:b.code,p,kind,
+      bai,lv,sf:kind,id,exist,
+      tenBai:m?m[4]:'',
+      conf:cb.c==='sure'&&lvObj.c==='sure'?'sure':(bai?'check':'none'),
+      why:[...cb.why,...lvObj.why],
+      rk,checked:!!id
+    };
+  });
+}
+
+let chNode=null;
+function normPanel(){
+  if(chNode)return chNode;
+  chNode=document.createElement('div');
+  chNode.innerHTML=`<div class="sx" id="chRoot">
+<div class="sxb">
+  <b class="sxh1">✨ Chuẩn hoá LaTeX</b>
+  <button class="btn sm sec" id="chF">📂 Chọn file</button>
+  <input type="file" id="chI" accept=".docx,.pdf,.png,.jpg,.jpeg,.webp,.tex,.txt" multiple hidden>
+  <span class="sxn" id="chN">Chưa chọn file (hỗ trợ dán ảnh Ctrl+V)</span>
+  <span class="st" id="chSt">Sẵn sàng</span>
+  <div class="sxb-act">
+    <button class="btn pri" id="chRun">✨ Chuẩn hoá</button>
+    <button class="btn sm sec" id="chTikzBtn" title="Vẽ lại các ảnh/đồ thị/bảng biến thiên trích từ file Word sang mã TikZ / tkz-tab / bảng LaTeX">🎨 Vẽ TikZ</button>
+    <button class="btn sm sec" id="chSolveBtn" title="Dùng Gemini AI tự giải các câu chưa có lời giải">🤖 Giải AI</button>
+    <button class="btn sm sec" id="chFmtBtn" title="Định dạng toàn bộ mã theo mẫu T-Math">📐 Mẫu T-Math</button>
+    <button class="btn sm sec" id="chIdBtn">🏷️ Gợi ý ID</button>
+    <span class="sxb-sep"></span>
+    <button class="btn sm" id="chKeyBtn" title="Cấu hình Gemini API Key & chọn phiên bản model">🔑 API AI</button>
+    <button class="btn sm icon" id="chFs" title="Toàn màn hình">⛶</button>
+  </div>
+</div>
+<div class="sxm" id="chM">
+  <div class="tzp sxs">
+    <div class="tzh"><span>📥 Nguồn &amp; Tùy chọn</span></div>
+    <div class="sxbd">
+      <div style="padding:12px 14px">
+        <label class="ch-drop" id="chDrop">
+          <b>📄 Kéo thả .docx, .pdf hoặc ảnh chụp</b>
+          Hoặc bấm chọn file · Dán ảnh bằng <b>Ctrl+V</b>
+        </label>
+        <div class="ch-thumbs" id="chThumbs"></div>
+        <div class="ch-pdfbox" id="chPdfBox" hidden>
+          <b id="chPdfInfo">📑 File PDF</b>
+          <label>Chế độ đọc PDF
+            <select id="chPdfMd">
+              <option value="ai">🤖 AI Vision (chuẩn công thức, vẽ TikZ, tự giải)</option>
+              <option value="text">⚡ Trích chữ nhanh (không cần API)</option>
+            </select>
+          </label>
+          <label>Trang cần xử lý (vd: 1-3)
+            <input id="chPdfPg" placeholder="Để trống = tất cả (tối đa 12 trang AI)">
+          </label>
+        </div>
+      </div>
+      <details open class="sxd"><summary>⚙️ Tùy chọn chuẩn hoá</summary>
+        <div class="sxo">
+          <label><input type="checkbox" id="chTMath" checked> <b>Xuất mẫu T-Math</b> (<code>\phan</code>, ghi chú, ID)</label>
+          <label style="display:grid;gap:3px">Tiêu đề đề thi
+            <input id="chTitle" value="ĐỀ ÔN TẬP – KIỂM TRA – TOÁN THPT (2026 - 2027)" style="padding:6px 8px;border:1px solid var(--edge);border-radius:8px;background:var(--surf);color:var(--text);font:500 .82rem 'Be Vietnam Pro',sans-serif">
+          </label>
+          <label><input type="checkbox" id="chImgTikz" checked> <b>Vẽ lại hình / đồ thị / BBT sang TikZ (AI)</b></label>
+          <label><input type="checkbox" id="chAutoSol" checked> <b>Tự giải câu thiếu lời giải (AI)</b></label>
+          <label><input type="checkbox" id="chDfrac" checked> Dùng <code>\dfrac</code> thay <code>\frac</code></label>
+          <label><input type="checkbox" id="chDec" checked> Số thập phân chuẩn VN (<code>1{,}5</code>)</label>
+          <label><input type="checkbox" id="chUni" checked> Đổi ký hiệu Unicode sang LaTeX</label>
+          <label><input type="checkbox" id="chHeva"> Đổi hệ PT sang <code>\heva{...}</code></label>
+          <label><input type="checkbox" id="chWrap"> Bọc khung <code>\documentclass</code></label>
+          <label style="display:grid;gap:4px">Dòng chấm <code>\loigiai</code>
+            <div style="display:flex;gap:6px;align-items:center">
+              <select id="chSolMd" style="flex:1;padding:6px 8px;border:1px solid var(--edge);border-radius:8px;background:var(--surf);color:var(--text)">
+                <option value="tmath">Chuẩn T-Math ([-1] / [5] / [8])</option>
+                <option value="keep">Giữ nguyên theo file</option>
+                <option value="neg1">Không chừa dòng [-1]</option>
+                <option value="dot">Chừa [n] dòng chấm</option>
+                <option value="none">Mặc định \loigiai{...}</option>
+              </select>
+              <input id="chSolN" type="number" min="1" max="30" value="8" hidden style="width:64px;padding:6px;border:1px solid var(--edge);border-radius:8px;background:var(--surf);color:var(--text)">
+            </div>
+          </label>
+          <label style="display:grid;gap:4px">Khối lớp gợi ý ID
+            <select id="chLop" style="padding:6px 8px;border:1px solid var(--edge);border-radius:8px;background:var(--surf);color:var(--text)">
+              <option value="">Tự động (10–12)</option>
+              <option value="0">Lớp 10</option>
+              <option value="1">Lớp 11</option>
+              <option value="2">Lớp 12</option>
+            </select>
+          </label>
+        </div>
+      </details>
+      <details class="sxd"><summary>✍️ Dán nhanh văn bản / LaTeX</summary>
+        <div style="padding:10px 14px">
+          <textarea class="ch-raw" id="chRaw" placeholder="Dán câu hỏi hoặc mã LaTeX thô vào đây…"></textarea>
+          <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap">
+            <button type="button" class="btn sm sec" id="chCpPmt" title="Chép Prompt chuẩn hoá + vẽ TikZ + giải ngắn gọn cho Gemini/ChatGPT ngoài">📋 Chép Prompt AI</button>
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+  <div class="tzg" id="chG"></div>
+  <div class="tzp sxv">
+    <div class="tzh">
+      <span>
+        <button class="chip on" id="chT0">📝 Mã .tex</button>
+        <button class="chip" id="chT1">👁️ Xem trước</button>
+        <button class="chip" id="chT2">🏷️ Gợi ý ID</button>
+      </span>
+      <span class="sxtb">
+        <button class="btn sm" id="chCp">📋 Chép</button>
+        <button class="btn sm" id="chDl">⬇ Tải .tex</button>
+      </span>
+    </div>
+    <textarea class="tvEd" id="chOut" spellcheck="false" placeholder="Mã LaTeX chuẩn mẫu T-Math sẽ hiện tại đây…"></textarea>
+    <div class="ch-pvlist" id="chPv" hidden></div>
+    <div class="ch-idlist" id="chIdV" hidden></div>
+    <div class="ch-foot">
+      <span class="ch-stat" id="chStat">Chưa có dữ liệu</span>
+      <button class="btn sm ok" id="chApplyId" hidden>✨ Chèn ID &amp; chuẩn mẫu</button>
+      <button class="btn sm sec" id="chToGid" disabled>🏷️ Sang Gán ID</button>
+      <button class="btn sm pri" id="chToSh" disabled>🔀 Sang Trộn đề</button>
+    </div>
+  </div>
+</div></div>`;
+
+  const $=id=>chNode.querySelector('#'+id);
+  let srcKind='',docxFile=null,pdfFile=null,pdfNumPages=0,imgList=[],lastDocImgs=[],idSugs=[],curTab=0,outName='de-chuan-hoa.tex';
+  const say=(m,c)=>{$('chSt').className='st '+(c||'');$('chSt').textContent=m};
+  const getOpts=()=>({
+    tmath:$('chTMath').checked,docTitle:$('chTitle').value,
+    imgTikz:$('chImgTikz').checked,autoSol:$('chAutoSol').checked,
+    dfrac:$('chDfrac').checked,decComma:$('chDec').checked,uniMath:$('chUni').checked,
+    heva:$('chHeva').checked,wrap:$('chWrap').checked,
+    solOptMode:$('chSolMd').value,solLines:Math.max(1,+$('chSolN').value||8),
+    lop:$('chLop').value
+  });
+  const getKey=()=>{try{return localStorage.getItem('tm_gemini_key')||''}catch(_){return ''}};
+  const getModel=()=>{try{return localStorage.getItem('tm_gemini_model')||'auto'}catch(_){return 'auto'}};
+
+  $('chSolMd').onchange=()=>{$('chSolN').hidden=$('chSolMd').value!=='dot'};
+  $('chFs').onclick=()=>{const r=$('chRoot');document.fullscreenElement?document.exitFullscreen():r.requestFullscreen&&r.requestFullscreen()};
+  {const g=$('chG'),m=$('chM');g.addEventListener('pointerdown',e=>{g.setPointerCapture(e.pointerId);const mv=ev=>{const r=m.getBoundingClientRect();m.style.setProperty('--sw',Math.max(300,Math.min(r.width*.55,ev.clientX-r.left-6))+'px')};g.addEventListener('pointermove',mv);g.addEventListener('pointerup',()=>g.removeEventListener('pointermove',mv),{once:true})})}
+
+  function openApiModal(){
+    const ov=document.createElement('div');ov.className='fmo';
+    ov.innerHTML=`<div class="fmb" style="max-width:540px!important;height:auto!important;padding:20px!important">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <h4 style="margin:0;font-size:1.05rem">🔑 Cấu hình Gemini API Key</h4>
+        <button type="button" class="fmx" id="akX">✕</button>
+      </div>
+      <p style="font-size:.83rem;color:#556;margin:0 0 10px;line-height:1.5">Dùng cho nhận diện <b>PDF/Ảnh</b>, <b>vẽ lại hình sang TikZ</b> và <b>tự giải câu thiếu lời giải</b>. Khóa chỉ lưu cục bộ trên trình duyệt của thầy.</p>
+      <label style="display:grid;gap:4px;font-size:.8rem;font-weight:600;color:#556;margin-bottom:8px">Gemini API Key (<a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener" style="color:#1e5bd8;text-decoration:underline">Lấy khóa tại Google AI Studio</a>)
+        <div style="display:flex;gap:6px">
+          <input id="akIn" type="password" placeholder="AIzaSy..." style="flex:1;padding:9px 11px;border:1px solid #ccd;border-radius:10px;font:500 .88rem ui-monospace,Consolas,monospace;box-sizing:border-box;color:#222;background:#fff">
+          <button type="button" class="btn sm sec" id="akTest" title="Kiểm tra khóa và tải danh sách phiên bản Gemini mới nhất khả dụng">🔍 Dò model</button>
+        </div>
+      </label>
+      <label style="display:grid;gap:4px;font-size:.8rem;font-weight:600;color:#556;margin-bottom:8px">Phiên bản Gemini
+        <select id="akMd" style="padding:8px 10px;border:1px solid #ccd;border-radius:10px;color:#222;background:#fff;font:500 .86rem 'Be Vietnam Pro',sans-serif">
+          <option value="auto">✨ Tự động chọn bản mới nhất theo API Key (Khuyên dùng)</option>
+          <option value="gemini-2.5-flash">gemini-2.5-flash</option>
+          <option value="gemini-2.5-pro">gemini-2.5-pro</option>
+          <option value="gemini-3-flash-preview">gemini-3-flash-preview</option>
+          <option value="gemini-3.1-pro-preview">gemini-3.1-pro-preview</option>
+          <option value="gemini-2.5-flash-lite">gemini-2.5-flash-lite</option>
+        </select>
+      </label>
+      <label style="display:grid;gap:4px;font-size:.8rem;font-weight:600;color:#556;margin-bottom:6px">Hoặc nhập tên model tùy chỉnh (để trống nếu chọn ở trên)
+        <input id="akCustom" type="text" placeholder="vd: gemini-3-flash-preview" style="width:100%;padding:7px 10px;border:1px solid #ccd;border-radius:10px;font:500 .84rem ui-monospace,Consolas,monospace;box-sizing:border-box;color:#222;background:#fff">
+      </label>
+      <div id="akMsg" style="font-size:.8rem;min-height:1.3em;margin-top:4px;color:#556"></div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+        <button type="button" class="btn sm" id="akClr">🗑 Xóa khóa</button>
+        <button type="button" class="btn sm pri" id="akSv">💾 Lưu</button>
+      </div>
+    </div>`;
+    document.body.appendChild(ov);
+    const inp=ov.querySelector('#akIn'),sel=ov.querySelector('#akMd'),cus=ov.querySelector('#akCustom'),msg=ov.querySelector('#akMsg');
+    inp.value=getKey();
+    const curM=getModel();
+    if([...sel.options].some(o=>o.value===curM))sel.value=curM;else{sel.value='auto';cus.value=curM}
+    const close=()=>ov.remove();
+    ov.querySelector('#akX').onclick=close;
+    ov.addEventListener('mousedown',e=>{if(e.target===ov)close()});
+    ov.querySelector('#akTest').onclick=async()=>{
+      const k=inp.value.trim();if(!k){msg.style.color='#c0392b';msg.textContent='Hãy dán API Key trước.';return}
+      msg.style.color='#556';msg.textContent='Đang kiểm tra khóa và tải danh sách model khả dụng…';
+      try{
+        const list=await chFetchGeminiModels(k,true);
+        if(!list.length)throw new Error('Không thấy model generateContent nào');
+        sel.innerHTML='<option value="auto">✨ Tự động ('+list[0]+')</option>'+list.map(m=>`<option value="${m}">${m}</option>`).join('');
+        sel.value=list[0];cus.value='';
+        msg.style.color='#0f766e';msg.textContent='✓ API Key hợp lệ! Tìm thấy '+list.length+' model (đã chọn: '+list[0]+').';
+      }catch(e){msg.style.color='#c0392b';msg.textContent='✖ '+e.message}
+    };
+    ov.querySelector('#akClr').onclick=()=>{try{localStorage.removeItem('tm_gemini_key')}catch(_){}say('Đã xóa API Key','ok');close()};
+    ov.querySelector('#akSv').onclick=()=>{
+      const k=inp.value.trim(),md=(cus.value.trim()||sel.value||'auto');
+      try{localStorage.setItem('tm_gemini_key',k);localStorage.setItem('tm_gemini_model',md)}catch(_){}
+      say(k?'Đã lưu API Key ('+md+')':'Đã cập nhật cấu hình','ok');close();
+    };
+  }
+  $('chKeyBtn').onclick=openApiModal;
+
+  function renderThumbs(){
+    const list=srcKind==='img'?imgList:lastDocImgs;
+    $('chThumbs').innerHTML=list.map((im,i)=>`<div class="ch-thumb" title="${qzEsc(im.name||('Hình '+(i+1)))}"><img src="${im.url}" alt="">${srcKind==='img'?`<button type="button" data-rm="${i}">✕</button>`:''}</div>`).join('');
+  }
+  $('chThumbs').onclick=e=>{const b=e.target.closest('button[data-rm]');if(!b)return;imgList.splice(+b.dataset.rm,1);renderThumbs();if(!imgList.length){srcKind='';$('chN').textContent='Chưa chọn file'}};
+
+  async function addFiles(fl){
+    const fs=[...fl];if(!fs.length)return;
+    const dx=fs.find(f=>/\.docx$/i.test(f.name));
+    const pf=fs.find(f=>/\.pdf$/i.test(f.name));
+    const tx=fs.find(f=>/\.(tex|txt)$/i.test(f.name));
+    const ims=fs.filter(f=>/^image\//i.test(f.type)||/\.(png|jpe?g|webp)$/i.test(f.name));
+    if(dx){
+      srcKind='docx';docxFile=dx;pdfFile=null;imgList=[];lastDocImgs=[];renderThumbs();$('chPdfBox').hidden=true;
+      outName=dx.name.replace(/\.docx$/i,'')+'-chuan-hoa.tex';
+      $('chN').textContent='📄 '+dx.name;say('Đã nạp file Word — bấm “Chuẩn hoá”','ok');
+    }else if(pf){
+      srcKind='pdf';pdfFile=pf;docxFile=null;imgList=[];lastDocImgs=[];renderThumbs();
+      outName=pf.name.replace(/\.pdf$/i,'')+'-chuan-hoa.tex';
+      $('chPdfBox').hidden=false;$('chN').textContent='📑 '+pf.name;
+      try{
+        await loadPdfjs();
+        const pdf=await pdfjsLib.getDocument({data:await pf.arrayBuffer()}).promise;
+        pdfNumPages=pdf.numPages;
+        $('chPdfInfo').textContent='📑 '+pf.name+' ('+pdfNumPages+' trang)';
+        say('Đã nạp PDF ('+pdfNumPages+' trang)','ok');
+      }catch(e){say('Lỗi đọc PDF: '+e.message,'err')}
+    }else if(ims.length){
+      srcKind='img';docxFile=null;pdfFile=null;lastDocImgs=[];$('chPdfBox').hidden=true;
+      for(const f of ims){
+        const url=await new Promise(ok=>{const fr=new FileReader();fr.onload=()=>ok(fr.result);fr.readAsDataURL(f)});
+        imgList.push({name:f.name||'anh-chup.png',url,mime:f.type||'image/png',b64:url.split(',')[1]});
+      }
+      outName='anh-chup-chuan-hoa.tex';
+      renderThumbs();$('chN').textContent='🖼 '+imgList.length+' ảnh';
+      say('Đã nạp '+imgList.length+' ảnh — bấm “Chuẩn hoá”','ok');
+    }else if(tx){
+      srcKind='raw';docxFile=null;pdfFile=null;imgList=[];lastDocImgs=[];renderThumbs();$('chPdfBox').hidden=true;
+      $('chRaw').value=(await tx.text()).replace(/\r\n?/g,'\n');
+      outName=tx.name.replace(/\.(tex|txt)$/i,'')+'-chuan-hoa.tex';
+      $('chN').textContent='📝 '+tx.name;say('Đã nạp file văn bản/LaTeX','ok');
+    }else{
+      say('Chọn .docx, .pdf, ảnh (.png/.jpg) hoặc .tex/.txt','err');
+    }
+  }
+  $('chF').onclick=()=>$('chI').click();
+  $('chDrop').onclick=()=>$('chI').click();
+  $('chI').onchange=e=>{addFiles(e.target.files);e.target.value=''};
+  ['dragenter','dragover'].forEach(v=>$('chDrop').addEventListener(v,e=>{e.preventDefault();$('chDrop').classList.add('over')}));
+  ['dragleave','drop'].forEach(v=>$('chDrop').addEventListener(v,e=>{e.preventDefault();$('chDrop').classList.remove('over');if(v==='drop')addFiles(e.dataTransfer.files)}));
+  chNode.addEventListener('paste',e=>{
+    const items=[...(e.clipboardData&&e.clipboardData.items||[])].filter(it=>it.type.startsWith('image/'));
+    if(!items.length)return;
+    e.preventDefault();
+    const files=items.map(it=>it.getAsFile()).filter(Boolean);
+    if(files.length)addFiles(files);
+  });
+
+  function setTab(k){
+    curTab=k;
+    [0,1,2].forEach(i=>$('chT'+i).classList.toggle('on',i===k));
+    $('chOut').hidden=k!==0;$('chPv').hidden=k!==1;$('chIdV').hidden=k!==2;
+    $('chApplyId').hidden=k!==2||!idSugs.length;
+    if(k===1)renderPreview();
+    if(k===2)renderIdList();
+  }
+  [0,1,2].forEach(i=>$('chT'+i).onclick=()=>setTab(i));
+
+  function updateStat(){
+    const src=$('chOut').value.trim();
+    const has=!!src;
+    $('chToGid').disabled=!has;$('chToSh').disabled=!has;
+    const bl=gidScan(src),noSol=bl.filter(b=>!gidParseQ(b.code).sol).length;
+    const pendingImg=(src.match(/%\s*\[HINH_\d+\]/g)||[]).length;
+    const cnt={TN:0,DS:0,TL:0,TU:0};
+    bl.forEach(b=>{const k=gidKind(b.code);if(k==='TN')cnt.TN++;else if(k==='DS')cnt.DS++;else if(k==='TL')cnt.TL++;else cnt.TU++});
+    const partsTxt=[cnt.TN?cnt.TN+' TN':'',cnt.DS?cnt.DS+' Đ/S':'',cnt.TL?cnt.TL+' TLN':'',cnt.TU?cnt.TU+' Tự luận':''].filter(Boolean).join(' · ');
+    $('chStat').textContent=has?(bl.length+' câu'+(partsTxt?' ('+partsTxt+')':'')+(pendingImg?' · 🖼 '+pendingImg+' hình chờ vẽ TikZ':'')+(noSol?' · ⚠ '+noSol+' thiếu lời giải':' · ✓ Đủ lời giải')):'Chưa có dữ liệu';
+    $('chT2').textContent='🏷️ Gợi ý ID'+(idSugs.length?' ('+idSugs.length+')':'');
+  }
+  $('chOut').oninput=()=>{updateStat()};
+
+  async function renderPreview(){
+    await gidKx().catch(()=>0);
+    const src=$('chOut').value.trim(),box=$('chPv');
+    const blocks=gidScan(src);
+    if(!blocks.length){box.innerHTML='<div class="gie2">Chưa có khối <code>\\begin{ex} ... \\end{ex}</code> nào để xem trước.</div>';return}
+    box.innerHTML=blocks.map((b,i)=>{
+      const p=gidParseQ(b.code),sg=idSugs[i],idChip=sg&&sg.id?`<span class="gid ${sg.conf==='sure'?'sure':'chk'}">${qzEsc(sg.id)}</span>`:'';
+      let body='<div class="gq">'+gidInline(p.stem,0)+'</div>';
+      if(p.tf===null&&p.items[0])body+='<div class="gsa">Đáp án: <b>'+(p.items[0].t.trim()?gidInline(p.items[0].t,0):'(trống)')+'</b></div>';
+      else if(p.items.length)body+='<ol class="gopt'+(p.tf?' tf':'')+'">'+p.items.map(x=>'<li'+(x.ok?' class="ok"':'')+'>'+gidInline(x.t,0)+'</li>').join('')+'</ol>';
+      if(p.sol)body+='<details class="gsol"><summary>'+gidSolLbl(p.solOpt)+'</summary><div>'+gidInline(p.sol,0)+'</div></details>';
+      else body+='<div style="margin-top:6px;font-size:.78rem;color:#b45309">⚠ Chưa có lời giải</div>';
+      return `<article class="ch-qcard"><header><b>Câu ${i+1}</b><span class="gik k-${gidKind(b.code)}">${ID_SFN[gidKind(b.code)]||'Tự luận'}</span>${idChip}</header>${body}</article>`;
+    }).join('');
+  }
+
+  async function renderIdList(){
+    await gidKx().catch(()=>0);
+    const box=$('chIdV');
+    if(!idSugs.length){box.innerHTML='<div class="gie2">Chưa có gợi ý ID. Hãy chuẩn hoá rồi bấm <b>🏷️ Gợi ý ID</b>.</div>';$('chApplyId').hidden=true;return}
+    const baiAll='<option value="">— Chọn bài học —</option>'+ID_MX.map(m=>`<option value="${m[5]}">${m[5]} · ${qzEsc(m[4])}</option>`).join('');
+    box.innerHTML=idSugs.map((it,i)=>{
+      const chipCls=it.conf==='sure'?'sure':(it.id?'chk':'no');
+      const lvOpts=ID_LV.map(l=>`<option value="${l[0]}"${it.lv===l[0]?' selected':''}>${l[0]} · ${l[1]}</option>`).join('');
+      const sfOpts=[['TN','TN'],['DS','Đ/S'],['TL','TL']].map(([k,lb])=>`<option value="${k}"${it.sf===k?' selected':''}>${lb}</option>`).join('');
+      const topChips=it.rk.slice(0,3).map(x=>`<button type="button" class="chip${x.bai===it.bai?' on':''}" data-pick="${i}" data-bai="${x.bai}">${x.bai}</button>`).join('');
+      return `<div class="ch-idcard" data-i="${i}">
+        <div class="ch-idh">
+          <label style="display:inline-flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" data-ck="${i}" ${it.checked?'checked':''}><b>Câu ${it.n}</b></label>
+          <span class="gid ${chipCls}" id="chChip${i}">${it.id||'Chưa rõ bài'}</span>
+          ${it.exist?'<span class="nhb moi">Đã có: '+qzEsc(it.exist)+'</span>':''}
+          <span style="font-size:.76rem;color:var(--muted);margin-left:auto">${it.conf==='sure'?'✓ Tin cậy cao':'⚠ Kiểm tra lại'}</span>
+        </div>
+        <div style="font-size:.84rem;color:var(--text)">${gidInline(it.p.stem,160)}</div>
+        <div class="ch-idrow">
+          <select data-bai-sel="${i}">${baiAll}</select>
+          <select class="sm-sel" data-lv-sel="${i}">${lvOpts}</select>
+          <select class="sm-sel" data-sf-sel="${i}">${sfOpts}</select>
+        </div>
+        ${topChips?'<div class="gisg"><span>Gợi ý:</span>'+topChips+'</div>':''}
+      </div>`;
+    }).join('');
+    idSugs.forEach((it,i)=>{const s=box.querySelector(`select[data-bai-sel="${i}"]`);if(s&&it.bai)s.value=it.bai});
+    $('chApplyId').hidden=false;
+  }
+
+  $('chIdV').addEventListener('change',e=>{
+    const el=e.target,i=+(el.dataset.ck??el.dataset.baiSel??el.dataset.lvSel??el.dataset.sfSel);
+    if(isNaN(i)||!idSugs[i])return;
+    const it=idSugs[i];
+    if(el.dataset.ck!=null){it.checked=el.checked;return}
+    if(el.dataset.baiSel!=null)it.bai=el.value;
+    if(el.dataset.lvSel!=null)it.lv=el.value;
+    if(el.dataset.sfSel!=null)it.sf=el.value;
+    const mx=ID_MX.find(m=>m[5]===it.bai);
+    it.tenBai=mx?mx[4]:'';
+    it.id=it.bai?idFull(it.bai,it.lv,it.sf):'';
+    it.checked=!!it.id;
+    const ck=$('chIdV').querySelector(`input[data-ck="${i}"]`);if(ck)ck.checked=it.checked;
+    const ch=$('chChip'+i);if(ch){ch.textContent=it.id||'Chưa rõ bài';ch.className='gid '+(it.id?'ok':'no')}
+  });
+  $('chIdV').addEventListener('click',e=>{
+    const b=e.target.closest('button[data-pick]');if(!b)return;
+    const i=+b.dataset.pick,it=idSugs[i];if(!it)return;
+    it.bai=b.dataset.bai;const mx=ID_MX.find(m=>m[5]===it.bai);it.tenBai=mx?mx[4]:'';
+    it.id=idFull(it.bai,it.lv,it.sf);it.checked=!!it.id;
+    renderIdList();
+  });
+
+  function runSuggestIds(switchToTab){
+    const src=$('chOut').value.trim();
+    if(!src){say('Chưa có mã LaTeX để gợi ý ID','err');return}
+    idSugs=chSuggestIDs(src,$('chLop').value);
+    updateStat();
+    if(!idSugs.length){say('Không tìm thấy khối \\begin{ex}…\\end{ex}','err');return}
+    const okN=idSugs.filter(x=>x.id).length;
+    say('Đã gợi ý ID cho '+okN+'/'+idSugs.length+' câu','ok');
+    if(switchToTab)setTab(2);
+  }
+  $('chIdBtn').onclick=()=>runSuggestIds(true);
+
+  $('chFmtBtn').onclick=()=>{
+    const src=$('chOut').value.trim();
+    if(!src){say('Chưa có mã LaTeX để định dạng','err');return}
+    const opts=getOpts();
+    const norm=chNormFullTex(src,opts);
+    idSugs=chSuggestIDs(norm,opts.lop);
+    const formatted=chFormatTMath(norm,idSugs,opts);
+    $('chOut').value=formatted;
+    idSugs=chSuggestIDs(formatted,opts.lop);
+    updateStat();
+    setTab(0);
+    say('Đã định dạng '+idSugs.length+' câu theo mẫu T-Math','ok');
+  };
+
+  $('chApplyId').onclick=()=>{
+    const src=$('chOut').value,opts=getOpts();
+    const toWrite=idSugs.filter(x=>x.checked&&x.id).map(x=>({s:x.s,e:x.e,code:x.code,id:x.id}));
+    if(!toWrite.length){say('Chưa chọn câu nào có ID hợp lệ','err');return}
+    let updated=idWrite(src,toWrite);
+    if(opts.tmath){
+      const mapSug=idSugs.map(x=>({...x,id:x.checked?x.id:''}));
+      updated=chFormatTMath(updated,mapSug,opts);
+    }
+    $('chOut').value=updated;
+    idSugs=chSuggestIDs(updated,opts.lop);
+    updateStat();
+    setTab(0);
+    say('Đã chèn '+toWrite.length+' mã ID','ok');
+  };
+
+  $('chTikzBtn').onclick=async()=>{
+    const src=$('chOut').value.trim();
+    if(!src){say('Chưa có mã LaTeX để chèn TikZ','err');return}
+    if(!lastDocImgs.length){say('Không có ảnh nào đang chờ vẽ TikZ (ảnh từ file .docx sẽ tự trích xuất khi chuẩn hoá)','err');return}
+    const key=getKey();
+    if(!key){openApiModal();say('Cần nhập Gemini API Key để vẽ lại hình sang TikZ','err');return}
+    const opts=getOpts();
+    $('chTikzBtn').disabled=true;
+    try{
+      const r=await chConvertDocImgsToTikz(src,lastDocImgs,key,getModel(),m=>say(m));
+      if(!r.done){say('Tất cả các hình đã được chuyển sang TikZ rồi!','ok');return}
+      let finalTex=r.tex;
+      idSugs=chSuggestIDs(finalTex,opts.lop);
+      if(opts.tmath){finalTex=chFormatTMath(finalTex,idSugs,opts);idSugs=chSuggestIDs(finalTex,opts.lop)}
+      $('chOut').value=finalTex;
+      updateStat();
+      if(curTab===1)renderPreview();else if(curTab===2)renderIdList();
+      say('AI đã vẽ lại '+r.done+' hình sang mã TikZ / LaTeX!','ok');
+    }catch(e){
+      say(e.message,'err');
+    }finally{
+      $('chTikzBtn').disabled=false;
+    }
+  };
+
+  $('chSolveBtn').onclick=async()=>{
+    const src=$('chOut').value.trim();
+    if(!src){say('Chưa có mã LaTeX để giải','err');return}
+    const key=getKey();
+    if(!key){openApiModal();say('Cần nhập Gemini API Key để tự giải','err');return}
+    const opts=getOpts();
+    $('chSolveBtn').disabled=true;
+    try{
+      const r=await chSolveMissingAI(src,key,getModel(),opts,m=>say(m));
+      if(!r.solved){say('Tất cả các câu đã có lời giải!','ok');return}
+      let finalTex=r.tex;
+      idSugs=chSuggestIDs(finalTex,opts.lop);
+      if(opts.tmath){finalTex=chFormatTMath(finalTex,idSugs,opts);idSugs=chSuggestIDs(finalTex,opts.lop)}
+      $('chOut').value=finalTex;
+      updateStat();
+      if(curTab===1)renderPreview();else if(curTab===2)renderIdList();
+      say('AI đã viết lời giải cho '+r.solved+' câu!','ok');
+    }catch(e){
+      say(e.message,'err');
+    }finally{
+      $('chSolveBtn').disabled=false;
+    }
+  };
+
+  function parsePageRange(str,maxP){
+    const s=String(str||'').trim();
+    if(!s)return Array.from({length:maxP},(_,i)=>i+1);
+    const out=[];
+    s.split(/[,;\s]+/).forEach(tok=>{
+      const m=tok.match(/^(\d+)-(\d+)$/);
+      if(m){for(let k=Math.max(1,+m[1]);k<=Math.min(maxP,+m[2]);k++)if(!out.includes(k))out.push(k)}
+      else if(/^\d+$/.test(tok)){const k=+tok;if(k>=1&&k<=maxP&&!out.includes(k))out.push(k)}
+    });
+    return out.length?out:Array.from({length:maxP},(_,i)=>i+1);
+  }
+
+  $('chRun').onclick=async()=>{
+    const opts=getOpts();
+    $('chRun').disabled=true;
+    try{
+      let resultTex='',note='',usedAI=false;
+      if(srcKind==='docx'&&docxFile){
+        say('Đang đọc .docx và trích xuất công thức, hình ảnh…');
+        const r=await chDocxToTex(await docxFile.arrayBuffer(),opts);
+        resultTex=r.tex;
+        lastDocImgs=r.docImgs||[];
+        renderThumbs();
+        const st=r.stats;
+        const dTxt=[st.tn?st.tn+' TN':'',st.ds?st.ds+' Đ/S':'',st.tl?st.tl+' TLN':'',st.tu?st.tu+' Tự luận':''].filter(Boolean).join(', ');
+        note='Xong .docx: '+st.q+' câu'+(dTxt?' ('+dTxt+')':'')+' · '+(st.omml+st.mt)+' công thức'+(lastDocImgs.length?' · '+lastDocImgs.length+' hình':'');
+      }else if(srcKind==='pdf'&&pdfFile){
+        await loadPdfjs();
+        const pdf=await pdfjsLib.getDocument({data:await pdfFile.arrayBuffer()}).promise;
+        const pages=parsePageRange($('chPdfPg').value,pdf.numPages);
+        if($('chPdfMd').value==='text'){
+          say('Đang trích xuất chữ PDF ('+pages.length+' trang)…');
+          let fullTxt='';
+          for(const pno of pages){
+            const pg=await pdf.getPage(pno),tc=await pg.getTextContent();
+            let lastY=null,line='';
+            tc.items.forEach(it=>{
+              const y=Math.round(it.transform[5]);
+              if(lastY!==null&&Math.abs(y-lastY)>4){fullTxt+=line+'\n';line=''}
+              line+=(line&&!/\s$/.test(line)&&!/^\s/.test(it.str)?' ':'')+it.str;lastY=y;
+            });
+            fullTxt+=line+'\n\n';
+          }
+          resultTex=chPlainTextToTex(fullTxt,opts);
+          note='Đã trích chữ '+pages.length+' trang PDF';
+        }else{
+          const key=getKey();
+          if(!key){openApiModal();throw new Error('Cần nhập Gemini API Key để chuyển PDF bằng AI Vision')}
+          usedAI=true;
+          const selPages=pages.slice(0,12),chunks=[],PER_REQ=2;
+          for(let i=0;i<selPages.length;i+=PER_REQ){
+            const grp=selPages.slice(i,i+PER_REQ);
+            const lbl=grp.length>1?('trang '+grp[0]+'–'+grp[grp.length-1]):('trang '+grp[0]);
+            say('AI đang nhận diện '+lbl+' ('+Math.min(i+PER_REQ,selPages.length)+'/'+selPages.length+')…');
+            const batchImgs=[];
+            for(const pno of grp){
+              const pg=await pdf.getPage(pno),vp=pg.getViewport({scale:1.75}),cv=document.createElement('canvas');
+              cv.width=Math.ceil(vp.width);cv.height=Math.ceil(vp.height);
+              const cx=cv.getContext('2d');cx.fillStyle='#fff';cx.fillRect(0,0,cv.width,cv.height);
+              await pg.render({canvasContext:cx,viewport:vp}).promise;
+              batchImgs.push({mime:'image/jpeg',b64:cv.toDataURL('image/jpeg',0.86).split(',')[1]});
+            }
+            const partTex=await chGeminiVision(key,getModel(),batchImgs,opts,m=>say(m));
+            chunks.push(partTex);
+            $('chOut').value=chunks.join('\n\n');
+            updateStat();
+            if(i+PER_REQ<selPages.length)await new Promise(ok=>setTimeout(ok,600));
+          }
+          resultTex=chunks.join('\n\n');
+          note='AI đã chuẩn hoá '+selPages.length+' trang PDF';
+        }
+      }else if(srcKind==='img'&&imgList.length){
+        const key=getKey();
+        if(!key){openApiModal();throw new Error('Cần nhập Gemini API Key để nhận diện ảnh chụp')}
+        usedAI=true;
+        say('Đang gửi '+imgList.length+' ảnh tới Gemini…');
+        resultTex=await chGeminiVision(key,getModel(),imgList,opts,m=>say(m));
+        note='AI đã chuẩn hoá '+imgList.length+' ảnh';
+      }else if($('chRaw').value.trim()){
+        say('Đang chuẩn hoá văn bản/LaTeX…');
+        resultTex=chPlainTextToTex($('chRaw').value,opts);
+        note='Đã chuẩn hoá văn bản';
+      }else if($('chOut').value.trim()){
+        say('Đang chuẩn hoá lại mã .tex…');
+        resultTex=chNormFullTex($('chOut').value,opts);
+        note='Đã chuẩn hoá lại mã .tex';
+      }else{
+        throw new Error('Hãy chọn file hoặc dán nội dung trước khi chuẩn hoá');
+      }
+
+      // Bước 1 (nếu file Word có hình ảnh): AI vẽ lại hình/đồ thị/BBT sang mã TikZ/tabular trước khi giải
+      let tikzMsg='';
+      if(opts.imgTikz&&!usedAI&&lastDocImgs.length){
+        const key=getKey();
+        if(key){
+          try{
+            const tr=await chConvertDocImgsToTikz(resultTex,lastDocImgs,key,getModel(),m=>say(m));
+            resultTex=tr.tex;
+            if(tr.done)tikzMsg=' · AI vẽ '+tr.done+' hình TikZ';
+          }catch(tkErr){
+            tikzMsg=' · Lỗi vẽ TikZ: '+tkErr.message;
+          }
+        }else{
+          tikzMsg=' · '+lastDocImgs.length+' hình chờ vẽ TikZ (nhập 🔑 API AI)';
+        }
+      }
+
+      // Bước 2: AI tự giải ngắn gọn các câu thiếu lời giải
+      let solMsg='';
+      if(opts.autoSol&&!usedAI){
+        const noSolN=gidScan(resultTex).filter(b=>!gidParseQ(b.code).sol).length;
+        if(noSolN>0){
+          const key=getKey();
+          if(key){
+            try{
+              const sr=await chSolveMissingAI(resultTex,key,getModel(),opts,m=>say(m));
+              resultTex=sr.tex;
+              if(sr.solved)solMsg=' · AI giải '+sr.solved+' câu';
+            }catch(aiErr){
+              solMsg=' · Lỗi AI giải: '+aiErr.message;
+            }
+          }else{
+            solMsg=' · '+noSolN+' câu thiếu lời giải (nhập 🔑 API AI)';
+          }
+        }
+      }
+
+      idSugs=chSuggestIDs(resultTex,opts.lop);
+      if(opts.tmath&&gidScan(resultTex).length){
+        resultTex=chFormatTMath(resultTex,idSugs,opts);
+        idSugs=chSuggestIDs(resultTex,opts.lop);
+      }else if(opts.wrap){
+        resultTex=texFull(resultTex);
+      }
+
+      $('chOut').value=resultTex;
+      updateStat();
+      const okId=idSugs.filter(x=>x.id).length;
+      say(note+tikzMsg+solMsg+(idSugs.length?' · Gợi ý '+okId+'/'+idSugs.length+' ID':''),'ok');if(window.innerWidth<=980)chNode.querySelector('.sxv').scrollIntoView({behavior:'smooth',block:'start'});
+      if(curTab===1)renderPreview();else if(curTab===2)renderIdList();
+    }catch(e){
+      say(e.message,'err');
+    }finally{
+      $('chRun').disabled=false;
+    }
+  };
+
+  $('chCpPmt').onclick=async()=>{
+    const curTex=$('chOut').value.trim();
+    const missing=curTex?gidScan(curTex).filter(b=>!gidParseQ(b.code).sol):[];
+    let pmt=chBuildVisionPrompt(getOpts());
+    if(missing.length){
+      pmt='Dưới đây là '+missing.length+' câu hỏi LaTeX chưa có lời giải. Hãy bổ sung \\True (hoặc \\shortans) nếu thiếu và viết lời giải ngắn gọn chuẩn ký hiệu toán VN trong \\loigiai[-1]{...} / \\loigiai[5]{...} / \\loigiai[8]{...} theo mẫu T-Math:\n\n'+missing.map(b=>b.code).join('\n\n');
+    }
+    try{await navigator.clipboard.writeText(pmt);say(missing.length?'Đã chép Prompt kèm '+missing.length+' câu thiếu lời giải':'Đã chép Prompt chuẩn hoá + vẽ TikZ + giải ngắn gọn','ok')}
+    catch(_){say('Không sao chép được tự động','err')}
+  };
+  $('chCp').onclick=async()=>{
+    const t=$('chOut').value;if(!t)return;
+    try{await navigator.clipboard.writeText(t);say('Đã sao chép mã .tex','ok')}catch(_){say('Không sao chép được','err')}
+  };
+  $('chDl').onclick=()=>{
+    const t=$('chOut').value;if(!t)return;
+    dl(URL.createObjectURL(new Blob([t],{type:'text/plain'})),outName);
+  };
+  $('chToGid').onclick=async()=>{
+    const t=$('chOut').value.trim();if(!t)return;
+    const giIdx=TABS.findIndex(x=>x.id==='gid');
+    if(giIdx>=0)show(giIdx);
+    gidPanel();
+    if(window.TMGID)await window.TMGID.ld(t,outName);
+  };
+  $('chToSh').onclick=async()=>{
+    const t=$('chOut').value.trim();if(!t)return;
+    const shIdx=TABS.findIndex(x=>x.id==='sh');
+    if(shIdx>=0)show(shIdx);
+    const sp=shufflePanel();
+    await sp.loadFromBank({name:outName,src:t,mode:'tex',count:gidScan(t).length});
+  };
+
+  return chNode;
+}
 
 show(0);
 
@@ -2567,14 +4416,20 @@ function gidScan(src){const out=[],re=/\\begin\{ex\}/g;let m;
   while((m=re.exec(src))){const ls=src.lastIndexOf('\n',m.index)+1;if(/(^|[^\\])%/.test(src.slice(ls,m.index)))continue;const en=texEnvEnd(src,m.index,'ex');if(en<0)break;out.push({s:m.index,e:en,code:src.slice(m.index,en)});re.lastIndex=en}
   return out}
 const gidKind=c=>{const t=c.replace(/(^|[^\\])%.*$/gm,'$1');return /\\choiceTF[A-Za-z]*(?![A-Za-z])/.test(t)?'DS':/\\choice(?![A-Za-z])/.test(t)?'TN':/\\shortans(?![A-Za-z])/.test(t)?'TL':''};
-function gidParseQ(code){let t=code.replace(/^\s*\\begin\{ex\}/,'').replace(/\\end\{ex\}\s*$/,'').replace(/(^|[^\\])%.*$/gm,'$1'),sol='';
-  const li=t.search(/\\loigiai(?![A-Za-z])\s*\{/);if(li>=0){const q=t.indexOf('{',li),e=texBal(t,q);sol=t.slice(q+1,e);t=t.slice(0,li)+t.slice(e+1)}
+function gidParseQ(code){let t=code.replace(/^\s*\\begin\{ex\}(?:\s*\[[^\]]*\])?/,'').replace(/\\end\{ex\}\s*$/,'').replace(/(^|[^\\])%.*$/gm,'$1'),sol='',solOpt='';
+  for(let lm;(lm=/\\loigiai(?![A-Za-z])\s*(?:\[([^\]]*)\])?\s*\{/.exec(t));){
+    const q=lm.index+lm[0].length-1,e=texBal(t,q);
+    if(lm[1]!=null&&!solOpt)solOpt=lm[1].trim();
+    sol=(sol?sol+'\n':'')+t.slice(q+1,e);
+    t=t.slice(0,lm.index)+t.slice(e+1);
+  }
   let items=[],tf=false;const m=/\\choice(TF[A-Za-z]*)?(?![A-Za-z])/.exec(t);
   if(m){tf=!!m[1];let k=m.index+m[0].length;const op=t.slice(k).match(/^\s*\[[^\]]*\]/);if(op)k+=op[0].length;let p=k;
     for(let j=0;j<4;j++){const q=p+t.slice(p).match(/^\s*/)[0].length;if(t[q]!=='{')break;const e=texBal(t,q);items.push(t.slice(q+1,e));p=e+1}
     t=t.slice(0,m.index)+t.slice(p)}
   else{const sa=t.match(/\\shortans(?![A-Za-z])\s*(\[[^\]]*\])?\s*\{/);if(sa){const q=sa.index+sa[0].length-1,e=texBal(t,q);items=[t.slice(q+1,e)];tf=null;t=t.slice(0,sa.index)+t.slice(e+1)}}
-  return{stem:t.trim(),items:items.map(x=>({ok:/\\True(?![A-Za-z])/.test(x),t:x.replace(/\\True(?![A-Za-z])\s*/g,'')})),tf,sol:sol.trim()}}
+  return{stem:t.trim(),items:items.map(x=>({ok:/\\True(?![A-Za-z])/.test(x),t:x.replace(/\\True(?![A-Za-z])\s*/g,'')})),tf,sol:sol.trim(),solOpt}}
+const gidSolLbl=opt=>!opt?'Lời giải':(opt==='-1'||opt==='0'?'Lời giải (không chừa dòng chấm)':/^\d+$/.test(opt)?'Lời giải (chừa '+opt+' dòng chấm)':'Lời giải ['+opt+']');
 const gidFigC=new Map(),gidFigF=new Map();
 const gidFigs=c=>c.replace(/(^|[^\\])%.*$/gm,'$1').match(/\\begin\{tikzpicture\}[\s\S]*?\\end\{tikzpicture\}/g)||[];
 const gidFigIn=c=>{const v=gidFigC.get(c);if(v)return '<img src="'+v+'" alt="Hình TikZ">';const e=gidFigF.get(c);return e?'<span class="gfe">⚠ Không dựng được hình: '+e.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</span>':'<span class="gfp">Chưa dựng hình</span>'};
@@ -2662,7 +4517,7 @@ function gidPanel(){
     let h='<div class="gq">'+gidInline(p.stem)+'</div>'+gidFigHtml(q.code);
     if(p.tf===null)h+='<div class="gsa">Đáp án: <b>'+gidInline(p.items[0].t)+'</b></div>';
     else if(p.items.length)h+='<ol class="gopt'+(p.tf?' tf':'')+'">'+p.items.map(x=>'<li'+(x.ok?' class="ok"':'')+'>'+gidInline(x.t)+'</li>').join('')+'</ol>';
-    if(p.sol)h+='<details class="gsol"><summary>Lời giải</summary><div>'+gidInline(p.sol)+'</div></details>';
+    if(p.sol)h+='<details class="gsol"><summary>'+gidSolLbl(p.solOpt)+'</summary><div>'+gidInline(p.sol)+'</div></details>';
     $('giPvB').innerHTML=h;gidFigWire($('giPvB'),q.code,$('giFA').checked);edSync();
     $('giB').value=q.sel.bai;gidNode.querySelectorAll('#giLv [data-lv]').forEach(b=>b.classList.toggle('on',b.dataset.lv===q.sel.lv));gidNode.querySelectorAll('#giSf [data-sf]').forEach(b=>b.classList.toggle('on',b.dataset.sf===q.sel.sf));
     const id=idOf(q);$('giId').textContent=id||'—';$('giId').className=id?(q.sug?'sug':'ok'):'';
@@ -2974,7 +4829,7 @@ function bankPanel(){
     await gidKx();let pq={stem:q.tex,items:[],sol:''};try{pq=gidParseQ(q.tex)}catch(_){}
     const ch=pq.items.length?'<ol class="nhch'+(pq.tf?' tf':'')+'" type="'+(pq.tf?'a':'A')+'">'+pq.items.map(x=>'<li'+(x.ok?' class="ok"':'')+'>'+gidInline(x.t,0)+'</li>').join('')+'</ol>':'';
     el.innerHTML=`<div class="nhdh"><b>${q.uid}</b><code>${q.id}</code><span class="nhb ${q.status}">${NH_ST[q.status]}</span><span class="nhbn">${esc(q.tenBai)}</span></div>
-     <div class="nhpv">${gidInline(pq.stem,0)}${gidFigHtml(q.tex)}${ch}${pq.sol?'<details><summary>Lời giải</summary>'+gidInline(pq.sol,0)+'</details>':''}${q.dapAn?'<div class="nhda">Đáp án: <b>'+esc(q.dapAn)+'</b></div>':''}</div>
+     <div class="nhpv">${gidInline(pq.stem,0)}${gidFigHtml(q.tex)}${ch}${pq.sol?'<details><summary>'+gidSolLbl(pq.solOpt)+'</summary>'+gidInline(pq.sol,0)+'</details>':''}${q.dapAn?'<div class="nhda">Đáp án: <b>'+esc(q.dapAn)+'</b></div>':''}</div>
      ${(q.trung||[]).length?'<div class="nhwarn">≈ Nội dung gần giống: '+q.trung.map(u=>'<a href="#" data-g="'+u+'">'+u+'</a>').join(', ')+' — kiểm tra rồi “Loại” bản thừa.</div>':''}
      <div class="nhed"><label>Bài học<select id="nhEB">${baiOpts('',q.bai)}</select></label>
       <label>Mức độ<span class="seg" id="nhEL">${ID_LV.map(l=>`<button class="chip${q.lv===l[0]?' on':''}" data-l="${l[0]}" title="${l[1]}">${l[0]}</button>`).join('')}</span></label>
@@ -3070,7 +4925,7 @@ function bankPanel(){
     el.innerHTML=`<table class="xst"><tr>${LC.map(l=>`<th colspan="3" class="lv-${l[0]}">${l[1]}</th>`).join('')}</tr><tr>${LC.map(()=>'<td>TN</td><td>Đ-S</td><td>SA</td>').join('')}</tr><tr>${LC.map(l=>`<td>${g(l[0],'TN')}</td><td>${g(l[0],'DS')}</td><td>${g(l[0],'TL')}</td>`).join('')}</tr>
        <tr>${LC.map(l=>`<td colspan="3">${lt(l[0])} câu</td>`).join('')}</tr><tr><td colspan="4">Trắc nghiệm: ${c.TN} câu</td><td colspan="4">Đúng-Sai: ${c.DS} câu</td><td colspan="4">Trả lời ngắn: ${c.TL} câu</td></tr><tr><td colspan="12" class="tot">Tổng cộng: ${ds.length} câu</td></tr></table>
       <div class="nhex2"><label>Tên đề<input id="nhDn" value="${esc(DEN)}" placeholder="vd: Kiểm tra 15 phút - Vecto"></label><div class="xchk"><label><input type="checkbox" id="nhWr"> kèm khung tài liệu (\\documentclass + ex_test)</label><label><input type="checkbox" id="nhGp" checked> nhóm theo phần I/II/III</label><label><input type="checkbox" id="nhLg" checked> ghi nhận “đã dùng”</label></div>
-       <div class="nhbt"><button class="btn sm pri" id="nhXT" ${ds.length?'':'disabled'}>⬇ Xuất .tex &amp; lưu đề</button>${ds.length?'<button class="btn sm" id="nhClr">🗑 Bỏ chọn tất cả</button>':''}</div></div>
+       <div class="nhbt"><button class="btn sm ok" id="nhToShW" ${ds.length?'':'disabled'} title="Đưa thẳng đề sang tab Trộn đề ở chế độ Word (.docx) để xem, sửa công thức và trộn nhiều mã đề">🔀 Trộn đề (Word)</button><button class="btn sm sec" id="nhToShT" ${ds.length?'':'disabled'} title="Đưa thẳng đề sang tab Trộn đề ở chế độ biên dịch LaTeX (PDF)">🧪 Trộn đề (LaTeX)</button><button class="btn sm pri" id="nhXT" ${ds.length?'':'disabled'}>⬇ Xuất .tex &amp; lưu đề</button>${ds.length?'<button class="btn sm" id="nhClr">🗑 Bỏ chọn tất cả</button>':''}</div></div>
       <details class="nhmx"><summary>🎲 Bổ sung ngẫu nhiên theo ma trận</summary>
       ${rows.map((r,i)=>`<div class="nhrw" data-i="${i}"><select data-k="lop"><option value="">Mọi lớp</option><option value="0">Lớp 10</option><option value="1">Lớp 11</option><option value="2">Lớp 12</option></select><select data-k="bai">${baiOpts(r.lop,r.bai,true)}</select>
         <select data-k="lv"><option value="">Mọi mức</option>${ID_LV.map(l=>`<option value="${l[0]}">${l[0]}</option>`).join('')}</select><select data-k="sf"><option value="">Mọi dạng</option>${ID_SF.map(s=>`<option value="${s}">${s}</option>`).join('')}</select><input type="number" min="1" max="60" data-k="n" value="${r.n}"><button class="btn sm" data-x="${i}">✕</button></div>`).join('')}
@@ -3086,10 +4941,42 @@ function bankPanel(){
     tb.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{const i=+b.dataset.d;if(i<DE.length-1){[DE[i+1],DE[i]]=[DE[i],DE[i+1]];xRight()}});
     tb.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{const i=+b.dataset.r,q=U.get(DE[i]),g=pick({bai:q.bai,lv:q.lv,sf:q.sf,n:1},new Set(DE),$('nhPf').checked);if(!g.length){say('Không còn câu thay thế cùng bài/mức/dạng','err');return}DE[i]=g[0].uid;xSync()});
     $('nhDn').oninput=e=>{DEN=e.target.value};
-    $('nhXT').onclick=async()=>{try{const nm=($('nhDn').value.trim()||'de-'+nhStamp()),ds=DE.map(u=>U.get(u)).filter(Boolean),P=[['TN','PHẦN I. Trắc nghiệm nhiều lựa chọn'],['DS','PHẦN II. Trắc nghiệm đúng sai'],['TL','PHẦN III. Trả lời ngắn']];
-        let body='';if($('nhGp').checked){for(const[k,t]of P){const g=ds.filter(q=>q.sf===k);if(g.length)body+='% ===== '+t+' =====\n'+g.map(q=>'% '+q.uid+'\n'+q.tex.trim()).join('\n\n')+'\n\n'}}else body=ds.map(q=>'% '+q.uid+'\n'+q.tex.trim()).join('\n\n')+'\n';
-        if($('nhWr').checked)body=texFull(body.replace(/^\s+/,''))+'\n';
-        const fn=nm.replace(/[^\p{L}\p{N}_-]+/gu,'-').replace(/^-|-$/g,'')+'.tex';dl(URL.createObjectURL(new Blob([body],{type:'text/plain'})),fn);
+    const buildExam=(forShuffle)=>{
+      const nm=$('nhDn').value.trim()||'de-'+nhStamp(),ds=DE.map(u=>U.get(u)).filter(Boolean),
+        P=[['TN','PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn.'],['DS','PHẦN II. Câu trắc nghiệm đúng sai.'],['TL','PHẦN III. Câu trắc nghiệm trả lời ngắn.']];
+      const grpOf=list=>{if(!list.length)return '';const segs=[];let s=0;for(let i=1;i<=list.length;i++){if(i===list.length||list[i].lv!==list[s].lv){segs.push(s===i-1?String(s+1):(s+1)+'-'+i);s=i}}return segs.join(', ')};
+      let body='',lvParts=[];
+      if($('nhGp').checked){
+        for(const[k,t]of P){
+          const g=ds.filter(q=>q.sf===k);
+          if(g.length){
+            body+='\\noindent\\textbf{'+t+'}\\par\\setcounter{ex}{0}\n\n'+g.map(q=>'% '+q.uid+'\n'+q.tex.trim()).join('\n\n')+'\n\n';
+            lvParts.push(grpOf(g));
+          }
+        }
+      }else{
+        body=ds.map(q=>'% '+q.uid+'\n'+q.tex.trim()).join('\n\n')+'\n';
+        lvParts.push(grpOf(ds));
+      }
+      if(!forShuffle&&$('nhWr').checked)body=texFull(body.replace(/^\s+/,''))+'\n';
+      const fn=nm.replace(/[^\p{L}\p{N}_-]+/gu,'-').replace(/^-|-$/g,'')+'.tex';
+      const levelGroups=lvParts.some(s=>s.includes(','))?lvParts.join(' ; '):'';
+      return{nm,ds,body,fn,levelGroups};
+    };
+    const sendToShuffle=async(mode)=>{
+      try{
+        const{nm,ds,body,fn,levelGroups}=buildExam(true);
+        if(!ds.length){say('Chưa có câu hỏi nào trong đề để đưa sang Trộn đề','err');return}
+        if($('nhLg').checked){const ts=nhNow();for(const q of ds)(q.dung=q.dung||[]).push({de:nm,ngay:ts});await commit(ds.map(q=>q.bai))}
+        const shIdx=TABS.findIndex(t=>t.id==='sh');
+        if(shIdx>=0)show(shIdx);
+        const target=shufflePanel();
+        await target.loadFromBank({name:fn,src:body,mode,examTitle:$('nhDn').value.trim(),levelGroups,count:ds.length});
+      }catch(e){say('Lỗi chuyển sang Trộn đề: '+e.message,'err')}
+    };
+    $('nhToShW').onclick=()=>sendToShuffle('docx');
+    $('nhToShT').onclick=()=>sendToShuffle('tex');
+    $('nhXT').onclick=async()=>{try{const{nm,ds,body,fn}=buildExam(false);dl(URL.createObjectURL(new Blob([body],{type:'text/plain'})),fn);
         const ts=nhNow();await NHFS.write('xuat/'+fn,body);await NHFS.write('de-thi/'+fn.replace(/\.tex$/,'')+'.json',JSON.stringify({schema:'t-math.exam/1',ten:nm,ngay:ts,soCau:ds.length,uids:ds.map(q=>q.uid),ids:ds.map(q=>q.id)},null,1));
         if($('nhLg').checked){for(const q of ds)(q.dung=q.dung||[]).push({de:nm,ngay:ts});await commit(ds.map(q=>q.bai))}
         say('Đã xuất '+fn+' ('+ds.length+' câu) và lưu vào thư mục de-thi/','ok');refresh()}catch(e){say('Lỗi xuất đề: '+e.message,'err')}}}
